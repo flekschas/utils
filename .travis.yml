@@ -1,0 +1,33 @@
+language: node_js
+node_js:
+  - '12'
+branches:
+  only:
+    - master
+    - develop
+    - '/^v.*$/'
+before_script:
+  - npm install
+before_deploy:
+  - npm run prerelease
+deploy:
+  - provider: releases
+    edge: true
+    skip_cleanup: true
+    api_key:
+      secure: pKaLuyjJLOErVLMm+f8j6wEjhNMqaPxCaJG3QU+9y8s7CgPisb6Uv8EpWTXOZKNIWQqL16uCu0TTmbAAlsCdAMYCOh0RYHOnJBE7dIyvEGmEeQ1eGpDJtFcEX/4NMBoSelV8JWnCPcoITtXWG3uAWW6xHhQmGY3oA3ThKK3d8fo8Vdm9LO2EMwWoNaHvrNrDr0QmPXsUjQ6aHyfDDlnvBFB+rsDl/qKcPa1gB3Ev50yEwr0c71imLQ+Y1nwnrayUFPCLTA3Y348z5v7ZuZLUOp8hRhIb1WUJZWwuNAQ9hxPFF/rN9knTECmiV49AWVcFGfmIsZEEqA/t1O/mwQgzEoeQZnZe6ZzBBUsEw2hHZcyob0TNF/20sES3U+Zb9qXEhC1hsx6L0FZntGUITtrvEnt+c2UKXHcJfizd9hLY7ffvndgwBNwZcfBGkaba/8sL3jX5pag+dd8c0AXo/nEBNT6WdsPEMFvSED786OJFELQ/YM5VaunxhCanZDhESz+xSftNQ+pcCXht7oUCWSvSQa/gPdx8pFz1NVcTse1IJ9GtPrVBzd6tzRutvm9mm1xom0yqku+xw4Eoo3DtrAC/yszWHhGV3ZaKBHsADvLuGKaO2cVp7ek6imvUSzoq5TsaZb2+/tXGbEZGPTP9xr8NgQx+L1fSk8JouP1qrW7qQiI=
+    file: dist.zip
+    on:
+      branch: master
+      tags: true
+      repo: flekschas/utils
+  - provider: npm
+    edge: true
+    skip_cleanup: true
+    email: code@lekschas.de
+    api_key:
+      secure: hr9KtEGoIxOFk0tQsDp7B0F9uCjcrEevP4oQrU3q7Ra9R89DAIcoPQLj9dZcJ/AcJa3Q4KO6YUyZ5H/si4mIuSx/7hDcGI8C4t/ojPmyrzN9teIFonVhIs2UU0ccZPPwHY8pPtESaP0EXF0C70Yg0X4g/7XfGWLbJszX32gsorFNyCjpQk24+bf2u94at/VglvZ8so79Mn4G+MGjWjfMKm94jmeX/p+uaSFpDakYHGD7R0LgJ7Cid2jMAO7r+tpX4MCNx6meEsoMr+GOM0udMunuFnAVlIg4aD0We1n/coThBohlu6Nxd2k+euVfstw1crwTK9dm7oAHQ09wFJg+K/lAhEQ7knXZ7A88yi+8Jhl07hz7Kn2I8eAvmFqcBVkLr7+6v0OWY20q3wc2Oh5lJkmyKWE4LrlU2g7QmbzbhUSIqgrtaTV6Y1umUrXcjBMG+AfUasa/gwdHKlndkWiG4KBd2ZzkVM3MpwuyK7vFBzNIm4e3QGrAmhB2ojODW5t4sOkdcdUYj4tY8E5jSd575kYHhBDVqBYPQFX22ecxv1lP4t8NdKDiYVFZrFUJqsNL3rZ04ThRzlC/KKGwK4OEEgTPoy+hDfiovy1qavff0LmaJGA8Bq7PO+YroZiMrdep2CnMoQ3hZMAgTjpCse66geYneXT4B5WwfaPigGioNy8=
+    on:
+      branch: master
+      tags: true
+      repo: flekschas/utils
