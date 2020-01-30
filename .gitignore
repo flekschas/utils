@@ -6,6 +6,7 @@
 *.pid
 *.gz
 *.DS_cache
+*.html
 
 node_modules
 dist
