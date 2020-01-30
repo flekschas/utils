@@ -48,3 +48,29 @@ export const isPointInPolygon = ([px, py] = [], polygon = []) => {
   }
   return isWithin;
 };
+
+/**
+ * Check if a 2D or 1D point is within a rectangle or range
+ * @param   {number}  x  The point's X coordinate.
+ * @param   {number}  y  The point's Y coordinate.
+ * @param   {number}  minX  The rectangle's start X coordinate.
+ * @param   {number}  maxX  The rectangle's start X coordinate.
+ * @param   {number}  minY  The rectangle's start X coordinate.
+ * @param   {number}  maxY  The rectangle's start X coordinate.
+ * @return  {boolean}  If `true` the [x,y] point is in the rectangle.
+ */
+export const isPointInRect = ([x, y], [minX, maxX, minY, maxY]) =>
+  x >= minX && x <= maxX && y >= minY && y <= maxY;
+
+/**
+ * Check if a 2D or 1D point is within a rectangle or range
+ * @param   {number}  x  The point's X coordinate.
+ * @param   {number}  y  The point's Y coordinate.
+ * @param   {number}  minX  The rectangle's start X coordinate.
+ * @param   {number}  maxX  The rectangle's start X coordinate.
+ * @param   {number}  minY  The rectangle's start X coordinate.
+ * @param   {number}  maxY  The rectangle's start X coordinate.
+ * @return  {boolean}  If `true` the [x,y] point is in the rectangle.
+ */
+export const isPointHalfwayInRect = ([x, y], [minX, maxX, minY, maxY]) =>
+  (x >= minX && x <= maxX) || (y >= minY && y <= maxY);

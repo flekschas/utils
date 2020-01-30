@@ -148,7 +148,9 @@ export const throttleAndDebounce = (fn, throttleTime, debounceTime = null) => {
   return throttledAndDebounced;
 };
 
-export const wait = msec =>
-  new Promise(resolve => {
-    setTimeout(() => resolve(), msec);
-  });
+/**
+ * Promise that resolves after some time
+ * @param {number} msec - Time in milliseconds until the promise is resolved
+ * @return {Promise} Promise resolving after `msec` milliseconds
+ */
+export const wait = msec => new Promise(resolve => setTimeout(resolve, msec));
