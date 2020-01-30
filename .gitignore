@@ -1,0 +1,11 @@
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.DS_cache
+
+node_modules
+dist
