@@ -9,6 +9,7 @@ const copyFileSync = (source, dest) => {
 delete pkg.private;
 delete pkg.scripts;
 delete pkg.devDependencies;
+delete pkg.files;
 pkg.main = 'utils.js';
 pkg.module = 'utils.esm.js';
 pkg.unpkg = 'utils.min.js';
