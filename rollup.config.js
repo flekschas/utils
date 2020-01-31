@@ -22,20 +22,22 @@ const configurator = (input, file, format, plugins, extend = true) => ({
 
 const bundles = [
   ['index', 'utils', false, false],
+  ['animation'],
   ['color'],
   ['conversion'],
   ['dom'],
   ['event'],
   ['functional-programming'],
   ['geometry'],
-  ['index', false],
   ['map'],
   ['math'],
+  ['object'],
   ['other'],
   ['sorting'],
   ['string'],
   ['timing'],
-  ['type-checking']
+  ['type-checking'],
+  ['vector']
 ];
 
 const convert = ([

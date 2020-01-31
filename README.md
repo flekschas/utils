@@ -33,6 +33,7 @@ import { debounce } from '@flekschas/utils/timing';
 
 The utility functions are organized by the following topics:
 
+- animation
 - color
 - conversion
 - dom
@@ -41,11 +42,13 @@ The utility functions are organized by the following topics:
 - geometry
 - map
 - math
+- object
 - other
 - sorting
 - string
 - timing
 - type-checking
+- vector
 
 ## Why
 

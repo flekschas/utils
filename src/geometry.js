@@ -1,19 +1,3 @@
-export const lDist = l => (v, w) =>
-  v.length === w.length
-    ? v.reduce((sum, x, i) => sum + Math.abs(x - w[i]) ** l, 0) ** (1 / l)
-    : undefined;
-
-export const l1Dist = (v, w) =>
-  v.length === w.length
-    ? v.reduce((sum, x, i) => sum + Math.abs(x - w[i]), 0)
-    : undefined;
-
-export const l2Dist = (fromX, fromY, toX, toY) =>
-  Math.sqrt((fromX - toX) ** 2 + (fromY - toY) ** 2);
-
-export const l2Norm = vector =>
-  Math.sqrt(vector.reduce((s, v) => s + v ** 2, 0));
-
 /**
  * L2 distance between a pair of 2D points
  * @param   {number}  x1  X coordinate of the first point
