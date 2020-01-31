@@ -15,7 +15,8 @@ install:
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - npm install
 before_deploy:
-  - npm run prerelease && cd dist
+  - npm run prerelease
+  - cd dist
 deploy:
   - provider: releases
     edge: true
@@ -37,3 +38,5 @@ deploy:
       branch: master
       tags: true
       repo: flekschas/utils
+after_deploy:
+  - cd ..
