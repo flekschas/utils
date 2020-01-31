@@ -9,8 +9,9 @@ const copyFileSync = (source, dest) => {
 delete pkg.private;
 delete pkg.scripts;
 delete pkg.devDependencies;
-pkg.main = 'umd/index.js';
-pkg.module = 'esm/index.js';
+pkg.main = 'utils.js';
+pkg.module = 'utils.esm.js';
+pkg.unpkg = 'utils.min.js';
 fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2));
 
 copyFileSync('README.md', 'dist/README.md');

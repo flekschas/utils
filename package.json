@@ -11,11 +11,11 @@
     "utils"
   ],
   "license": "MIT",
-  "main": "dist/umd/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/utils.js",
+  "module": "dist/utils.esm.js",
+  "unpkg": "dist/utils.min.js",
   "files": [
-    "src/*",
-    "dist/*"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -24,7 +24,7 @@
     "build": "rm -rf dist/*; rollup -c; node scripts/build.js",
     "lint": "eslint src rollup.config.js rollup.test.config.js",
     "precommit": "NODE_ENV=production lint-staged",
-    "prepublishOnly": "npm run test",
+    "prepublishOnly": "npm run test; npm run build",
     "prerelease": "npm run build; zip -r dist.zip dist",
     "pretest": "npm run lint",
     "test": "rollup -c ./rollup.test.config.js | tape-run --render='tap-spec'",
