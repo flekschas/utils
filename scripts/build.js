@@ -14,6 +14,7 @@ pkg.module = 'utils.esm.js';
 pkg.unpkg = 'utils.min.js';
 fs.writeFileSync('dist/package.json', JSON.stringify(pkg, null, 2));
 
+copyFileSync('CHANGELOG.md', 'dist/CHANGELOG.md');
 copyFileSync('README.md', 'dist/README.md');
 copyFileSync('LICENSE', 'dist/LICENSE');
 
