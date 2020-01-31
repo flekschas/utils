@@ -15,9 +15,8 @@ install:
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - npm install
 before_script:
-  - npm install
-before_deploy:
   - npm run prerelease
+before_deploy:
   - cd dist
 deploy:
   - provider: releases
