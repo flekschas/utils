@@ -17,6 +17,9 @@
     "src/*",
     "dist/*"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "rm -rf dist/*; rollup -c; node scripts/build.js",
     "lint": "eslint src rollup.config.js rollup.test.config.js",
