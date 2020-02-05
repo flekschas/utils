@@ -4,7 +4,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-  input: ['./tests/timing.js'],
+  input: ['./tests/animation.js', './tests/timing.js'],
   output: {
     name: 'test',
     format: 'iife',
