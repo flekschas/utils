@@ -1,16 +1,48 @@
-export const lDist = l => (v, w) =>
-  v.length === w.length
-    ? v.reduce((sum, x, i) => sum + Math.abs(x - w[i]) ** l, 0) ** (1 / l)
-    : undefined;
+/**
+ * L distance between a pair of vectors
+ *
+ * @param {array} l - Defines the Lp space
+ */
+export const lDist = l =>
+  /**
+   * L distance function
+   * @param {array} v - First vector
+   * @param {array} w - Second vector
+   * @return {array} L distance
+   */
+  (v, w) =>
+    v.length === w.length
+      ? v.reduce((sum, x, i) => sum + Math.abs(x - w[i]) ** l, 0) ** (1 / l)
+      : undefined;
 
+/**
+ * L1 distance between a pair of vectors
+ *
+ * @description
+ * This is identical but much faster than `lDist(1)(v, w)`
+ *
+ * @param {array} v - First vector
+ * @param {array} w - Second vector
+ * @return {array} L2 distance
+ */
 export const l1Dist = (v, w) =>
   v.length === w.length
     ? v.reduce((sum, x, i) => sum + Math.abs(x - w[i]), 0)
     : undefined;
 
+/**
+ * L2 distance between a pair of vectors
+ *
+ * @description
+ * This is identical but much faster than `lDist(2)(v, w)`
+ *
+ * @param {array} v - First vector
+ * @param {array} w - Second vector
+ * @return {array} L2 distance
+ */
 export const l2Dist = (v, w) =>
   v.length === w.length
-    ? v.reduce((sum, x, i) => sum + Math.abs(x - w[i]), 0)
+    ? Math.sqrt(v.reduce((sum, x, i) => sum + (x - w[i]) ** 2, 0))
     : undefined;
 
 /**
