@@ -1,13 +1,52 @@
 /**
- * L2 distance between a pair of 2D points
- * @param   {number}  x1  X coordinate of the first point
- * @param   {number}  y1  Y coordinate of the first point
- * @param   {number}  x2  X coordinate of the second point
- * @param   {number}  y2  Y coordinate of the first point
- * @return  {number}  L2 distance
+ * L distance between a pair of vectors
+ *
+ * @description
+ * Identical but much faster than `lDist(l)([fromX, fromY], [toX, toY])`
+ *
+ * @param {array} l - Defines the Lp space
  */
-export const dist = (x1, y1, x2, y2) =>
-  Math.sqrt((x1 - x2) ** 2 + (y1 - y2) ** 2);
+export const lPointDist = l =>
+  /**
+   * L distance function
+   * @param {number} fromX - X coordinate of the first point
+   * @param {number} fromY - Y coordinate of the first point
+   * @param {number} toX - X coordinate of the second point
+   * @param {number} toY - Y coordinate of the first point
+   * @return {array} L distance
+   */
+  (fromX, fromY, toX, toY) =>
+    (Math.abs(fromX - toX) ** l + Math.abs(fromY - toY) ** l) ** (1 / l);
+
+/**
+ * L1 distance between a pair of points
+ *
+ * @description
+ * Identical but much faster than `l1Dist([fromX, fromY], [toX, toY])`
+ *
+ * @param {number} fromX - X coordinate of the first point
+ * @param {number} fromY - Y coordinate of the first point
+ * @param {number} toX - X coordinate of the second point
+ * @param {number} toY - Y coordinate of the first point
+ * @return {number} L1 distance
+ */
+export const l1PointDist = (fromX, fromY, toX, toY) =>
+  Math.abs(fromX - toX) + Math.abs(fromY - toY);
+
+/**
+ * L2 distance between a pair of points
+ *
+ * @description
+ * Identical but much faster than `l2Dist([fromX, fromY], [toX, toY])`
+ *
+ * @param {number} fromX - X coordinate of the first point
+ * @param {number} fromY - Y coordinate of the first point
+ * @param {number} toX - X coordinate of the second point
+ * @param {number} toY - Y coordinate of the first point
+ * @return {number} L2 distance
+ */
+export const l2PointDist = (fromX, fromY, toX, toY) =>
+  Math.sqrt((fromX - toX) ** 2 + (fromY - toY) ** 2);
 
 /**
  * From: https://wrf.ecse.rpi.edu//Research/Short_Notes/pnpoly.html
