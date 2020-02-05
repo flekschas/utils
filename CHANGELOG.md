@@ -1,3 +1,8 @@
+## v0.3.0
+
+- Changed the signature of `interpulateNumber` and `interpulateNumber` from `*(a, b)(p)` to `*(a, b, p)`
+- Added tests for animation utils
+
 ## v0.2.1
 
 - Fix npm release
