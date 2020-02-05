@@ -6,7 +6,7 @@
  */
 export const cubicInOut = t => {
   // eslint-disable-next-line no-param-reassign
-  t *= 2;
+  t = Math.min(1, Math.max(0, t)) * 2;
   // eslint-disable-next-line
   return (t <= 1 ? t * t * t : (t -= 2) * t * t + 2) / 2;
 };
@@ -19,7 +19,11 @@ export const cubicInOut = t => {
  *   refers to the start value and `1` to the end value
  * @return {number} The interpolated number
  */
-export const interpolateNumber = (a, b, p) => a * (1 - p) + b * p;
+export const interpolateNumber = (a, b, p) => {
+  // eslint-disable-next-line no-param-reassign
+  p = Math.min(1, Math.max(0, p));
+  return a * (1 - p) + b * p;
+};
 
 /**
  * Lineraly interpolate a numerical vector
