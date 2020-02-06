@@ -1,3 +1,8 @@
+## v0.5.0
+
+- Rename `withReadOnlyProperty()` to `withStaticProperty()`
+- Add non-static version of `withReadOnlyProperty()`
+
 ## v0.4.0
 
 - Rename `dist()` to `l2PointDist()`

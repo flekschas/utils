@@ -126,9 +126,21 @@ export const withProperty = (
 /**
  * Assign a read-only property to an object
  * @param {string} name - Name of the property
+ * @param {function} getter - Getter function
+ */
+export const withReadOnlyProperty = (name, getter) => self =>
+  assign(self, {
+    get [name]() {
+      return getter();
+    }
+  });
+
+/**
+ * Assign a static property to an object
+ * @param {string} name - Name of the property
  * @param {*} value - Static value
  */
-export const withReadOnlyProperty = (name, value) => self =>
+export const withStaticProperty = (name, value) => self =>
   assign(self, {
     get [name]() {
       return value;
