@@ -32,6 +32,25 @@ export const debounce = (fn, wait) => {
 };
 
 /**
+ * Get a promise that resolves after the next `n` animation frames
+ * @param {number} n - Number of animation frames to wait
+ * @return {Promise} A promise that resolves after the next `n` animation frames
+ */
+export const nextAnimationFrame = (n = 1) =>
+  new Promise(resolve => {
+    let i = 0;
+
+    const raf = () =>
+      requestAnimationFrame(() => {
+        i++;
+        if (i < n) raf();
+        else resolve();
+      });
+
+    raf();
+  });
+
+/**
  * Throttle a function
  *
  * @description

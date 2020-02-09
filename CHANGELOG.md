@@ -1,3 +1,7 @@
+## v0.6.0
+
+- Add `nextAnimationFrame()` to _timing_
+
 ## v0.5.0
 
 - Rename `withReadOnlyProperty()` to `withStaticProperty()`
