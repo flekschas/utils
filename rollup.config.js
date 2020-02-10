@@ -23,6 +23,7 @@ const configurator = (input, file, format, plugins, extend = true) => ({
 const bundles = [
   ['index', 'utils', false, false],
   ['animation'],
+  ['array'],
   ['color'],
   ['conversion'],
   ['dom'],

@@ -1,3 +1,7 @@
+## v0.7.1
+
+- Expose _array_ utils
+
 ## v0.7.0
 
 - Add `array2dTranspose()` to _array_
