@@ -1,3 +1,7 @@
+## v0.7.0
+
+- Add `array2dTranspose()` to _array_
+
 ## v0.6.0
 
 - Add `nextAnimationFrame()` to _timing_
