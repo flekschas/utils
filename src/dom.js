@@ -54,6 +54,16 @@ export const isParentOf = (element, parent) => {
 };
 
 /**
+ * Remove all children of a DOM node
+ * @param {object} node - DOM node whose children are to be removed
+ */
+export const removeAllChildren = node => {
+  while (node.firstChild) {
+    node.removeChild(node.firstChild);
+  }
+};
+
+/**
  * Remove a class from an HTML or SVG element.
  * @param {object} element - HTML or SVG element.
  * @param {string} className - Class name to be removed.
