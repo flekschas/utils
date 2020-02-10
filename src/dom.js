@@ -19,6 +19,17 @@ export const addClass = (element, className) => {
 };
 
 /**
+ * Create HTML from a template string
+ * @param {string} template - HTML template string
+ * @return {node} Root DOM element
+ */
+export const createHtmlByTemplate = template => {
+  const dummyEl = document.createElement('div');
+  dummyEl.insertAdjacentHTML('beforeend', template);
+  return dummyEl.firstChild;
+};
+
+/**
  * Check if an HTML or SVG element has a certain class
  * @param {object} element - HTML or SVG element to be checked
  * @param {string} className - Class name to be checked for

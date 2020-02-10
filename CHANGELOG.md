@@ -1,3 +1,7 @@
+## v0.9.0
+
+- Add `createHtmlByTemplate(template)` to _dom_
+
 ## v0.8.0
 
 - Add `removeAllChildren(node)` to _dom_
