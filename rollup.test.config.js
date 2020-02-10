@@ -6,6 +6,7 @@ import resolve from 'rollup-plugin-node-resolve';
 export default {
   input: [
     './tests/animation.js',
+    './tests/array.js',
     './tests/geometry.js',
     './tests/timing.js',
     './tests/vector.js'
