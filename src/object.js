@@ -59,11 +59,15 @@ export const extend = (target, source) => {
 
   const out = target || new source.constructor();
 
-  Object.keys(source).forEach(attr => {
-    out[attr] =
-      typeof out[attr] === 'undefined'
-        ? extend(undefined, source[attr])
-        : out[attr];
+  Object.keys(source).forEach(key => {
+    const descriptor = Object.getOwnPropertyDescriptor(source, key);
+    if (typeof out[key] === 'undefined') {
+      if (typeof descriptor.value === 'undefined') {
+        Object.defineProperty(out, key, descriptor);
+      } else {
+        out[key] = extend(undefined, source[key]);
+      }
+    }
   });
 
   return out;
