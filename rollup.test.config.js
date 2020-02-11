@@ -8,6 +8,7 @@ export default {
     './tests/animation.js',
     './tests/array.js',
     './tests/dom.js',
+    './tests/functional-programming.js',
     './tests/geometry.js',
     './tests/timing.js',
     './tests/vector.js'
