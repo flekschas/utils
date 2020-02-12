@@ -11,14 +11,15 @@ export const isFunction = obj =>
  * @param {string} hex - HEX-encoded color string.
  * @return {boolean} If `true` the string is a valid HEX color encoding.
  */
-export const isHex = hex => /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(hex);
+export const isHex = hex =>
+  /(^#[0-9A-Fa-f]{6}$)|(^#[0-9A-Fa-f]{3}$)/i.test(hex);
 
 /**
  * Tests if a number is in `[0,1]`.
  * @param {number} x - Number to be tested.
  * @return {boolean} If `true` the number is in `[0,1]`.
  */
-export const isNormFloat = x => x >= 0 && x <= 1;
+export const isNormFloat = x => isNumber(x) && x >= 0 && x <= 1;
 
 /**
  * Tests if an array consist of normalized numbers that are in `[0,1]` only.
@@ -26,6 +27,13 @@ export const isNormFloat = x => x >= 0 && x <= 1;
  * @return {boolean} If `true` the array contains only numbers in `[0,1]`.
  */
 export const isNormFloatArray = a => Array.isArray(a) && a.every(isNormFloat);
+
+/**
+ * Test if a variable is a number
+ * @param {*} x - Variable to be tested
+ * @return {boolean} If `true`, `x` is a number.
+ */
+export const isNumber = x => typeof x === 'number';
 
 /**
  * Tests if an array is encoding an RGB color.
@@ -39,11 +47,14 @@ export const isRgbArray = rgb =>
 /**
  * Tests if an array is encoding an RGBA color.
  * @param   {array}  rgb  Array to be tested
- * @return  {boolean}  If `true` the array hold a quadruple of Uint8 numbers or
- *   a quadruple of normalized floats.
+ * @return  {boolean}  If `true` the array hold a quadruple of normalized floats,
+ *   a quadruple of Uint8s, or a triple of Uint8 and one normalized float.
  */
 export const isRgbaArray = rgba =>
-  rgba.length === 4 && (isNormFloatArray(rgba) || isUint8Array(rgba));
+  rgba.length === 4 &&
+  (isNormFloatArray(rgba) ||
+    isUint8Array(rgba) ||
+    (isUint8Array(rgba.slice(0, 3)) && isNormFloat(rgba[3])));
 
 /**
  * Tests if a string is encoding an RGB color.
@@ -51,7 +62,8 @@ export const isRgbaArray = rgba =>
  * @return {boolean} If `true` the array hold a triple of Uint8 numbers or
  *   a triple of normalized floats.
  */
-export const isRgbStr = str => str.substring(0, 4) === 'rgb(';
+export const isRgbStr = str =>
+  /rgb\(\s*[\d.]+\s*,\s*[\d.]+\s*,\s*[\d.]+\s*\)/i.test(str);
 
 /**
  * Tests if a string is encoding an RGBA color.
@@ -59,7 +71,8 @@ export const isRgbStr = str => str.substring(0, 4) === 'rgb(';
  * @return {boolean} If `true` the array hold a quadruple of Uint8 numbers or
  *   a quadruple of normalized floats.
  */
-export const isRgbaStr = str => str.substring(0, 4) === 'rgba';
+export const isRgbaStr = str =>
+  /rgba\(\s*[\d.]+\s*,\s*[\d.]+\s*,\s*[\d.]+\s*,\s*[\d.]+\s*\)/i.test(str);
 
 /**
  * Tests if a variable is a string
