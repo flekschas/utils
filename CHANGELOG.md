@@ -1,7 +1,10 @@
-## v0.9.1
+## v0.10.0
 
-- Fix `deepClone()` to properly clone getter/setter instead of just cloning the value
+- Add `hexToRgbArray`, `hexToRgbaArray`, `rgbStrToRgbArray`, `rgbaStrToRgbaArray`, `rgbStrToDec`, `rgbToHex`, and `toRgbaArray` to _color_
+- Add `isHex()`, `isNormFloat()`, `isNormFloatArray()`, `isRgbArray()`, `isRgbaArray()`, `isRgbStr()`, `isRgbaStr()`, `isString()`, `isUint8()`, and `isUint8Array` to _type-checking_
 - Add tests for `deepClone()`
+- Rename `hexStrToDec()` to `hexToDec()`
+- Fix `deepClone()` to properly clone getter/setter instead of just cloning the value
 
 ## v0.9.0
 
