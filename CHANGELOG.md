@@ -1,3 +1,8 @@
+## v0.9.1
+
+- Fix `deepClone()` to properly clone getter/setter instead of just cloning the value
+- Add tests for `deepClone()`
+
 ## v0.9.0
 
 - Add `createHtmlByTemplate(template)` to _dom_
