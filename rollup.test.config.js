@@ -10,6 +10,7 @@ export default {
     './tests/dom.js',
     './tests/functional-programming.js',
     './tests/geometry.js',
+    './tests/object.js',
     './tests/timing.js',
     './tests/vector.js'
   ],
