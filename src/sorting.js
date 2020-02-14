@@ -1,3 +1,5 @@
+import { identity } from './math';
+
 export const sortAsc = (a, b) => a - b;
 
 export const sortDesc = (a, b) => b - a;
@@ -17,18 +19,18 @@ export const sortDesc = (a, b) => b - a;
  */
 export const argSort = (
   array,
-  { comparator = sortAsc, ignoreNull = false } = {}
+  { getter = identity, comparator = sortAsc, ignoreNull = false } = {}
 ) =>
   array
     .map(
       ignoreNull
-        ? (v, i) => (v === null ? undefined : [v, i])
-        : (v, i) => [v, i]
+        ? (x, i) => (getter(x) === null ? undefined : [getter(x), i])
+        : (x, i) => [getter(x), i]
     )
     .sort((a, b) => comparator(a[0], b[0]))
-    .reduce((out, v) => {
-      if (!v) return out;
-      out.push(v[1]);
+    .reduce((out, tuple) => {
+      if (!tuple) return out;
+      out.push(tuple[1]);
       return out;
     }, []);
 
@@ -47,17 +49,17 @@ export const argSort = (
  */
 export const sortPos = (
   array,
-  { comparator = sortAsc, ignoreNull = false } = {}
+  { getter = identity, comparator = sortAsc, ignoreNull = false } = {}
 ) =>
   array
     .map(
       ignoreNull
-        ? (v, i) => (v === null ? undefined : [v, i])
-        : (v, i) => [v, i]
+        ? (x, i) => (getter(x) === null ? undefined : [getter(x), i])
+        : (x, i) => [getter(x), i]
     )
     .sort((a, b) => comparator(a[0], b[0]))
-    .reduce((out, v, i) => {
-      if (!v) return out;
-      out[v[1]] = i;
+    .reduce((out, tuple, i) => {
+      if (!tuple) return out;
+      out[tuple[1]] = i;
       return out;
     }, []);
