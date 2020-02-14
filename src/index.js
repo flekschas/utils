@@ -8,6 +8,7 @@ export * from './functional-programming';
 export * from './geometry';
 export * from './map';
 export * from './math';
+export * from './matrix';
 export * from './object';
 export * from './other';
 export * from './sorting';

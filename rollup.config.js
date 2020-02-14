@@ -32,6 +32,7 @@ const bundles = [
   ['geometry'],
   ['map'],
   ['math'],
+  ['matrix'],
   ['object'],
   ['other'],
   ['sorting'],
