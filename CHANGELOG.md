@@ -1,3 +1,8 @@
+## v0.11.0
+
+- Add tested `matrixMeanCol()` and `matrixMeanRow()` to _matrix_
+- Add customizable getter to `sortPos()` and `argSort()`
+
 ## v0.10.0
 
 - Add `hexToRgbArray`, `hexToRgbaArray`, `rgbStrToRgbArray`, `rgbaStrToRgbaArray`, `rgbStrToDec`, `rgbToHex`, and `toRgbaArray` to _color_
