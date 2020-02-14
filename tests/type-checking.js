@@ -223,13 +223,13 @@ test('isUint8Array()', t => {
   const e = [256];
   const f = [0.5];
 
-  t.ok(isUint8Array(a), `${a} is a Uint8`);
-  t.ok(isUint8Array(b), `${b} is a Uint8`);
-  t.ok(isUint8Array(c), `${c} is a Uint8`);
+  t.ok(isUint8Array(a), `${a} is a Uint8 array`);
+  t.ok(isUint8Array(b), `${b} is a Uint8 array`);
+  t.ok(isUint8Array(c), `${c} is a Uint8 array`);
 
-  t.ok(!isUint8Array(d), `${d} is *NOT* a Uint8`);
-  t.ok(!isUint8Array(e), `${e} is *NOT* a Uint8`);
-  t.ok(!isUint8Array(f), `${f} is *NOT* a Uint8`);
-  t.ok(!isUint8Array(0), '0 is *NOT* a Uint8');
-  t.ok(!isUint8Array({}), '{} is *NOT* a Uint8');
+  t.ok(!isUint8Array(d), `${d} is *NOT* a Uint8 array`);
+  t.ok(!isUint8Array(e), `${e} is *NOT* a Uint8 array`);
+  t.ok(!isUint8Array(f), `${f} is *NOT* a Uint8 array`);
+  t.ok(!isUint8Array(0), '0 is *NOT* a Uint8 array');
+  t.ok(!isUint8Array({}), '{} is *NOT* a Uint8 array');
 });
