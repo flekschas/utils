@@ -66,6 +66,7 @@ export const l2Norm = v => Math.sqrt(v.reduce((sum, x) => sum + x ** 2, 0));
  * @return {number} The largest number
  */
 export const max = v => v.reduce((_max, a) => (_max > a ? _max : a), -Infinity);
+
 /**
  * Get the mean of a vector
  *
