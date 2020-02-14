@@ -12,6 +12,7 @@ export default {
     './tests/geometry.js',
     './tests/matrix.js',
     './tests/object.js',
+    './tests/sorting.js',
     './tests/timing.js',
     './tests/type-checking.js',
     './tests/vector.js'
