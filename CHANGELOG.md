@@ -1,3 +1,8 @@
+## v0.12.0
+
+- Add `linear()`, `quadIn()`, `quadOut()`, `quadInOut()`, `cubicIn()`, `cubicOut()`, `quartIn()`, `quartOut()`, `quartInOut()`, `quintIn()`, `quintOut()`, and `quintInOut()` from to _animation_. Huge shoutout to https://gist.github.com/gre/1650294
+- Add `isClose()` to _math_
+
 ## v0.11.0
 
 - Add tested `matrixMeanCol()` and `matrixMeanRow()` to _matrix_
