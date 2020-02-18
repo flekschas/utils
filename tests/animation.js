@@ -13,8 +13,6 @@ test('cubicInOut()', t => {
   // Sanity checks
   t.equal(cubicInOut(0), 0, 'Initial time should ease to 0');
   t.equal(cubicInOut(1), 1, 'End time should ease to 1');
-  t.equal(cubicInOut(-1), 0, 'Before initial time should ease to 0');
-  t.equal(cubicInOut(2), 1, 'After end time should ease to 1');
   t.equal(cubicInOut(0.5), 0.5, 'Half time should ease to 0.5');
 
   // The important test
