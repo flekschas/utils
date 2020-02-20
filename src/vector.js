@@ -76,6 +76,19 @@ export const max = v => v.reduce((_max, a) => (_max > a ? _max : a), -Infinity);
 export const mean = v => sum(v) / v.length;
 
 /**
+ * Get the mean vector
+ * @param {array} m - Array of vectors
+ * @return {array} Mean vector
+ */
+export const meanVector = m =>
+  m.length
+    ? m.reduce(
+        (meanV, v) => v.map((x, i) => meanV[i] + x / m.length),
+        new Array(m[0].length).fill(0)
+      )
+    : [];
+
+/**
  * Get the minimum number of a vector
  *
  * @description

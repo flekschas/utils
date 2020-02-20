@@ -11,7 +11,6 @@ export default {
     './tests/functional-programming.js',
     './tests/geometry.js',
     './tests/math.js',
-    './tests/matrix.js',
     './tests/object.js',
     './tests/sorting.js',
     './tests/timing.js',
