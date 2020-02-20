@@ -4,7 +4,15 @@ import '@babel/polyfill';
 import deepEqual from 'fast-deep-equal/es6';
 import { test } from 'zora';
 
-import { lDist, l1Dist, l2Dist, meanVector } from '../src/vector';
+import {
+  lDist,
+  l1Dist,
+  l2Dist,
+  maxVector,
+  meanVector,
+  minVector,
+  sumVector
+} from '../src/vector';
 
 test('l1Dist()', t => {
   t.equal(
@@ -59,6 +67,22 @@ test('lDist()', t => {
   );
 });
 
+test('maxVector()', t => {
+  const m = [
+    [0, 1, 2, 3, 4],
+    [5, 6, 7, 8, 9]
+  ];
+
+  const maxCol = maxVector(m);
+
+  t.ok(deepEqual(maxCol, m[1]), `The column-wise mean should be ${m[1]}`);
+
+  t.ok(
+    deepEqual(maxVector([]), []),
+    `The column-wise mean of an empty array should be an empty array`
+  );
+});
+
 test('meanVector()', t => {
   const m = [
     [0, 1, 2, 3, 4],
@@ -75,6 +99,39 @@ test('meanVector()', t => {
 
   t.ok(
     deepEqual(meanVector([]), []),
+    `The column-wise mean of an empty array should be an empty array`
+  );
+});
+
+test('minVector()', t => {
+  const m = [
+    [0, 1, 2, 3, 4],
+    [5, 6, 7, 8, 9]
+  ];
+
+  const min = minVector(m);
+
+  t.ok(deepEqual(min, m[0]), `The column-wise mean should be ${m[0]}`);
+
+  t.ok(
+    deepEqual(minVector([]), []),
+    `The column-wise mean of an empty array should be an empty array`
+  );
+});
+
+test('sumVector()', t => {
+  const m = [
+    [0, 1, 2, 3, 4],
+    [5, 6, 7, 8, 9]
+  ];
+
+  const sum = sumVector(m);
+  const expected = [5, 7, 9, 11, 13];
+
+  t.ok(deepEqual(sum, expected), `The column-wise mean should be ${expected}`);
+
+  t.ok(
+    deepEqual(sumVector([]), []),
     `The column-wise mean of an empty array should be an empty array`
   );
 });

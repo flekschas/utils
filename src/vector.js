@@ -68,6 +68,19 @@ export const l2Norm = v => Math.sqrt(v.reduce((sum, x) => sum + x ** 2, 0));
 export const max = v => v.reduce((_max, a) => (_max > a ? _max : a), -Infinity);
 
 /**
+ * Get the max vector
+ * @param {array} m - Array of vectors
+ * @return {array} Max vector
+ */
+export const maxVector = m =>
+  m.length
+    ? m.reduce(
+        (_max, v) => v.map((x, i) => (_max[i] > x ? _max[i] : x)),
+        new Array(m[0].length).fill(-Infinity)
+      )
+    : [];
+
+/**
  * Get the mean of a vector
  *
  * @param {array} v - Numerical vector
@@ -83,7 +96,7 @@ export const mean = v => sum(v) / v.length;
 export const meanVector = m =>
   m.length
     ? m.reduce(
-        (meanV, v) => v.map((x, i) => meanV[i] + x / m.length),
+        (_mean, v) => v.map((x, i) => _mean[i] + x / m.length),
         new Array(m[0].length).fill(0)
       )
     : [];
@@ -98,6 +111,19 @@ export const meanVector = m =>
  * @return {number} The smallest number
  */
 export const min = v => v.reduce((_min, a) => (_min < a ? _min : a), Infinity);
+
+/**
+ * Get the min vector
+ * @param {array} m - Array of vectors
+ * @return {array} Min vector
+ */
+export const minVector = m =>
+  m.length
+    ? m.reduce(
+        (_min, v) => v.map((x, i) => (_min[i] < x ? _min[i] : x)),
+        new Array(m[0].length).fill(Infinity)
+      )
+    : [];
 
 /**
  * Non-negative modulo function. E.g., `mod(-1, 5) === 4` while `-1 % 5 === -1`.
@@ -137,3 +163,16 @@ export const range = (start, end, stepSize = 1) =>
  * @return {number} The sum
  */
 export const sum = values => values.reduce((s, v) => s + v, 0);
+
+/**
+ * Get the sum vector
+ * @param {array} m - Array of vectors
+ * @return {array} Sum vector
+ */
+export const sumVector = m =>
+  m.length
+    ? m.reduce(
+        (_sum, v) => v.map((x, i) => _sum[i] + x),
+        new Array(m[0].length).fill(0)
+      )
+    : [];

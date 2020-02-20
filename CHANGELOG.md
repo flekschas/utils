@@ -1,3 +1,7 @@
+## v0.14.0
+
+- Add `maxVector()`, `minVector()`, `sumVector()` to _vector_
+
 ## v0.13.0
 
 - Rename `matrixMeanCol()` to `meanVector()` and remove `matrixMeanRow()`
