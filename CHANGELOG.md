@@ -1,3 +1,7 @@
+## v0.14.1
+
+- Drammatically improve performance of `maxVector(m)`, `meanVector(m)`, `minVector(m)`, and `sumVector(m)` in the case when `m.length === 1`
+
 ## v0.14.0
 
 - Add `maxVector()`, `minVector()`, `sumVector()` to _vector_
