@@ -72,13 +72,21 @@ export const max = v => v.reduce((_max, a) => (_max > a ? _max : a), -Infinity);
  * @param {array} m - Array of vectors
  * @return {array} Max vector
  */
-export const maxVector = m =>
-  m.length
-    ? m.reduce(
+export const maxVector = m => {
+  switch (m.length) {
+    case 0:
+      return [];
+
+    case 1:
+      return m[0];
+
+    default:
+      return m.reduce(
         (_max, v) => v.map((x, i) => (_max[i] > x ? _max[i] : x)),
         new Array(m[0].length).fill(-Infinity)
-      )
-    : [];
+      );
+  }
+};
 
 /**
  * Get the mean of a vector
@@ -93,13 +101,21 @@ export const mean = v => sum(v) / v.length;
  * @param {array} m - Array of vectors
  * @return {array} Mean vector
  */
-export const meanVector = m =>
-  m.length
-    ? m.reduce(
+export const meanVector = m => {
+  switch (m.length) {
+    case 0:
+      return [];
+
+    case 1:
+      return m[0];
+
+    default:
+      return m.reduce(
         (_mean, v) => v.map((x, i) => _mean[i] + x / m.length),
         new Array(m[0].length).fill(0)
-      )
-    : [];
+      );
+  }
+};
 
 /**
  * Get the minimum number of a vector
@@ -117,13 +133,21 @@ export const min = v => v.reduce((_min, a) => (_min < a ? _min : a), Infinity);
  * @param {array} m - Array of vectors
  * @return {array} Min vector
  */
-export const minVector = m =>
-  m.length
-    ? m.reduce(
+export const minVector = m => {
+  switch (m.length) {
+    case 0:
+      return [];
+
+    case 1:
+      return m[0];
+
+    default:
+      return m.reduce(
         (_min, v) => v.map((x, i) => (_min[i] < x ? _min[i] : x)),
         new Array(m[0].length).fill(Infinity)
-      )
-    : [];
+      );
+  }
+};
 
 /**
  * Non-negative modulo function. E.g., `mod(-1, 5) === 4` while `-1 % 5 === -1`.
@@ -169,10 +193,18 @@ export const sum = values => values.reduce((s, v) => s + v, 0);
  * @param {array} m - Array of vectors
  * @return {array} Sum vector
  */
-export const sumVector = m =>
-  m.length
-    ? m.reduce(
+export const sumVector = m => {
+  switch (m.length) {
+    case 0:
+      return [];
+
+    case 1:
+      return m[0];
+
+    default:
+      return m.reduce(
         (_sum, v) => v.map((x, i) => _sum[i] + x),
         new Array(m[0].length).fill(0)
-      )
-    : [];
+      );
+  }
+};

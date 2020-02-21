@@ -75,11 +75,15 @@ test('maxVector()', t => {
 
   const maxCol = maxVector(m);
 
-  t.ok(deepEqual(maxCol, m[1]), `The column-wise mean should be ${m[1]}`);
+  t.ok(deepEqual(maxCol, m[1]), `The vector max should be ${m[1]}`);
+
+  console.log(maxVector([m[0]]));
+
+  t.ok(deepEqual(maxVector([m[0]]), m[0]), `The vector max should be ${m[0]}`);
 
   t.ok(
     deepEqual(maxVector([]), []),
-    `The column-wise mean of an empty array should be an empty array`
+    `The vector max of an empty array should be an empty array`
   );
 });
 
@@ -94,12 +98,17 @@ test('meanVector()', t => {
 
   t.ok(
     deepEqual(meanCol, expectedMeanCol),
-    `The column-wise mean should be ${expectedMeanCol}`
+    `The vector mean should be ${expectedMeanCol}`
+  );
+
+  t.ok(
+    deepEqual(meanVector([m[0]]), m[0]),
+    `The vector mean should be ${m[0]}`
   );
 
   t.ok(
     deepEqual(meanVector([]), []),
-    `The column-wise mean of an empty array should be an empty array`
+    `The vector mean of an empty array should be an empty array`
   );
 });
 
@@ -111,11 +120,13 @@ test('minVector()', t => {
 
   const min = minVector(m);
 
-  t.ok(deepEqual(min, m[0]), `The column-wise mean should be ${m[0]}`);
+  t.ok(deepEqual(min, m[0]), `The vector min should be ${m[0]}`);
+
+  t.ok(deepEqual(maxVector([m[1]]), m[1]), `The vector min should be ${m[1]}`);
 
   t.ok(
     deepEqual(minVector([]), []),
-    `The column-wise mean of an empty array should be an empty array`
+    `The vector min of an empty array should be an empty array`
   );
 });
 
@@ -128,10 +139,12 @@ test('sumVector()', t => {
   const sum = sumVector(m);
   const expected = [5, 7, 9, 11, 13];
 
-  t.ok(deepEqual(sum, expected), `The column-wise mean should be ${expected}`);
+  t.ok(deepEqual(sum, expected), `The vector sum should be ${expected}`);
+
+  t.ok(deepEqual(maxVector([m[1]]), m[1]), `The vector sum should be ${m[1]}`);
 
   t.ok(
     deepEqual(sumVector([]), []),
-    `The column-wise mean of an empty array should be an empty array`
+    `The vector sum of an empty array should be an empty array`
   );
 });
