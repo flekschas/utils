@@ -16,3 +16,13 @@ export const array2dTranspose = matrix => {
 
   return out;
 };
+
+/**
+ * Clear an array without while keeping it's reference
+ * @param {array} a - Array to be cleared
+ * @return {array} The array itself
+ */
+export const clearArray = a => {
+  a.splice(0, a.length);
+  return a;
+};

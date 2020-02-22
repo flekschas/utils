@@ -5,7 +5,7 @@ import deepEqual from 'fast-deep-equal/es6';
 import { test } from 'zora';
 
 import { deepClone } from '../src/object';
-import { array2dTranspose } from '../src/array';
+import { array2dTranspose, clearArray } from '../src/array';
 
 test('array2dTranspose()', t => {
   const originalMatrix = [
@@ -37,4 +37,16 @@ test('array2dTranspose()', t => {
     !deepEqual(originalMatrixTest, transposedMatrixTest),
     'The original matrix should be equal the transposed matrix'
   );
+});
+
+test('clearArray()', t => {
+  const a = [0, 1, 2, 3, 4];
+
+  t.equal(a.length, 5, 'Array should have length 5');
+
+  const b = clearArray(a);
+
+  t.equal(a.length, 0, 'Array should have length 0');
+
+  t.equal(a, b, 'Cleared array should have the same reference');
 });
