@@ -6,9 +6,32 @@ import { test } from 'zora';
 import { assign } from '../src/object';
 import {
   pipe,
+  withForwardedMethod,
   withReadOnlyProperty,
   withStaticProperty
 } from '../src/functional-programming';
+
+test('withForwardedMethod()', t => {
+  const createObj = (name, value) => {
+    const set = newValue => {
+      // eslint-disable-next-line no-param-reassign
+      value = newValue;
+    };
+
+    return pipe(
+      withStaticProperty(name, value),
+      withForwardedMethod('test', set)
+    )({});
+  };
+
+  const o = createObj('v', 1);
+
+  t.equal(o.v, 1, 'The value should be 1');
+
+  o.test(2);
+
+  t.equal(o.v, 1, 'The value should still be 1');
+});
 
 test('withStaticProperty()', t => {
   const createObj = (name, value) => {

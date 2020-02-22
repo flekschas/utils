@@ -70,10 +70,26 @@ export const pipe = (...fns) =>
  */
 export const some = f => x => Array.prototype.some.call(x, f);
 
+/**
+ * Assign a constructor to the object
+ * @param {function} constructor - Constructor functions
+ */
 export const withConstructor = constructor => self =>
   assign(self, {
     __proto__: {
       constructor
+    }
+  });
+
+/**
+ * Forward a method call
+ * @param {string} name - Exposed function name
+ * @param {function} fn - Function to be forwarded
+ */
+export const withForwardedMethod = (name, fn) => self =>
+  assign(self, {
+    [name](...args) {
+      return fn.apply(this, args);
     }
   });
 
