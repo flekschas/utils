@@ -75,6 +75,14 @@ export const removeAllChildren = node => {
 };
 
 /**
+ * Remove last child of a DOM node
+ * @param {object} node - DOM node whose last child is to be removed
+ */
+export const removeLastChild = node => {
+  node.removeChild(node.lastChild);
+};
+
+/**
  * Remove a class from an HTML or SVG element.
  * @param {object} element - HTML or SVG element.
  * @param {string} className - Class name to be removed.
