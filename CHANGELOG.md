@@ -1,3 +1,8 @@
+## v0.16.0
+
+- Add `randomString()` to _string_
+- Add `removeLastChild()` to _dom_
+
 ## v0.15.0
 
 - Add `withForwardedMethod()` to _fuctional-programming_
