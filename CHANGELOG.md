@@ -1,3 +1,7 @@
+## v0.16.1
+
+- Allow sorting objects with `sortPos()`
+
 ## v0.16.0
 
 - Add `randomString()` to _string_
