@@ -77,8 +77,6 @@ test('maxVector()', t => {
 
   t.ok(deepEqual(maxCol, m[1]), `The vector max should be ${m[1]}`);
 
-  console.log(maxVector([m[0]]));
-
   t.ok(deepEqual(maxVector([m[0]]), m[0]), `The vector max should be ${m[0]}`);
 
   t.ok(
