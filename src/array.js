@@ -1,3 +1,5 @@
+import { identity } from './math';
+
 /**
  * Transpose a nested 2D array
  * @param {array} matrix - The matrix-liked 2D nested array to be transposed
@@ -25,4 +27,24 @@ export const array2dTranspose = matrix => {
 export const clearArray = a => {
   a.splice(0, a.length);
   return a;
+};
+
+/**
+ * Return unique values of an array
+ * @param {array} a - Input array
+ * @return {array} Array with unique values
+ */
+export const unique = (a, getter = identity) => {
+  const s = new Set();
+  const out = [];
+
+  for (let i = 0; i < a.length; i++) {
+    const v = getter(a[i]);
+    if (!s.has(v)) {
+      s.add(v);
+      out.push(v);
+    }
+  }
+
+  return out;
 };

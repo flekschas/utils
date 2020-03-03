@@ -1,3 +1,7 @@
+## v0.17.0
+
+- Add `unique()` to _array_
+
 ## v0.16.1
 
 - Allow sorting objects with `sortPos()`

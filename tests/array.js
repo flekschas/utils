@@ -5,7 +5,7 @@ import deepEqual from 'fast-deep-equal/es6';
 import { test } from 'zora';
 
 import { deepClone } from '../src/object';
-import { array2dTranspose, clearArray } from '../src/array';
+import { array2dTranspose, clearArray, unique } from '../src/array';
 
 test('array2dTranspose()', t => {
   const originalMatrix = [
@@ -49,4 +49,39 @@ test('clearArray()', t => {
   t.equal(a.length, 0, 'Array should have length 0');
 
   t.equal(a, b, 'Cleared array should have the same reference');
+});
+
+test('unique()', t => {
+  let a = [0, 1, 1, 1, 2, 3, 10, -1, 2];
+  let u = [0, 1, 2, 3, 10, -1];
+
+  t.ok(deepEqual(unique(a), u), 'Array should only contain unique values');
+
+  a = [
+    { v: 0 },
+    { v: 1 },
+    { v: 1 },
+    { v: 1 },
+    { v: 2 },
+    { v: 3 },
+    { v: 10 },
+    { v: -1 },
+    { v: 2 }
+  ];
+
+  t.ok(
+    deepEqual(
+      unique(a, x => x.v),
+      u
+    ),
+    'Support custom getter'
+  );
+
+  const x = {};
+  const y = {};
+  const z = {};
+  a = [x, y, z, x, y, z];
+  u = [x, y, z];
+
+  t.ok(deepEqual(unique(a), u), 'Support custom getter');
 });
