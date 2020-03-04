@@ -1,3 +1,7 @@
+## v0.18.0
+
+- Add `aggregate()` to _array_
+
 ## v0.17.0
 
 - Add `unique()` to _array_

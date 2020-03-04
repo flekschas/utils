@@ -1,3 +1,33 @@
+import { identity } from './math';
+import { isFunction } from './type-checking';
+
+/**
+ * Aggregate a vector using one or more aggregators. Like a multi-purpose reducer.
+ * @param {array} v - Numerivcal vector
+ * @param {array|function} aggregater - A single or multiple aggregator functions. The aggregator functions work like reducers.
+ * @param {array|number} startValue - A single or multiple start values
+ * @param {function} options.getter - A value getter
+ * @return {array|number} A single or multiple aggregagted values
+ */
+export const aggregate = (
+  v,
+  aggregater,
+  startValue,
+  { getter = identity } = {}
+) => {
+  const isSingle = isFunction(aggregater);
+
+  const aggregaters = isSingle ? [aggregater] : aggregater;
+  const startValues = isSingle ? [startValue] : startValue;
+
+  const out = v.reduce(
+    (aggregates, x) => aggregaters.map((fn, i) => fn(aggregates[i], getter(x))),
+    startValues === undefined ? Array(aggregaters.length).fill(0) : startValues
+  );
+
+  return isSingle ? out[0] : out;
+};
+
 /**
  * L distance between a pair of vectors
  *
@@ -121,7 +151,8 @@ export const meanVector = m => {
  * Get the minimum number of a vector
  *
  * @description
- * This version is muuuch faster than `Math.min(...v)`.
+ * This version is muuuch faster than `Math.min(...v)` and support longer
+ * vectors than 256^2, which is a limitation of `Math.min.apply(null, v)`.
  *
  * @param {array} v - Numerical vector
  * @return {number} The smallest number

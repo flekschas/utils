@@ -5,6 +5,7 @@ import deepEqual from 'fast-deep-equal/es6';
 import { test } from 'zora';
 
 import {
+  aggregate,
   lDist,
   l1Dist,
   l2Dist,
@@ -13,6 +14,28 @@ import {
   minVector,
   sumVector
 } from '../src/vector';
+
+test('aggregate()', t => {
+  let v = [0, 1, 19, -2, 99, 99];
+  let expected = -2;
+  let observed = aggregate(v, Math.min, Infinity);
+
+  t.ok(deepEqual(expected, observed), 'Get the minimum');
+
+  v = [0, 1, 19, -2, 99, 99];
+  expected = [-2, 99];
+  observed = aggregate(v, [Math.min, Math.max], [Infinity, -Infinity]);
+
+  t.ok(deepEqual(expected, observed), 'Get the minimum and maximum');
+
+  v = [{ v: 0 }, { v: 1 }, { v: 99 }];
+  expected = [0, 99];
+  observed = aggregate(v, [Math.min, Math.max], [Infinity, -Infinity], {
+    getter: x => x.v
+  });
+
+  t.ok(deepEqual(expected, observed), 'Support custom getter');
+});
 
 test('l1Dist()', t => {
   t.equal(
