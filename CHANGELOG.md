@@ -1,3 +1,8 @@
+## v0.19.0
+
+- Add `diff()` to _vector_
+- Improve `isClose()`
+
 ## v0.18.0
 
 - Add `aggregate()` to _array_
