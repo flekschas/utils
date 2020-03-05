@@ -29,6 +29,14 @@ export const aggregate = (
 };
 
 /**
+ * Get the difference of two vectoe
+ * @param {array} v - Numerical vectors
+ * @param {array} w - Numerical vectors
+ * @return {array} Difference vector
+ */
+export const diff = (v, w) => v.map((x, i) => x - w[i]);
+
+/**
  * L distance between a pair of vectors
  *
  * @param {array} l - Defines the Lp space

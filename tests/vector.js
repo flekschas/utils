@@ -6,6 +6,7 @@ import { test } from 'zora';
 
 import {
   aggregate,
+  diff,
   lDist,
   l1Dist,
   l2Dist,
@@ -35,6 +36,20 @@ test('aggregate()', t => {
   });
 
   t.ok(deepEqual(expected, observed), 'Support custom getter');
+});
+
+test('diff()', t => {
+  const v = [0, 1, 2, 3, 4];
+  const w = [5, 6, 7, 8, 9];
+
+  const d = diff(v, w);
+
+  console.log('dff', d);
+
+  t.ok(
+    d.every(x => x === -5),
+    'The diff vector should always be -5'
+  );
 });
 
 test('l1Dist()', t => {
