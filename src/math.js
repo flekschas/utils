@@ -14,4 +14,4 @@ export const identity = x => x;
  *   10^-precision
  */
 export const isClose = (a, b, precision = 6) =>
-  Math.round(Math.abs(a - b) * 10 ** precision) === 0;
+  Math.floor(Math.abs(a - b) * 10 ** precision) === 0;
