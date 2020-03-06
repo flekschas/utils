@@ -1,6 +1,7 @@
 ## v0.19.0
 
-- Add `diff()` to _vector_
+- Add `diff()`, `l1DistByDim`, `l2DistByDim` to _vector_
+- Add `dim` parameter to `lDist` to work like `l1DistByDim` and `l2DistByDim`
 - Improve `isClose()`
 
 ## v0.18.0
