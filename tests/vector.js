@@ -9,7 +9,9 @@ import {
   diff,
   lDist,
   l1Dist,
+  l1DistByDim,
   l2Dist,
+  l2DistByDim,
   maxVector,
   meanVector,
   minVector,
@@ -44,8 +46,6 @@ test('diff()', t => {
 
   const d = diff(v, w);
 
-  console.log('dff', d);
-
   t.ok(
     d.every(x => x === -5),
     'The diff vector should always be -5'
@@ -59,14 +59,32 @@ test('l1Dist()', t => {
     'The l1 distance between [0,0] and [0,0] should be 0'
   );
   t.equal(
-    l1Dist([0, 0], [1, 1]),
-    2,
-    'The l1 distance between [0,0] and [1,1] should be 2'
+    l1Dist([0, 0, 0], [1, 1, 1]),
+    3,
+    'The l1 distance between [0,0,0] and [1,1,1] should be 3'
   );
   t.equal(
-    l1Dist([0, 0], [-1, -1]),
-    2,
-    'The l1 distance between [0,0] and [1,1] should be 2'
+    l1Dist([0, 0, 1, 1], [-1, -1, -1, -1]),
+    6,
+    'The l1 distance between [0,0,1,1] and [-1,-1,-1,-1] should be 6'
+  );
+});
+
+test('l1DistByDim()', t => {
+  t.equal(
+    l1DistByDim(2)([0, 0], [0, 0]),
+    0,
+    'The l1 distance between [0,0] and [0,0] should be 0'
+  );
+  t.equal(
+    l1DistByDim(3)([0, 0, 0], [1, 1, 1]),
+    3,
+    'The l1 distance between [0,0,0] and [1,1,1] should be 3'
+  );
+  t.equal(
+    l1DistByDim(4)([0, 0, 1, 1], [-1, -1, -1, -1]),
+    6,
+    'The l1 distance between [0,0,1,1] and [-1,-1,-1,-1] should be 6'
   );
 });
 
@@ -77,20 +95,40 @@ test('l2Dist()', t => {
     'The l2 distance between [0,0] and [0,0] should be 0'
   );
   t.equal(
-    l2Dist([0, 0], [1, 1]),
-    Math.sqrt(2),
-    'The l2 distance between [0,0] and [1,1] should be Math.sqrt(2)'
+    l2Dist([0, 0, 0], [1, 1, 1]),
+    Math.sqrt(3),
+    'The l2 distance between [0,0,0] and [1,1,1] should be Math.sqrt(3)'
   );
   t.equal(
-    l2Dist([0, 0], [-1, -1]),
-    Math.sqrt(2),
-    'The l2 distance between [0,0] and [1,1] should be Math.sqrt(2)'
+    l2Dist([0, 0, 1, 1], [-1, -1, -1, -1]),
+    Math.sqrt(10),
+    'The l2 distance between [0,0,1,1] and [-1,-1,-1,-1] should be Math.sqrt(10)'
+  );
+});
+
+test('l2DistByDim()', t => {
+  t.equal(
+    l2DistByDim(2)([0, 0], [0, 0]),
+    0,
+    'The l2 distance between [0,0] and [0,0] should be 0'
+  );
+  t.equal(
+    l2DistByDim(3)([0, 0, 0], [1, 1, 1]),
+    Math.sqrt(3),
+    'The l2 distance between [0,0,0] and [1,1,1] should be Math.sqrt(3)'
+  );
+  t.equal(
+    l2DistByDim(4)([0, 0, 1, 1], [-1, -1, -1, -1]),
+    Math.sqrt(10),
+    'The l2 distance between [0,0,1,1] and [-1,-1,-1,-1] should be Math.sqrt(10)'
   );
 });
 
 test('lDist()', t => {
-  const v = [Math.random(), Math.random()];
-  const w = [Math.random(), Math.random()];
+  let v = [Math.random(), Math.random()];
+  let w = [Math.random(), Math.random()];
+
+  console.log(lDist(1));
 
   t.equal(
     lDist(1)(v, w),
@@ -102,6 +140,21 @@ test('lDist()', t => {
     lDist(2)(v, w),
     l2Dist(v, w),
     'The l(2) and l2 distance should be identical'
+  );
+
+  v = [Math.random(), Math.random(), Math.random()];
+  w = [Math.random(), Math.random(), Math.random()];
+
+  t.equal(
+    lDist(1, 3)(v, w),
+    l1DistByDim(3)(v, w),
+    'The l(1, 3) and l1DistByDim(3) distance should be identical'
+  );
+
+  t.equal(
+    lDist(2, 3)(v, w),
+    l2DistByDim(3)(v, w),
+    'The l(2, 3) and l2DistByDim(3) distance should be identical'
   );
 });
 

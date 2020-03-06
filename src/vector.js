@@ -40,18 +40,33 @@ export const diff = (v, w) => v.map((x, i) => x - w[i]);
  * L distance between a pair of vectors
  *
  * @param {array} l - Defines the Lp space
+ * @param {number} dim - Dimension of the input data (Optional)
  */
-export const lDist = l =>
-  /**
-   * L distance function
-   * @param {array} v - First vector
-   * @param {array} w - Second vector
-   * @return {array} L distance
-   */
-  (v, w) =>
-    v.length === w.length
-      ? v.reduce((sum, x, i) => sum + Math.abs(x - w[i]) ** l, 0) ** (1 / l)
-      : undefined;
+export const lDist = (l, dim) => {
+  if (Number.isNaN(+dim)) {
+    /**
+     * L distance function
+     * @param {array} v - First vector
+     * @param {array} w - Second vector
+     * @return {array} L distance
+     */
+    return (v, w) =>
+      v.length === w.length
+        ? v.reduce((sum, x, i) => sum + Math.abs(x - w[i]) ** l, 0) ** (1 / l)
+        : undefined;
+  }
+
+  const body = Array(dim)
+    .fill()
+    .map((_, i) => `s += Math.abs(v[${i}] - w[${i}]) ** l;`)
+    .join(' ');
+  // eslint-disable-next-line no-new-func
+  return new Function(
+    'v',
+    'w',
+    `const l = ${l}; let s = 0; ${body} return s ** (1 / l);`
+  );
+};
 
 /**
  * L1 distance between a pair of vectors
@@ -69,6 +84,24 @@ export const l1Dist = (v, w) =>
     : undefined;
 
 /**
+ * Creates a l1 distance function tailored to the dimension of the data
+ *
+ * @description
+ * This is identical but faster than `l1Dist(v, w)`
+ *
+ * @param {number} dim - Dimension of the input data
+ * @return {function} A function with the same signature as `l1Dist`
+ */
+export const l1DistByDim = dim => {
+  const body = Array(dim)
+    .fill()
+    .map((_, i) => `s += Math.abs(v[${i}] - w[${i}]);`)
+    .join(' ');
+  // eslint-disable-next-line no-new-func
+  return new Function('v', 'w', `let s = 0; ${body} return s;`);
+};
+
+/**
  * L2 distance between a pair of vectors
  *
  * @description
@@ -82,6 +115,28 @@ export const l2Dist = (v, w) =>
   v.length === w.length
     ? Math.sqrt(v.reduce((sum, x, i) => sum + (x - w[i]) ** 2, 0))
     : undefined;
+
+/**
+ * Creates a l2 distance function tailored to the dimension of the data
+ *
+ * @description
+ * This is identical but faster than `l2Dist(v, w)`
+ *
+ * @param {number} dim - Dimension of the input data
+ * @return {function} A function with the same signature as `l2Dist`
+ */
+export const l2DistByDim = dim => {
+  const body = Array(dim)
+    .fill()
+    .map((_, i) => `d = v[${i}] - w[${i}]; s += d * d;`)
+    .join(' ');
+  // eslint-disable-next-line no-new-func
+  return new Function(
+    'v',
+    'w',
+    `let s = 0; let d; ${body} return Math.sqrt(s);`
+  );
+};
 
 /**
  * Vector L2 norm
