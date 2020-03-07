@@ -4,11 +4,13 @@ import '@babel/polyfill';
 import { test } from 'zora';
 
 import {
+  isArray,
   isFunction,
   isHex,
   isNormFloat,
   isNormFloatArray,
   isNumber,
+  isObject,
   isRgbArray,
   isRgbaArray,
   isRgbStr,
@@ -18,16 +20,19 @@ import {
   isUint8Array
 } from '../src/type-checking';
 
+test('isArray()', t => {
+  const negative = [undefined, null, 'str', 10, {}, () => {}, new Date()];
+
+  negative.forEach(v => t.ok(!isArray(v), `${v} is not an array`));
+  t.ok(isArray([]), '[] is an array');
+});
+
 test('isFunction()', t => {
-  const f = () => {};
-  const g = function g() {};
-  function h() {}
+  const negative = [undefined, null, 'str', 10, [], {}, new Date()];
+  const positive = [() => {}, function g() {}, Array.isArray];
 
-  t.ok(isFunction(f), 'f() is a function');
-  t.ok(isFunction(g), 'g() is a function');
-  t.ok(isFunction(h), 'h() is a function');
-
-  t.ok(!isFunction([]), '[] is *NOT* a function');
+  negative.forEach(v => t.ok(!isFunction(v), `${v} is not a function`));
+  positive.forEach(v => t.ok(isFunction(v), `${v} is a function`));
 });
 
 test('isHex()', t => {
@@ -92,6 +97,13 @@ test('isNumber()', t => {
   t.ok(!isNumber('s'), 's is *NOT* a normalized float array');
   t.ok(!isNumber([]), '[] is *NOT* a normalized float array');
   t.ok(!isNumber({}), '{} is *NOT* a normalized float array');
+});
+
+test('isObject()', t => {
+  const negative = [undefined, null, 'str', 10, [], () => {}, new Date()];
+
+  negative.forEach(v => t.ok(!isObject(v), `${v} is not an object`));
+  t.ok(isObject({}), '{} is an object');
 });
 
 test('isRgbArray()', t => {

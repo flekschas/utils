@@ -1,10 +1,16 @@
 /**
- * Test if an object is a function
- * @param {object} obj - Object to be tested
- * @return {boolean} If `true` the object is a function.
+ * Test if a variable is an array
+ * @param {*} f - The variable to test
+ * @return {boolean} If `true` the variable is an array.
  */
-export const isFunction = obj =>
-  !!(obj && obj.constructor && obj.call && obj.apply);
+export const isArray = Array.isArray;
+
+/**
+ * Test if a variable is a function
+ * @param {*} f - The variable to test
+ * @return {boolean} If `true` the variable is a function.
+ */
+export const isFunction = f => !!(f && f.constructor && f.call && f.apply);
 
 /**
  * Tests if a string is a valid HEX color encoding
@@ -34,6 +40,13 @@ export const isNormFloatArray = a => Array.isArray(a) && a.every(isNormFloat);
  * @return {boolean} If `true`, `x` is a number.
  */
 export const isNumber = x => typeof x === 'number';
+
+/**
+ * Test if a variable is a plain object, e.g., `{}`
+ * @param {*} o - The variable to test
+ * @return {boolean} If `true` the variable is a plain object.
+ */
+export const isObject = o => !!o && o.constructor === Object;
 
 /**
  * Tests if an array is encoding an RGB color.
