@@ -128,14 +128,10 @@ export const l2Dist = (v, w) =>
 export const l2DistByDim = dim => {
   const body = Array(dim)
     .fill()
-    .map((_, i) => `d = v[${i}] - w[${i}]; s += d * d;`)
+    .map((_, i) => `s += Math.pow(v[${i}] - w[${i}], 2);`)
     .join(' ');
   // eslint-disable-next-line no-new-func
-  return new Function(
-    'v',
-    'w',
-    `let s = 0; let d; ${body} return Math.sqrt(s);`
-  );
+  return new Function('v', 'w', `let s = 0; ${body} return Math.sqrt(s);`);
 };
 
 /**
