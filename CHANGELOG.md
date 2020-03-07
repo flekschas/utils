@@ -1,3 +1,7 @@
+## v0.20.0
+
+- Add `isArray` and `isObject` to _type-checking_
+
 ## v0.19.0
 
 - Add `diff()`, `l1DistByDim`, `l2DistByDim` to _vector_
