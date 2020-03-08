@@ -75,9 +75,6 @@ export const lRectDist = l =>
       (xd1 > 0 && xd2 < 0) ||
       (xd3 > 0 && xd4 < 0);
 
-    // eslint-disable-next-line
-    console.log(bBox1, bBox2, isXInside, xd1, xd2, xd3, xd4);
-
     const yd1 = bBox2.minY - bBox1.minY;
     const yd2 = bBox2.minY - bBox1.maxY;
     const yd3 = bBox2.maxY - bBox1.minY;
@@ -99,8 +96,7 @@ export const lRectDist = l =>
       Math.abs(yd3),
       Math.abs(yd4)
     );
-    // eslint-disable-next-line
-    console.log('minYDist', minYDist);
+
     if (isXInside) return minYDist;
 
     const minXDist = Math.min(
@@ -109,8 +105,7 @@ export const lRectDist = l =>
       Math.abs(xd3),
       Math.abs(xd4)
     );
-    // eslint-disable-next-line
-    console.log('minXDist', minXDist);
+
     if (isYInside) return minXDist;
 
     return (minXDist ** l + minYDist ** l) ** (1 / l);
