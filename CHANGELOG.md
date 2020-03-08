@@ -1,3 +1,7 @@
+## v0.21.0
+
+- Add `lRectDist` to _geometry_
+
 ## v0.20.0
 
 - Add `isArray` and `isObject` to _type-checking_

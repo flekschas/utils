@@ -4,7 +4,7 @@
  * @description
  * Identical but much faster than `lDist(l)([fromX, fromY], [toX, toY])`
  *
- * @param {array} l - Defines the Lp space
+ * @param {number} l - Defines the Lp space
  */
 export const lPointDist = l =>
   /**
@@ -47,6 +47,74 @@ export const l1PointDist = (fromX, fromY, toX, toY) =>
  */
 export const l2PointDist = (fromX, fromY, toX, toY) =>
   Math.sqrt((fromX - toX) ** 2 + (fromY - toY) ** 2);
+
+/**
+ * L distance between a pair of rectangles
+ *
+ * @param {number} l - Defines the Lp space
+ */
+export const lRectDist = l =>
+  /**
+   * L distance function between a pair of rectangles
+   *
+   * @param {object} bBox1 - Bounding box of the first rectangle
+   * @param {object} bBox2 - Bounding box of the second rectangle
+   * @return {number} L distance of the closest boundary points
+   */
+  (bBox1, bBox2) => {
+    const xd1 = bBox2.minX - bBox1.minX;
+    const xd2 = bBox2.minX - bBox1.maxX;
+    const xd3 = bBox2.maxX - bBox1.minX;
+    const xd4 = bBox2.maxX - bBox1.maxX;
+
+    const isXInside =
+      // bBox1 is x-wise inside of bBox2
+      (xd1 < 0 && xd3 > 0) ||
+      (xd2 < 0 && xd4 > 0) ||
+      // bBox2 is x-wise inside of bBox1
+      (xd1 > 0 && xd2 < 0) ||
+      (xd3 > 0 && xd4 < 0);
+
+    // eslint-disable-next-line
+    console.log(bBox1, bBox2, isXInside, xd1, xd2, xd3, xd4);
+
+    const yd1 = bBox2.minY - bBox1.minY;
+    const yd2 = bBox2.minY - bBox1.maxY;
+    const yd3 = bBox2.maxY - bBox1.minY;
+    const yd4 = bBox2.maxY - bBox1.maxY;
+
+    const isYInside =
+      // bBox1 is y-wise inside of bBox2
+      (yd1 < 0 && yd3 > 0) ||
+      (yd2 < 0 && yd4 > 0) ||
+      // bBox2 is y-wise inside of bBox1
+      (yd1 > 0 && yd2 < 0) ||
+      (yd3 > 0 && yd4 < 0);
+
+    if (isXInside && isYInside) return 0;
+
+    const minYDist = Math.min(
+      Math.abs(yd1),
+      Math.abs(yd2),
+      Math.abs(yd3),
+      Math.abs(yd4)
+    );
+    // eslint-disable-next-line
+    console.log('minYDist', minYDist);
+    if (isXInside) return minYDist;
+
+    const minXDist = Math.min(
+      Math.abs(xd1),
+      Math.abs(xd2),
+      Math.abs(xd3),
+      Math.abs(xd4)
+    );
+    // eslint-disable-next-line
+    console.log('minXDist', minXDist);
+    if (isYInside) return minXDist;
+
+    return (minXDist ** l + minYDist ** l) ** (1 / l);
+  };
 
 /**
  * From: https://wrf.ecse.rpi.edu//Research/Short_Notes/pnpoly.html
