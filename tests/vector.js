@@ -128,8 +128,6 @@ test('lDist()', t => {
   let v = [Math.random(), Math.random()];
   let w = [Math.random(), Math.random()];
 
-  console.log(lDist(1));
-
   t.equal(
     lDist(1)(v, w),
     l1Dist(v, w),
