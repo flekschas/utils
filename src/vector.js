@@ -207,6 +207,21 @@ export const meanVector = m => {
 };
 
 /**
+ * Get the median of a vector
+ *
+ * @param {array} v - Numerical vector
+ * @return {number} The median
+ */
+export const median = v => v[Math.floor(v.length / 2)];
+
+/**
+ * Get the median vector
+ * @param {array} m - Array of vectors
+ * @return {array} The median vector
+ */
+export const medianVector = median;
+
+/**
  * Get the minimum number of a vector
  *
  * @description

@@ -14,6 +14,8 @@ import {
   l2DistByDim,
   maxVector,
   meanVector,
+  median,
+  medianVector,
   minVector,
   sumVector
 } from '../src/vector';
@@ -197,6 +199,37 @@ test('meanVector()', t => {
     deepEqual(meanVector([]), []),
     `The vector mean of an empty array should be an empty array`
   );
+});
+
+test('median()', t => {
+  t.equal(median([0, 1, 2, 3, 4]), 2, 'The median should be 2');
+  t.equal(median([0, 1, 2, 3, 4, 5]), 3, 'The median should be 3');
+  t.equal(median([2]), 2, 'The median should be 2');
+  t.equal(median([]), undefined, 'The median should be undefined');
+});
+
+test('medianVector()', t => {
+  t.equal(
+    medianVector([
+      [0, 1],
+      [2, 1],
+      [3, 1]
+    ]),
+    [2, 1],
+    'The median should be [2]'
+  );
+  t.equal(
+    medianVector([
+      [0, 1],
+      [2, 1],
+      [3, 1],
+      [4, 1]
+    ]),
+    [3, 1],
+    'The median should be [2]'
+  );
+  t.equal(medianVector([[2, 1]]), [2, 1], 'The median should be [2]');
+  t.equal(medianVector([]), undefined, 'The median should be undefined');
 });
 
 test('minVector()', t => {

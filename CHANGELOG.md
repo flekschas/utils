@@ -1,3 +1,7 @@
+## v0.22.0
+
+- Add `median` and `medianVector` to _vector_
+
 ## v0.21.0
 
 - Add `lRectDist` to _geometry_
