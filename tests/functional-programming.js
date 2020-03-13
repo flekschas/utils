@@ -6,10 +6,19 @@ import { test } from 'zora';
 import { assign } from '../src/object';
 import {
   pipe,
+  withConstructor,
   withForwardedMethod,
   withReadOnlyProperty,
   withStaticProperty
 } from '../src/functional-programming';
+
+test('withConstructor()', t => {
+  const createObj = () => pipe(withConstructor(createObj))({});
+
+  const o = createObj();
+
+  t.equal(o.constructor, createObj, 'The constructor should be createObj()');
+});
 
 test('withForwardedMethod()', t => {
   const createObj = (name, value) => {

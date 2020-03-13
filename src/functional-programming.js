@@ -75,11 +75,14 @@ export const some = f => x => Array.prototype.some.call(x, f);
  * @param {function} constructor - Constructor functions
  */
 export const withConstructor = constructor => self =>
-  assign(self, {
-    __proto__: {
-      constructor
-    }
-  });
+  assign(
+    {
+      __proto__: {
+        constructor
+      }
+    },
+    self
+  );
 
 /**
  * Forward a method call
