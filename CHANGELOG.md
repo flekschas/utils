@@ -1,3 +1,7 @@
+## v0.22.1
+
+- Fix and test `withConstructor()`
+
 ## v0.22.0
 
 - Add `median` and `medianVector` to _vector_
