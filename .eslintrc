@@ -19,6 +19,7 @@
   "rules": {
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "import/prefer-default-export": 0,
+    "no-bitwise": 0,
     "no-console": ["error", { "allow": ["warn", "error"] }],
     "no-param-reassign": ["error", { "props": false }],
     "no-plusplus": 0,

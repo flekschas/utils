@@ -11,6 +11,13 @@ import { normalize as norm } from './vector';
  * @param {string} hex - HEX string
  * @return {number} Decimal representation
  */
+export const decToRgb = dec => [dec >> 16, (dec >> 8) % 256, dec % 256];
+
+/**
+ * Convert a HEX string to its decimal representation
+ * @param {string} hex - HEX string
+ * @return {number} Decimal representation
+ */
 export const hexToDec = hex => parseInt(hex.substr(1), 16);
 
 /**

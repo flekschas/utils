@@ -1,3 +1,7 @@
+## v0.23.0
+
+- Add and test `decToRgb()`
+
 ## v0.22.1
 
 - Fix and test `withConstructor()`

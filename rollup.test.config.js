@@ -6,6 +6,7 @@ export default {
   input: [
     './tests/animation.js',
     './tests/array.js',
+    './tests/color.js',
     './tests/dom.js',
     './tests/functional-programming.js',
     './tests/geometry.js',
