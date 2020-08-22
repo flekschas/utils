@@ -1,3 +1,7 @@
+## v0.23.1
+
+- Fix bad bug in and test `update()`
+
 ## v0.23.0
 
 - Add and test `decToRgb()`

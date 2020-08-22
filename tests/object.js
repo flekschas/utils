@@ -4,7 +4,7 @@ import '@babel/polyfill';
 import deepEqual from 'fast-deep-equal/es6';
 import { test } from 'zora';
 
-import { deepClone } from '../src/object';
+import { deepClone, update } from '../src/object';
 
 test('deepClone()', t => {
   let original = 1;
@@ -74,4 +74,53 @@ test('deepClone()', t => {
 
   t.ok(deepEqual(original, cloned), 'Should clone nested object');
   t.ok(original !== cloned, 'Cloned nested object should have a new reference');
+});
+
+test('update()', t => {
+  let target = { y: 'y' };
+  let source = { x: 'x' };
+
+  let updated = update(target, source);
+
+  t.ok(deepEqual(updated, source), 'Should update props of target object');
+  t.ok(target !== updated, 'Updated object should have a new reference');
+
+  target = { 0: { y: 'y' }, 1: { x: 'x' } };
+  source = { 0: { x: 'x' }, 1: { x: 'x' } };
+
+  updated = update(target, source);
+
+  t.ok(
+    deepEqual(updated, source),
+    'Should update nested props of target object'
+  );
+  t.ok(target !== updated, 'Updated object should have a new reference');
+  t.ok(
+    target[0] !== updated[0],
+    'Updated nested prop object should have a new reference'
+  );
+  t.ok(
+    target[1] === updated[1],
+    'Unchanged nested prop object should have the **same** reference'
+  );
+
+  target = { 0: { y: 'y' } };
+  source = {};
+
+  updated = update(target, source);
+
+  t.ok(
+    target !== updated,
+    'Update object should have a new reference even when only props were deleted'
+  );
+
+  target = { 0: { y: 'y' } };
+  source = { 0: { y: 'y' } };
+
+  updated = update(target, source);
+
+  t.ok(
+    target === updated,
+    'Unchanged object should have the **same** reference'
+  );
 });

@@ -100,7 +100,19 @@ export const update = (target, source) => {
   // Update properties
   let updated = false;
   Object.keys(source).forEach(key => {
-    out[key] = update(target[key], source[key]);
+    const descriptor = Object.getOwnPropertyDescriptor(source, key);
+    if (target[key] === undefined) {
+      // The `key` prop does not exist on `target` so we will extend `target`
+      // with the `key` prop.
+      if (typeof descriptor.value === 'undefined') {
+        Object.defineProperty(out, key, descriptor);
+      } else {
+        out[key] = extend(undefined, source[key]);
+      }
+    } else {
+      // The `key` prop exist on `target` so we update it.
+      out[key] = update(target[key], source[key]);
+    }
     updated = updated || out[key] !== target[key];
   });
 
