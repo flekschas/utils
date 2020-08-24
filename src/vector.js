@@ -146,7 +146,7 @@ export const l2DistByDim = dim => {
 export const l2Norm = v => Math.sqrt(v.reduce((sum, x) => sum + x ** 2, 0));
 
 /**
- * Get the maximum number of a vector
+ * Get the maximum number of a vector while ignoring NaNs
  *
  * @description
  * This version is muuuch faster than `Math.max(...v)`.
@@ -154,7 +154,7 @@ export const l2Norm = v => Math.sqrt(v.reduce((sum, x) => sum + x ** 2, 0));
  * @param {array} v - Numerical vector
  * @return {number} The largest number
  */
-export const max = v => v.reduce((_max, a) => (_max > a ? _max : a), -Infinity);
+export const max = v => v.reduce((_max, a) => (a > _max ? a : _max), -Infinity);
 
 /**
  * Get the max vector
@@ -222,7 +222,7 @@ export const median = v => v[Math.floor(v.length / 2)];
 export const medianVector = median;
 
 /**
- * Get the minimum number of a vector
+ * Get the minimum number of a vector while ignoring NaNs
  *
  * @description
  * This version is muuuch faster than `Math.min(...v)` and support longer
@@ -231,7 +231,7 @@ export const medianVector = median;
  * @param {array} v - Numerical vector
  * @return {number} The smallest number
  */
-export const min = v => v.reduce((_min, a) => (_min < a ? _min : a), Infinity);
+export const min = v => v.reduce((_min, a) => (a < _min ? a : _min), Infinity);
 
 /**
  * Get the min vector

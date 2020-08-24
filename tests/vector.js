@@ -12,10 +12,12 @@ import {
   l1DistByDim,
   l2Dist,
   l2DistByDim,
+  max,
   maxVector,
   meanVector,
   median,
   medianVector,
+  min,
   minVector,
   sumVector
 } from '../src/vector';
@@ -158,6 +160,23 @@ test('lDist()', t => {
   );
 });
 
+test('max()', t => {
+  let v = [0, 1, 2, 3, 4];
+
+  let maxValue = max(v);
+
+  t.ok(deepEqual(maxValue, v[4]), `The max value should be ${v[4]}`);
+
+  v = [0, Number.NaN, 2, 3, 4, 3, Number.NaN];
+
+  maxValue = max(v);
+
+  t.ok(
+    deepEqual(maxValue, v[4]),
+    `The max value should be ${v[4]} even if the vector contains NaN`
+  );
+});
+
 test('maxVector()', t => {
   const m = [
     [0, 1, 2, 3, 4],
@@ -232,15 +251,32 @@ test('medianVector()', t => {
   t.equal(medianVector([]), undefined, 'The median should be undefined');
 });
 
+test('min()', t => {
+  let v = [4, 1, 2, 3, 0];
+
+  let maxValue = min(v);
+
+  t.ok(deepEqual(maxValue, v[4]), `The max value should be ${v[4]}`);
+
+  v = [4, Number.NaN, 2, 3, 0, 3, Number.NaN];
+
+  maxValue = min(v);
+
+  t.ok(
+    deepEqual(maxValue, v[4]),
+    `The max value should be ${v[4]} even if the vector contains NaN`
+  );
+});
+
 test('minVector()', t => {
   const m = [
     [0, 1, 2, 3, 4],
     [5, 6, 7, 8, 9]
   ];
 
-  const min = minVector(m);
+  const minCol = minVector(m);
 
-  t.ok(deepEqual(min, m[0]), `The vector min should be ${m[0]}`);
+  t.ok(deepEqual(minCol, m[0]), `The vector min should be ${m[0]}`);
 
   t.ok(deepEqual(maxVector([m[1]]), m[1]), `The vector min should be ${m[1]}`);
 

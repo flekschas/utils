@@ -1,3 +1,7 @@
+## v0.23.2
+
+- Make sure that `min()` and `max()` ignore `Number.NaN` values
+
 ## v0.23.1
 
 - Fix bad bug in and test `update()`
