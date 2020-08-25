@@ -191,7 +191,7 @@ export const mean = v => sum(v) / v.length;
  * Get the mean of a vector while ignoring NaNs
  *
  * @description
- * Roughly half as fast as mean
+ * Roughly 30% slower than `mean()`
  *
  * @param {array} v - Numerical vector
  * @return {number} The mean
@@ -200,13 +200,8 @@ export const meanNan = v => {
   let length = 0;
   return (
     v.reduce((s, x) => {
-      let value = x;
-      length++;
-      if (Number.isNaN(+value)) {
-        value = 0;
-        length--;
-      }
-      return s + value;
+      if (x || x === 0) return ++length && s + x;
+      return s;
     }, 0) / length
   );
 };

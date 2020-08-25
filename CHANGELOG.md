@@ -1,6 +1,7 @@
 ## v0.24.1
 
 - Make sure that `sum()` ignores `Number.NaN` values.
+- Speed up `meanNan()`
 
 ## v0.24.0
 

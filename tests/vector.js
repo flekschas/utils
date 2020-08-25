@@ -220,19 +220,19 @@ test('mean()', t => {
 });
 
 test('meanNan()', t => {
-  let v = [0, 1, 2, 3, 4];
+  let v = [];
 
-  let meanValue = meanNan(v);
+  t.ok(Number.isNaN(meanNan(v)), 'The mean of an empty array should be NaN');
 
-  t.ok(deepEqual(meanValue, v[2]), `The mean value should be ${v[2]}`);
+  v = [0, 1, 2, 3, 4];
 
-  v = [0, 1, 2, 3, 4, Number.NaN];
+  t.ok(meanNan(v) === v[2], `The mean should be ${v[2]}`);
 
-  meanValue = meanNan(v);
+  v = [0, 1, 2, Number.NaN, 3, 4, Number.NaN];
 
   t.ok(
-    deepEqual(meanValue, v[2]),
-    `The mean value should still be ${v[2]} irrespective of the NaN`
+    meanNan(v) === v[2],
+    `The mean value still be ${v[2]} irrespective of the NaN`
   );
 });
 
