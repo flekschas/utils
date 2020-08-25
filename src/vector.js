@@ -156,6 +156,8 @@ export const l2Norm = v => Math.sqrt(v.reduce((sum, x) => sum + x ** 2, 0));
  */
 export const max = v => v.reduce((_max, a) => (a > _max ? a : _max), -Infinity);
 
+export const maxNan = max;
+
 /**
  * Get the max vector
  * @param {array} m - Array of vectors
@@ -257,6 +259,8 @@ export const medianVector = median;
  */
 export const min = v => v.reduce((_min, a) => (a < _min ? a : _min), Infinity);
 
+export const minNan = min;
+
 /**
  * Get the min vector
  * @param {array} m - Array of vectors
@@ -310,12 +314,22 @@ export const range = (start, end, stepSize = 1) =>
     .map((x, i) => start + i * stepSize);
 
 /**
- * Get the sum of a vector
+ * Get the sum of a vector while ignoring NaNs
+ *
+ * @description
+ *
  *
  * @param {array} v - Numerical vector
  * @return {number} The sum
  */
-export const sum = values => values.reduce((s, v) => s + v, 0);
+export const sum = values =>
+  values.reduce((s, v) => {
+    // Any falsey value (e.g., 0, null, NaN) does not influence the sum
+    if (v) return s + v;
+    return s;
+  }, 0);
+
+export const sumNan = sum;
 
 /**
  * Get the sum vector

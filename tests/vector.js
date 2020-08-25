@@ -21,6 +21,7 @@ import {
   medianVector,
   min,
   minVector,
+  sum,
   sumVector
 } from '../src/vector';
 
@@ -200,15 +201,22 @@ test('maxVector()', t => {
 test('mean()', t => {
   let v = [0, 1, 2, 3, 4];
 
-  let meanValue = mean(v);
+  t.ok(mean(v) === v[2], `The mean value should be ${v[2]}`);
 
-  t.ok(deepEqual(meanValue, v[2]), `The mean value should be ${v[2]}`);
+  v = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    Number.NaN,
+    Number.NaN,
+    Number.NaN,
+    Number.NaN,
+    Number.NaN
+  ];
 
-  v = [0, 1, 2, 3, 4, Number.NaN];
-
-  meanValue = mean(v);
-
-  t.ok(Number.isNaN(meanValue), `The mean value should be ${Number.NaN}`);
+  t.ok(mean(v) === v[2] / 2, `The mean value should be ${Number.NaN}`);
 });
 
 test('meanNan()', t => {
@@ -319,16 +327,27 @@ test('minVector()', t => {
   );
 });
 
+test('sum()', t => {
+  t.ok(sum([]) === 0, 'The sum of an empty array should be 0');
+
+  t.ok(sum([0, 1, 2, 3, 4]) === 10, 'The sum should be 10');
+
+  t.ok(
+    sum([0, 1, 2, 3, Number.NaN, 4]) === 10,
+    'The sum should still be 10 irrespective of the NaN'
+  );
+});
+
 test('sumVector()', t => {
   const m = [
     [0, 1, 2, 3, 4],
     [5, 6, 7, 8, 9]
   ];
 
-  const sum = sumVector(m);
+  const sumCol = sumVector(m);
   const expected = [5, 7, 9, 11, 13];
 
-  t.ok(deepEqual(sum, expected), `The vector sum should be ${expected}`);
+  t.ok(deepEqual(sumCol, expected), `The vector sum should be ${expected}`);
 
   t.ok(deepEqual(maxVector([m[1]]), m[1]), `The vector sum should be ${m[1]}`);
 
