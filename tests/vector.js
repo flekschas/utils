@@ -14,6 +14,8 @@ import {
   l2DistByDim,
   max,
   maxVector,
+  mean,
+  meanNan,
   meanVector,
   median,
   medianVector,
@@ -192,6 +194,37 @@ test('maxVector()', t => {
   t.ok(
     deepEqual(maxVector([]), []),
     `The vector max of an empty array should be an empty array`
+  );
+});
+
+test('mean()', t => {
+  let v = [0, 1, 2, 3, 4];
+
+  let meanValue = mean(v);
+
+  t.ok(deepEqual(meanValue, v[2]), `The mean value should be ${v[2]}`);
+
+  v = [0, 1, 2, 3, 4, Number.NaN];
+
+  meanValue = mean(v);
+
+  t.ok(Number.isNaN(meanValue), `The mean value should be ${Number.NaN}`);
+});
+
+test('meanNan()', t => {
+  let v = [0, 1, 2, 3, 4];
+
+  let meanValue = meanNan(v);
+
+  t.ok(deepEqual(meanValue, v[2]), `The mean value should be ${v[2]}`);
+
+  v = [0, 1, 2, 3, 4, Number.NaN];
+
+  meanValue = meanNan(v);
+
+  t.ok(
+    deepEqual(meanValue, v[2]),
+    `The mean value should still be ${v[2]} irrespective of the NaN`
   );
 });
 

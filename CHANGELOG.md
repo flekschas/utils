@@ -1,3 +1,7 @@
+## v0.24.0
+
+- Add and test `meanNan()`, which ignores `Number.NaN` values
+
 ## v0.23.2
 
 - Make sure that `min()` and `max()` ignore `Number.NaN` values
