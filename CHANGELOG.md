@@ -1,3 +1,7 @@
+## v0.25.0
+
+- Add and test `nthIndexOf()`
+
 ## v0.24.1
 
 - Make sure that `sum()` ignores `Number.NaN` values.
