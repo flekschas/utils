@@ -1,6 +1,5 @@
 {
   "name": "@flekschas/utils",
-  "private": true,
   "version": "0.26.0",
   "description": "A set of utility functions I use across projects",
   "author": {
