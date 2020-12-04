@@ -1,3 +1,7 @@
+## v0.26.0
+
+- Add and test `unionIntegers()`
+
 ## v0.25.0
 
 - Add and test `nthIndexOf()`

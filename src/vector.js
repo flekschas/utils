@@ -346,3 +346,23 @@ export const sumVector = m => {
       );
   }
 };
+
+/**
+ * Get the unique union of two vectors of integers
+ * @param {array} v - First vector of integers
+ * @param {array} w - Second vector of integers
+ * @return {array} Unique union of `v` and `w`
+ */
+export const unionIntegers = (v, w) => {
+  const a = [];
+  v.forEach(x => {
+    a[x] = true;
+  });
+  w.forEach(x => {
+    a[x] = true;
+  });
+  return a.reduce((union, value, i) => {
+    if (value) union.push(i);
+    return union;
+  }, []);
+};

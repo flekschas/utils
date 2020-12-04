@@ -22,7 +22,8 @@ import {
   min,
   minVector,
   sum,
-  sumVector
+  sumVector,
+  unionIntegers
 } from '../src/vector';
 
 test('aggregate()', t => {
@@ -355,4 +356,14 @@ test('sumVector()', t => {
     deepEqual(sumVector([]), []),
     `The vector sum of an empty array should be an empty array`
   );
+});
+
+test('unionIntegers()', t => {
+  const v = [0, 1, 2, 3, 4];
+  const w = [1, 1, 10, 9];
+
+  const union = unionIntegers(v, w);
+  const expected = [0, 1, 2, 3, 4, 9, 10];
+
+  t.ok(deepEqual(union, expected), `The union should be ${expected}`);
 });
