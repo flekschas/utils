@@ -1,3 +1,7 @@
+## v0.27.0
+
+- Add and test `clamp(value, min, max)`
+
 ## v0.26.0
 
 - Add and test `unionIntegers()`
