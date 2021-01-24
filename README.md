@@ -7,7 +7,7 @@
 
 This is a collection of utility functions that I keep using across different
 projects. I primarily created this package for myself so I don't have to
-re-implement over and over again and have a central place for testing them.
+re-implement certain functions over and over again, and to have a central place for testing them.
 
 ## Install
 
