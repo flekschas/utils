@@ -6,10 +6,10 @@ import { test } from 'zora';
 import {
   createHtmlByTemplate,
   removeAllChildren,
-  removeLastChild
+  removeLastChild,
 } from '../src/dom';
 
-test('createHtmlByTemplate()', t => {
+test('createHtmlByTemplate()', (t) => {
   const template = '<p>Hi my name is <strong>Test</strong>!</p>';
 
   const p = createHtmlByTemplate(template);
@@ -21,7 +21,7 @@ test('createHtmlByTemplate()', t => {
   t.equal(p.tagName, 'P', 'The root node should be a paragraph');
 });
 
-test('removeAllChildren()', t => {
+test('removeAllChildren()', (t) => {
   const rootEl = document.createElement('div');
 
   rootEl.appendChild(document.createElement('div'));
@@ -37,7 +37,7 @@ test('removeAllChildren()', t => {
   t.equal(rootEl.children.length, 0, 'All children should be removed');
 });
 
-test('removeLastChild()', t => {
+test('removeLastChild()', (t) => {
   const rootEl = document.createElement('div');
 
   rootEl.appendChild(document.createElement('div'));

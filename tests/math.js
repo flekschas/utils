@@ -5,21 +5,21 @@ import { test } from 'zora';
 
 import { clamp, isClose } from '../src/math';
 
-test('clamp()', t => {
+test('clamp()', (t) => {
   const a = Array(100)
     .fill()
     .map(() => Math.random() * 100);
   const min = 33;
   const max = 66;
-  const clamped = a.map(v => clamp(v, min, max));
+  const clamped = a.map((v) => clamp(v, min, max));
 
   t.ok(
-    clamped.every(v => v >= min && v <= max),
+    clamped.every((v) => v >= min && v <= max),
     `All values are greater or equal to ${min} and smaller or equal to ${max}`
   );
 });
 
-test('isClose()', t => {
+test('isClose()', (t) => {
   const a = parseFloat((6760 / 100) * 100);
   const b = parseFloat(6760);
 

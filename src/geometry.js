@@ -6,7 +6,7 @@
  *
  * @param {number} l - Defines the Lp space
  */
-export const lPointDist = l =>
+export const lPointDist = (l) =>
   /**
    * L distance function
    * @param {number} fromX - X coordinate of the first point
@@ -53,7 +53,7 @@ export const l2PointDist = (fromX, fromY, toX, toY) =>
  *
  * @param {number} l - Defines the Lp space
  */
-export const lRectDist = l =>
+export const lRectDist = (l) =>
   /**
    * L distance function between a pair of rectangles
    *

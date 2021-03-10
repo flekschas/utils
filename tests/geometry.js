@@ -7,13 +7,13 @@ import {
   lPointDist,
   l1PointDist,
   l2PointDist,
-  lRectDist
+  lRectDist,
   // isPointInPolygon,
   // isPointInRect,
   // isPointHalfwayInRect
 } from '../src/geometry';
 
-test('l1PointDist()', t => {
+test('l1PointDist()', (t) => {
   t.equal(
     l1PointDist(0, 0, 0, 0),
     0,
@@ -31,7 +31,7 @@ test('l1PointDist()', t => {
   );
 });
 
-test('l2PointDist()', t => {
+test('l2PointDist()', (t) => {
   t.equal(
     l2PointDist(0, 0, 0, 0),
     0,
@@ -49,7 +49,7 @@ test('l2PointDist()', t => {
   );
 });
 
-test('lPointDist()', t => {
+test('lPointDist()', (t) => {
   const x1 = Math.random();
   const y1 = Math.random();
   const x2 = Math.random();
@@ -68,7 +68,7 @@ test('lPointDist()', t => {
   );
 });
 
-test('lRectDist()', t => {
+test('lRectDist()', (t) => {
   const topLeft = { minX: 0, minY: 0, maxX: 1, maxY: 1 };
   const topMiddle = { minX: 2.5, minY: 0, maxX: 3.5, maxY: 1 };
   const topRight = { minX: 5, minY: 0, maxX: 6, maxY: 1 };
@@ -92,7 +92,7 @@ test('lRectDist()', t => {
     [topLeft, center],
     [topRight, center],
     [bottomLeft, center],
-    [bottomRight, center]
+    [bottomRight, center],
   ];
 
   l2Dsqrt2.forEach(([a, b]) => {
@@ -106,7 +106,7 @@ test('lRectDist()', t => {
     [topMiddle, center],
     [left, center],
     [right, center],
-    [bottomMiddle, center]
+    [bottomMiddle, center],
   ];
 
   l2D1.forEach(([a, b]) => {
@@ -119,7 +119,7 @@ test('lRectDist()', t => {
   const l2D0 = [
     [inside, center],
     [overlapping, center],
-    [touching, center]
+    [touching, center],
   ];
 
   l2D0.forEach(([a, b]) => {

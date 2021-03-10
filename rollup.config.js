@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel';
+import { babel } from '@rollup/plugin-babel';
 import filesize from 'rollup-plugin-filesize';
 import json from '@rollup/plugin-json';
 import { terser } from 'rollup-plugin-terser';
@@ -15,9 +15,9 @@ const configurator = (input, file, format, plugins, extend = true) => ({
     file,
     banner: `// ${pkg.name} v${
       pkg.version
-    } Copyright ${new Date().getFullYear()} ${pkg.author.name}`
+    } Copyright ${new Date().getFullYear()} ${pkg.author.name}`,
   },
-  plugins
+  plugins,
 });
 
 const bundles = [
@@ -38,14 +38,16 @@ const bundles = [
   ['string'],
   ['timing'],
   ['type-checking'],
-  ['vector']
+  ['vector'],
 ];
+
+const babelPlugin = babel({ babelHelpers: 'runtime' });
 
 const convert = ([
   inputName,
   outputName = null,
   extend = true,
-  subDir = true
+  subDir = true,
 ]) => {
   // eslint-disable-next-line no-param-reassign
   outputName = outputName === null ? inputName : outputName;
@@ -56,7 +58,7 @@ const convert = ([
       `src/${inputName}.js`,
       `dist/${subDir ? 'umd/' : ''}${outputName}.js`,
       'umd',
-      [json(), babel(), filesize(), visualizer()],
+      [json(), babelPlugin, filesize(), visualizer()],
       extend
     ),
 
@@ -65,7 +67,7 @@ const convert = ([
       `src/${inputName}.js`,
       `dist/${subDir ? 'umd/' : ''}${outputName}.min.js`,
       'umd',
-      [json(), babel(), terser()],
+      [json(), babelPlugin, terser()],
       extend
     ),
 
@@ -76,7 +78,7 @@ const convert = ([
       'esm',
       [json(), filesize()],
       extend
-    )
+    ),
   ];
 };
 

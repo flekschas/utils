@@ -3,7 +3,7 @@
  * @param {function} fn - Function to be turned into a worker
  * @return {Worker} Worker function
  */
-export const createWorker = fn =>
+export const createWorker = (fn) =>
   new Worker(
     window.URL.createObjectURL(
       new Blob([`(${fn.toString()})()`], { type: 'text/javascript' })

@@ -7,17 +7,17 @@ import { test } from 'zora';
 import { deepClone } from '../src/object';
 import { array2dTranspose, clearArray, unique } from '../src/array';
 
-test('array2dTranspose()', t => {
+test('array2dTranspose()', (t) => {
   const originalMatrix = [
     [0, 1, 2, 3, 4],
-    [5, 6, 7, 8, 9]
+    [5, 6, 7, 8, 9],
   ];
   const transposedMatrix = [
     [0, 5],
     [1, 6],
     [2, 7],
     [3, 8],
-    [4, 9]
+    [4, 9],
   ];
 
   const originalMatrixTest = deepClone(originalMatrix);
@@ -39,7 +39,7 @@ test('array2dTranspose()', t => {
   );
 });
 
-test('clearArray()', t => {
+test('clearArray()', (t) => {
   const a = [0, 1, 2, 3, 4];
 
   t.equal(a.length, 5, 'Array should have length 5');
@@ -51,7 +51,7 @@ test('clearArray()', t => {
   t.equal(a, b, 'Cleared array should have the same reference');
 });
 
-test('unique()', t => {
+test('unique()', (t) => {
   let a = [0, 1, 1, 1, 2, 3, 10, -1, 2];
   let u = [0, 1, 2, 3, 10, -1];
 
@@ -66,12 +66,12 @@ test('unique()', t => {
     { v: 3 },
     { v: 10 },
     { v: -1 },
-    { v: 2 }
+    { v: 2 },
   ];
 
   t.ok(
     deepEqual(
-      unique(a, x => x.v),
+      unique(a, (x) => x.v),
       u
     ),
     'Support custom getter'

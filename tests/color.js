@@ -6,7 +6,7 @@ import { test } from 'zora';
 
 import { decToRgb } from '../src/color';
 
-test('decToRgb()', t => {
+test('decToRgb()', (t) => {
   t.ok(
     deepEqual(decToRgb(0x000000), [0, 0, 0]),
     'The decimal and rgb colors equal'

@@ -1,5 +1,5 @@
 export const assign = (target, ...sources) => {
-  sources.forEach(source => {
+  sources.forEach((source) => {
     // eslint-disable-next-line no-shadow
     const descriptors = Object.keys(source).reduce((descriptors, key) => {
       descriptors[key] = Object.getOwnPropertyDescriptor(source, key);
@@ -7,7 +7,7 @@ export const assign = (target, ...sources) => {
     }, {});
 
     // By default, Object.assign copies enumerable Symbols, too
-    Object.getOwnPropertySymbols(source).forEach(symbol => {
+    Object.getOwnPropertySymbols(source).forEach((symbol) => {
       const descriptor = Object.getOwnPropertyDescriptor(source, symbol);
       if (descriptor.enumerable) {
         descriptors[symbol] = descriptor;
@@ -24,7 +24,7 @@ export const assign = (target, ...sources) => {
  * @param {object} source - Object to be cloned.
  * @return {object} Cloned `source` object.
  */
-export const deepClone = source => {
+export const deepClone = (source) => {
   let target;
   return extend(target, source);
 };
@@ -59,7 +59,7 @@ export const extend = (target, source) => {
 
   const out = target || new source.constructor();
 
-  Object.keys(source).forEach(key => {
+  Object.keys(source).forEach((key) => {
     const descriptor = Object.getOwnPropertyDescriptor(source, key);
     if (typeof out[key] === 'undefined') {
       if (typeof descriptor.value === 'undefined') {
@@ -99,7 +99,7 @@ export const update = (target, source) => {
 
   // Update properties
   let updated = false;
-  Object.keys(source).forEach(key => {
+  Object.keys(source).forEach((key) => {
     const descriptor = Object.getOwnPropertyDescriptor(source, key);
     if (target[key] === undefined) {
       // The `key` prop does not exist on `target` so we will extend `target`
@@ -120,7 +120,7 @@ export const update = (target, source) => {
   // true
   updated =
     updated ||
-    Object.keys(target).filter(key => typeof source[key] === 'undefined')
+    Object.keys(target).filter((key) => typeof source[key] === 'undefined')
       .length;
 
   return updated ? out : target;

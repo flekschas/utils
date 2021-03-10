@@ -1,6 +1,6 @@
 import multi from '@rollup/plugin-multi-entry';
-import commonjs from 'rollup-plugin-commonjs';
-import resolve from 'rollup-plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
 
 export default {
   input: [
@@ -16,12 +16,12 @@ export default {
     './tests/string.js',
     './tests/timing.js',
     './tests/type-checking.js',
-    './tests/vector.js'
+    './tests/vector.js',
   ],
   output: {
     name: 'test',
     format: 'iife',
-    sourcemap: 'inline'
+    sourcemap: 'inline',
   },
-  plugins: [multi(), resolve(), commonjs()]
+  plugins: [multi(), resolve(), commonjs()],
 };

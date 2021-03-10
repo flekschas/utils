@@ -2,7 +2,7 @@ import {
   isHex,
   isNormFloatArray,
   isRgbArray,
-  isRgbaArray
+  isRgbaArray,
 } from './type-checking';
 import { normalize as norm } from './vector';
 
@@ -11,14 +11,14 @@ import { normalize as norm } from './vector';
  * @param {string} hex - HEX string
  * @return {number} Decimal representation
  */
-export const decToRgb = dec => [dec >> 16, (dec >> 8) % 256, dec % 256];
+export const decToRgb = (dec) => [dec >> 16, (dec >> 8) % 256, dec % 256];
 
 /**
  * Convert a HEX string to its decimal representation
  * @param {string} hex - HEX string
  * @return {number} Decimal representation
  */
-export const hexToDec = hex => parseInt(hex.substr(1), 16);
+export const hexToDec = (hex) => parseInt(hex.substr(1), 16);
 
 /**
  * Convert a HEX-encoded color to an RGB-encoded color
@@ -35,7 +35,7 @@ export const hexToRgbArray = (hex, normalize = false) =>
     )
     .substring(1)
     .match(/.{2}/g)
-    .map(x => parseInt(x, 16) / 255 ** normalize);
+    .map((x) => parseInt(x, 16) / 255 ** normalize);
 
 /**
  * Convert a HEX-encoded color to an RGBA-encoded color
@@ -46,7 +46,7 @@ export const hexToRgbArray = (hex, normalize = false) =>
  */
 export const hexToRgbaArray = (hex, normalize = false) => [
   ...hexToRgbArray(hex, normalize),
-  255 ** !normalize
+  255 ** !normalize,
 ];
 
 /**
@@ -54,11 +54,11 @@ export const hexToRgbaArray = (hex, normalize = false) => [
  * @param {string} rgbStr - RGB(A) string
  * @return {number} RGB(A) array
  */
-export const rgbStrToRgbArray = rgbStr =>
+export const rgbStrToRgbArray = (rgbStr) =>
   rgbStr
     .match(/[\d.]+/g)
     .slice(0, 4)
-    .map(x => +x);
+    .map((x) => +x);
 
 /**
  * Same as `rgbStrToRgbArray()`
@@ -70,7 +70,7 @@ export const rgbaStrToRgbaArray = rgbStrToRgbArray;
  * @param {string} rgbStr - RGB string
  * @return {number} Decimal representation
  */
-export const rgbStrToDec = rgbStr =>
+export const rgbStrToDec = (rgbStr) =>
   rgbStrToRgbArray(rgbStr)
     .slice(0, 3)
     // eslint-disable-next-line no-bitwise
@@ -85,7 +85,7 @@ export const rgbStrToDec = rgbStr =>
  * @return {string} HEX string
  */
 export const rgbToHex = (r, g, b) => {
-  const componentToHex = c => {
+  const componentToHex = (c) => {
     const hex = c.toString(16);
     return hex.length === 1 ? `0${hex}` : hex;
   };

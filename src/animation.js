@@ -6,7 +6,7 @@
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const cubicIn = t => t * t * t;
+export const cubicIn = (t) => t * t * t;
 
 /**
  * Cubic in and out easing function
@@ -14,7 +14,7 @@ export const cubicIn = t => t * t * t;
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const cubicInOut = t =>
+export const cubicInOut = (t) =>
   t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
 
 /**
@@ -23,7 +23,7 @@ export const cubicInOut = t =>
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const cubicOut = t => --t * t * t + 1;
+export const cubicOut = (t) => --t * t * t + 1;
 
 /**
  * Linearly interpolate two numbers
@@ -56,7 +56,7 @@ export const interpolateVector = (a, b, p) =>
  *   refers to the start and `1` to the end
  * @return {number} Same as the input
  */
-export const linear = t => t;
+export const linear = (t) => t;
 
 /**
  * Quadratic in easing function
@@ -64,7 +64,7 @@ export const linear = t => t;
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const quadIn = t => t * t;
+export const quadIn = (t) => t * t;
 
 /**
  * Quadratic in and out easing function
@@ -72,7 +72,7 @@ export const quadIn = t => t * t;
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const quadInOut = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+export const quadInOut = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
 
 /**
  * Quadratic out easing function
@@ -80,7 +80,7 @@ export const quadInOut = t => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const quadOut = t => t * (2 - t);
+export const quadOut = (t) => t * (2 - t);
 
 /**
  * Quartic in easing function
@@ -88,7 +88,7 @@ export const quadOut = t => t * (2 - t);
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const quartIn = t => t * t * t * t;
+export const quartIn = (t) => t * t * t * t;
 
 /**
  * Quartic in and out easing function
@@ -96,7 +96,7 @@ export const quartIn = t => t * t * t * t;
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const quartOut = t => 1 - --t * t * t * t;
+export const quartOut = (t) => 1 - --t * t * t * t;
 
 /**
  * Quartic out easing function
@@ -104,7 +104,7 @@ export const quartOut = t => 1 - --t * t * t * t;
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const quartInOut = t =>
+export const quartInOut = (t) =>
   t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t;
 
 /**
@@ -113,7 +113,7 @@ export const quartInOut = t =>
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const quintIn = t => t * t * t * t * t;
+export const quintIn = (t) => t * t * t * t * t;
 
 /**
  * Quintic in and out easing function
@@ -121,7 +121,7 @@ export const quintIn = t => t * t * t * t * t;
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const quintOut = t => 1 + --t * t * t * t * t;
+export const quintOut = (t) => 1 + --t * t * t * t * t;
 
 /**
  * Quintic out easing function
@@ -129,5 +129,5 @@ export const quintOut = t => 1 + --t * t * t * t * t;
  *   refers to the start and `1` to the end
  * @return {number} The eased time
  */
-export const quintInOut = t =>
+export const quintInOut = (t) =>
   t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t;

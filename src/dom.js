@@ -23,7 +23,7 @@ export const addClass = (element, className) => {
  * @param {string} template - HTML template string
  * @return {node} Root DOM element
  */
-export const createHtmlByTemplate = template => {
+export const createHtmlByTemplate = (template) => {
   const dummyEl = document.createElement('div');
   dummyEl.insertAdjacentHTML('beforeend', template);
   return dummyEl.firstChild;
@@ -68,7 +68,7 @@ export const isParentOf = (element, parent) => {
  * Remove all children of a DOM node
  * @param {object} node - DOM node whose children are to be removed
  */
-export const removeAllChildren = node => {
+export const removeAllChildren = (node) => {
   while (node.firstChild) {
     node.removeChild(node.firstChild);
   }
@@ -78,7 +78,7 @@ export const removeAllChildren = node => {
  * Remove last child of a DOM node
  * @param {object} node - DOM node whose last child is to be removed
  */
-export const removeLastChild = node => {
+export const removeLastChild = (node) => {
   node.removeChild(node.lastChild);
 };
 

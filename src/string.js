@@ -1,10 +1,10 @@
-export const camelToConst = str =>
+export const camelToConst = (str) =>
   str
     .split(/(?=[A-Z])/)
     .join('_')
     .toUpperCase();
 
-export const capitalize = str => `${str[0].toUpperCase()}${str.substr(1)}`;
+export const capitalize = (str) => `${str[0].toUpperCase()}${str.substr(1)}`;
 
 /**
  * FInd the nth instance of the query string

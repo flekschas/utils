@@ -15,7 +15,7 @@ export const clamp = (value, min, max) =>
  * @param   {*}  x  Any kind of value
  * @return  {*}  `x`
  */
-export const identity = x => x;
+export const identity = (x) => x;
 
 /**
  * Test if two floats are close given some precision

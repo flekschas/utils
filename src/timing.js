@@ -37,7 +37,7 @@ export const debounce = (fn, wait) => {
  * @return {Promise} A promise that resolves after the next `n` animation frames
  */
 export const nextAnimationFrame = (n = 1) =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     let i = 0;
 
     const raf = () =>
@@ -172,4 +172,5 @@ export const throttleAndDebounce = (fn, throttleTime, debounceTime = null) => {
  * @param {number} msec - Time in milliseconds until the promise is resolved
  * @return {Promise} Promise resolving after `msec` milliseconds
  */
-export const wait = msec => new Promise(resolve => setTimeout(resolve, msec));
+export const wait = (msec) =>
+  new Promise((resolve) => setTimeout(resolve, msec));

@@ -6,7 +6,7 @@ import { test } from 'zora';
 
 import { deepClone, update } from '../src/object';
 
-test('deepClone()', t => {
+test('deepClone()', (t) => {
   let original = 1;
   let cloned = deepClone(original);
 
@@ -49,7 +49,7 @@ test('deepClone()', t => {
     },
     set z(v) {
       this.x = v;
-    }
+    },
   };
   cloned = deepClone(original);
 
@@ -76,7 +76,7 @@ test('deepClone()', t => {
   t.ok(original !== cloned, 'Cloned nested object should have a new reference');
 });
 
-test('update()', t => {
+test('update()', (t) => {
   let target = { y: 'y' };
   let source = { x: 'x' };
 

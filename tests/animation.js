@@ -6,10 +6,10 @@ import { test } from 'zora';
 import {
   cubicInOut,
   interpolateNumber,
-  interpolateVector
+  interpolateVector,
 } from '../src/animation';
 
-test('cubicInOut()', t => {
+test('cubicInOut()', (t) => {
   // Sanity checks
   t.equal(cubicInOut(0), 0, 'Initial time should ease to 0');
   t.equal(cubicInOut(1), 1, 'End time should ease to 1');
@@ -20,7 +20,7 @@ test('cubicInOut()', t => {
   t.equal(cubicInOut(0.75), 0.9375, 'Half time should ease to 0.9375');
 });
 
-test('interpolateNumber()', t => {
+test('interpolateNumber()', (t) => {
   const a = 0;
   const b = 1;
 
@@ -39,7 +39,7 @@ test('interpolateNumber()', t => {
   );
 });
 
-test('interpolateVector()', t => {
+test('interpolateVector()', (t) => {
   const a = [0, 1];
   const b = [1, 2];
 

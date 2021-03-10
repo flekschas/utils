@@ -5,11 +5,11 @@ import { test } from 'zora';
 
 import { debounce, throttle, throttleAndDebounce, wait } from '../src/timing';
 
-const fn = calls => value => {
+const fn = (calls) => (value) => {
   calls.push(value);
 };
 
-test('wait()', async t => {
+test('wait()', async (t) => {
   const time = 100;
   const t0 = performance.now();
 
@@ -20,7 +20,7 @@ test('wait()', async t => {
   t.ok(dT >= time, `Execution should have waited at least ${time} msec`);
 });
 
-test('debounce()', async t => {
+test('debounce()', async (t) => {
   const calls = [];
   const debounceTime = 100;
   const debouncedFn = debounce(fn(calls), debounceTime);
@@ -49,7 +49,7 @@ test('debounce()', async t => {
   );
 });
 
-test('debounce().cancel()', async t => {
+test('debounce().cancel()', async (t) => {
   const calls = [];
   const debounceTime = 100;
   const debouncedFn = debounce(fn(calls), debounceTime);
@@ -66,7 +66,7 @@ test('debounce().cancel()', async t => {
   t.equal(calls.length, 0, 'There should have been *no* function call');
 });
 
-test('debounce().now()', async t => {
+test('debounce().now()', async (t) => {
   const calls = [];
   const debounceTime = 100;
   const debouncedFn = debounce(fn(calls), debounceTime);
@@ -76,7 +76,7 @@ test('debounce().now()', async t => {
   t.equal(calls.length, 1, 'There should have been *one* function call');
 });
 
-test('throttle()', async t => {
+test('throttle()', async (t) => {
   const calls = [];
   const waitTime = 100;
   const throttledFn = throttle(fn(calls), waitTime);
@@ -112,7 +112,7 @@ test('throttle()', async t => {
   );
 });
 
-test('throttle().reset()', async t => {
+test('throttle().reset()', async (t) => {
   const calls = [];
   const waitTime = 100;
   const throttledFn = throttle(fn(calls), waitTime);
@@ -127,7 +127,7 @@ test('throttle().reset()', async t => {
   t.equal(calls.length, 2, 'There should have been *two* function calls');
 });
 
-test('throttle().now()', async t => {
+test('throttle().now()', async (t) => {
   const calls = [];
   const debounceTime = 100;
   const throttledFn = throttle(fn(calls), debounceTime);
@@ -141,7 +141,7 @@ test('throttle().now()', async t => {
   t.equal(calls.length, 2, 'There should have been *two* function calls');
 });
 
-test('throttleAndDebounce()', async t => {
+test('throttleAndDebounce()', async (t) => {
   const calls = [];
   const delay = 100;
   const throttledAndDebouncedFn = throttleAndDebounce(fn(calls), delay);
@@ -171,7 +171,7 @@ test('throttleAndDebounce()', async t => {
   );
 });
 
-test('throttleAndDebounce()', async t => {
+test('throttleAndDebounce()', async (t) => {
   const calls = [];
   const throttleTime = 50;
   const debounceTime = throttleTime * 2;
@@ -206,7 +206,7 @@ test('throttleAndDebounce()', async t => {
   );
 });
 
-test('throttleAndDebounce().reset()', async t => {
+test('throttleAndDebounce().reset()', async (t) => {
   const calls = [];
   const delay = 100;
   const throttledAndDebouncedFn = throttleAndDebounce(fn(calls), delay);
@@ -221,7 +221,7 @@ test('throttleAndDebounce().reset()', async t => {
   t.equal(calls.length, 2, 'There should have been *two* function calls');
 });
 
-test('throttleAndDebounce().cancel()', async t => {
+test('throttleAndDebounce().cancel()', async (t) => {
   const calls = [];
   const delay = 100;
   const throttledAndDebouncedFn = throttleAndDebounce(fn(calls), delay);
@@ -238,7 +238,7 @@ test('throttleAndDebounce().cancel()', async t => {
   t.equal(calls.length, 1, 'There should have been only one function call');
 });
 
-test('throttleAndDebounce().now()', async t => {
+test('throttleAndDebounce().now()', async (t) => {
   const calls = [];
   const delay = 100;
   const throttledAndDebouncedFn = throttleAndDebounce(fn(calls), delay);

@@ -5,7 +5,7 @@
  * @param {object} event - Source event to be cloned.
  * @return {object} Cloned event
  */
-export const cloneEvent = event => {
+export const cloneEvent = (event) => {
   const newEvent = new event.constructor(event.type, event);
   newEvent.sourceUid = event.sourceUid;
   newEvent.forwarded = event.forwarded;

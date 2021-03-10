@@ -12,7 +12,7 @@ import { capitalize } from './string';
  * @param {function} f - Mapping function
  * @return {array} Mapped array
  */
-export const map = f => x => Array.prototype.map.call(x, f);
+export const map = (f) => (x) => Array.prototype.map.call(x, f);
 
 /**
  * Map and filter data in one iteration.
@@ -28,7 +28,7 @@ export const mapFilter = (mapFn, filterFn) =>
    * @param   {array}  arr  An array to be mapped and filtered
    * @returns {array}  The mapped and filtered array
    */
-  arr => {
+  (arr) => {
     const out = [];
     // loop though array
     for (let i = 0; i < arr.length; i++) {
@@ -47,7 +47,7 @@ export const mapFilter = (mapFn, filterFn) =>
  * @param {function} f - Modifier function applied on every item of the array.
  * @return {array} Modified array-like variable.
  */
-export const forEach = f => x => Array.prototype.forEach.call(x, f);
+export const forEach = (f) => (x) => Array.prototype.forEach.call(x, f);
 
 /**
  * Convenience function to compose functions
@@ -59,7 +59,7 @@ export const pipe = (...fns) =>
    * @param {*} x - Some value
    * @return {*} Output of the composed function
    */
-  x => fns.reduce((y, f) => f(y), x);
+  (x) => fns.reduce((y, f) => f(y), x);
 
 /**
  * Functional version of `Array.forEach`. More flexible and applicable to
@@ -68,18 +68,18 @@ export const pipe = (...fns) =>
  *   array.
  * @return  {*}  Modified array-like variable.
  */
-export const some = f => x => Array.prototype.some.call(x, f);
+export const some = (f) => (x) => Array.prototype.some.call(x, f);
 
 /**
  * Assign a constructor to the object
  * @param {function} constructor - Constructor functions
  */
-export const withConstructor = constructor => self =>
+export const withConstructor = (constructor) => (self) =>
   assign(
     {
       __proto__: {
-        constructor
-      }
+        constructor,
+      },
     },
     self
   );
@@ -89,11 +89,11 @@ export const withConstructor = constructor => self =>
  * @param {string} name - Exposed function name
  * @param {function} fn - Function to be forwarded
  */
-export const withForwardedMethod = (name, fn) => self =>
+export const withForwardedMethod = (name, fn) => (self) =>
   assign(self, {
     [name](...args) {
       return fn.apply(this, args);
-    }
+    },
   });
 
 /**
@@ -118,16 +118,16 @@ export const withProperty = (
     setter: customSetter,
     cloner = identity,
     transformer = identity,
-    validator = () => true
+    validator = () => true,
   } = {}
-) => self => {
+) => (self) => {
   let value = initialValue;
 
   const getter = customGetter ? () => customGetter() : () => cloner(value);
 
   const setter = customSetter
-    ? newValue => customSetter(newValue)
-    : newValue => {
+    ? (newValue) => customSetter(newValue)
+    : (newValue) => {
         const transformedNewValue = transformer(newValue);
         value = validator(transformedNewValue) ? transformedNewValue : value;
       };
@@ -138,7 +138,7 @@ export const withProperty = (
     },
     [`set${capitalize(name)}`](newValue) {
       setter(newValue);
-    }
+    },
   });
 };
 
@@ -147,11 +147,11 @@ export const withProperty = (
  * @param {string} name - Name of the property
  * @param {function} getter - Getter function
  */
-export const withReadOnlyProperty = (name, getter) => self =>
+export const withReadOnlyProperty = (name, getter) => (self) =>
   assign(self, {
     get [name]() {
       return getter();
-    }
+    },
   });
 
 /**
@@ -159,9 +159,9 @@ export const withReadOnlyProperty = (name, getter) => self =>
  * @param {string} name - Name of the property
  * @param {*} value - Static value
  */
-export const withStaticProperty = (name, value) => self =>
+export const withStaticProperty = (name, value) => (self) =>
   assign(self, {
     get [name]() {
       return value;
-    }
+    },
   });

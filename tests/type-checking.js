@@ -17,25 +17,25 @@ import {
   isRgbaStr,
   isString,
   isUint8,
-  isUint8Array
+  isUint8Array,
 } from '../src/type-checking';
 
-test('isArray()', t => {
+test('isArray()', (t) => {
   const negative = [undefined, null, 'str', 10, {}, () => {}, new Date()];
 
-  negative.forEach(v => t.ok(!isArray(v), `${v} is not an array`));
+  negative.forEach((v) => t.ok(!isArray(v), `${v} is not an array`));
   t.ok(isArray([]), '[] is an array');
 });
 
-test('isFunction()', t => {
+test('isFunction()', (t) => {
   const negative = [undefined, null, 'str', 10, [], {}, new Date()];
   const positive = [() => {}, function g() {}, Array.isArray];
 
-  negative.forEach(v => t.ok(!isFunction(v), `${v} is not a function`));
-  positive.forEach(v => t.ok(isFunction(v), `${v} is a function`));
+  negative.forEach((v) => t.ok(!isFunction(v), `${v} is not a function`));
+  positive.forEach((v) => t.ok(isFunction(v), `${v} is a function`));
 });
 
-test('isHex()', t => {
+test('isHex()', (t) => {
   const a = `#00ff00`;
   const b = `#0f0`;
   const c = `#00ff0`;
@@ -56,7 +56,7 @@ test('isHex()', t => {
   t.ok(!isHex([]), '[] is *NOT* a HEX string');
 });
 
-test('isNormFloat()', t => {
+test('isNormFloat()', (t) => {
   const a = 0.5;
   const b = 0;
   const c = 1;
@@ -72,7 +72,7 @@ test('isNormFloat()', t => {
   t.ok(!isNormFloat([]), '[] is *NOT* a normalized float');
 });
 
-test('isNormFloatArray()', t => {
+test('isNormFloatArray()', (t) => {
   const a = [0.5];
   const b = [];
   const c = [1.0001];
@@ -84,7 +84,7 @@ test('isNormFloatArray()', t => {
   t.ok(!isNormFloatArray({}), '{} is *NOT* a normalized float array');
 });
 
-test('isNumber()', t => {
+test('isNumber()', (t) => {
   const a = 0.5;
   const b = Number(0.5);
 
@@ -99,14 +99,14 @@ test('isNumber()', t => {
   t.ok(!isNumber({}), '{} is *NOT* a normalized float array');
 });
 
-test('isObject()', t => {
+test('isObject()', (t) => {
   const negative = [undefined, null, 'str', 10, [], () => {}, new Date()];
 
-  negative.forEach(v => t.ok(!isObject(v), `${v} is not an object`));
+  negative.forEach((v) => t.ok(!isObject(v), `${v} is not an object`));
   t.ok(isObject({}), '{} is an object');
 });
 
-test('isRgbArray()', t => {
+test('isRgbArray()', (t) => {
   const a = [255, 0, 255];
   const b = [1, 0, 1];
   const c = [1.0, 0.0, 1.0];
@@ -125,7 +125,7 @@ test('isRgbArray()', t => {
   t.ok(!isRgbArray({}), '{} is *NOT* a RGB array');
 });
 
-test('isRgbaArray()', t => {
+test('isRgbaArray()', (t) => {
   const a = [255, 0, 255, 255];
   const b = [1, 0, 1, 1];
   const c = [255, 0, 255, 1.0];
@@ -146,7 +146,7 @@ test('isRgbaArray()', t => {
   t.ok(!isRgbaArray({}), '{} is *NOT* a RGBA array');
 });
 
-test('isRgbStr()', t => {
+test('isRgbStr()', (t) => {
   const a = 'rgb(1,1,1)';
   const b = 'rgb(1,         1, 1.0)';
   const c = 'rgb(255,         9, 120)';
@@ -169,7 +169,7 @@ test('isRgbStr()', t => {
   t.ok(!isRgbStr({}), '{} is *NOT* a RGB string');
 });
 
-test('isRgbaStr()', t => {
+test('isRgbaStr()', (t) => {
   const a = 'rgba(1,1,1,1)';
   const b = 'rgba(1,         1, 1.0, 0.5)';
   const c = 'rgba(255,         9, 120, 127)';
@@ -192,7 +192,7 @@ test('isRgbaStr()', t => {
   t.ok(!isRgbaStr({}), '{} is *NOT* a RGBA string');
 });
 
-test('isString()', t => {
+test('isString()', (t) => {
   const a = '';
   const b = 's';
   const c = String('s');
@@ -209,7 +209,7 @@ test('isString()', t => {
   t.ok(!isString({}), '{} is *NOT* a RGBA array');
 });
 
-test('isUint8()', t => {
+test('isUint8()', (t) => {
   const a = 0;
   const b = 255;
 
@@ -226,7 +226,7 @@ test('isUint8()', t => {
   t.ok(!isUint8({}), '{} is *NOT* a Uint8');
 });
 
-test('isUint8Array()', t => {
+test('isUint8Array()', (t) => {
   const a = [];
   const b = [0];
   const c = [255];

@@ -5,7 +5,7 @@ import { test } from 'zora';
 
 import { nthIndexOf, randomString } from '../src/string';
 
-test('nthIndexOf()', t => {
+test('nthIndexOf()', (t) => {
   t.equal(
     nthIndexOf('ananas', 'a', 0),
     'ananas'.indexOf('a'),
@@ -31,7 +31,7 @@ test('nthIndexOf()', t => {
   );
 });
 
-test('randomString()', t => {
+test('randomString()', (t) => {
   t.equal(
     randomString(6).length,
     6,

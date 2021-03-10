@@ -9,10 +9,10 @@ import {
   withConstructor,
   withForwardedMethod,
   withReadOnlyProperty,
-  withStaticProperty
+  withStaticProperty,
 } from '../src/functional-programming';
 
-test('withConstructor()', t => {
+test('withConstructor()', (t) => {
   const createObj = () => pipe(withConstructor(createObj))({});
 
   const o = createObj();
@@ -20,9 +20,9 @@ test('withConstructor()', t => {
   t.equal(o.constructor, createObj, 'The constructor should be createObj()');
 });
 
-test('withForwardedMethod()', t => {
+test('withForwardedMethod()', (t) => {
   const createObj = (name, value) => {
-    const set = newValue => {
+    const set = (newValue) => {
       // eslint-disable-next-line no-param-reassign
       value = newValue;
     };
@@ -42,14 +42,14 @@ test('withForwardedMethod()', t => {
   t.equal(o.v, 1, 'The value should still be 1');
 });
 
-test('withStaticProperty()', t => {
+test('withStaticProperty()', (t) => {
   const createObj = (name, value) => {
-    const withMethods = () => self =>
+    const withMethods = () => (self) =>
       assign(self, {
         set(newValue) {
           // eslint-disable-next-line no-param-reassign
           value = newValue;
-        }
+        },
       });
 
     return pipe(withStaticProperty(name, value), withMethods())({});
@@ -64,7 +64,7 @@ test('withStaticProperty()', t => {
   t.equal(o.v, 1, 'The value should still be 1');
 });
 
-test('withReadOnlyProperty()', t => {
+test('withReadOnlyProperty()', (t) => {
   const createObj = (name, getter) =>
     pipe(withReadOnlyProperty(name, getter))({});
 
