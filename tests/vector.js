@@ -23,10 +23,12 @@ import {
   minVector,
   sum,
   sumVector,
-  unionIntegers
+  unionIntegers,
+  range,
+  rangeMap,
 } from '../src/vector';
 
-test('aggregate()', t => {
+test('aggregate()', (t) => {
   let v = [0, 1, 19, -2, 99, 99];
   let expected = -2;
   let observed = aggregate(v, Math.min, Infinity);
@@ -42,25 +44,25 @@ test('aggregate()', t => {
   v = [{ v: 0 }, { v: 1 }, { v: 99 }];
   expected = [0, 99];
   observed = aggregate(v, [Math.min, Math.max], [Infinity, -Infinity], {
-    getter: x => x.v
+    getter: (x) => x.v,
   });
 
   t.ok(deepEqual(expected, observed), 'Support custom getter');
 });
 
-test('diff()', t => {
+test('diff()', (t) => {
   const v = [0, 1, 2, 3, 4];
   const w = [5, 6, 7, 8, 9];
 
   const d = diff(v, w);
 
   t.ok(
-    d.every(x => x === -5),
+    d.every((x) => x === -5),
     'The diff vector should always be -5'
   );
 });
 
-test('l1Dist()', t => {
+test('l1Dist()', (t) => {
   t.equal(
     l1Dist([0, 0], [0, 0]),
     0,
@@ -78,7 +80,7 @@ test('l1Dist()', t => {
   );
 });
 
-test('l1DistByDim()', t => {
+test('l1DistByDim()', (t) => {
   t.equal(
     l1DistByDim(2)([0, 0], [0, 0]),
     0,
@@ -96,7 +98,7 @@ test('l1DistByDim()', t => {
   );
 });
 
-test('l2Dist()', t => {
+test('l2Dist()', (t) => {
   t.equal(
     l2Dist([0, 0], [0, 0]),
     0,
@@ -114,7 +116,7 @@ test('l2Dist()', t => {
   );
 });
 
-test('l2DistByDim()', t => {
+test('l2DistByDim()', (t) => {
   t.equal(
     l2DistByDim(2)([0, 0], [0, 0]),
     0,
@@ -132,7 +134,7 @@ test('l2DistByDim()', t => {
   );
 });
 
-test('lDist()', t => {
+test('lDist()', (t) => {
   let v = [Math.random(), Math.random()];
   let w = [Math.random(), Math.random()];
 
@@ -164,7 +166,7 @@ test('lDist()', t => {
   );
 });
 
-test('max()', t => {
+test('max()', (t) => {
   let v = [0, 1, 2, 3, 4];
 
   let maxValue = max(v);
@@ -181,10 +183,10 @@ test('max()', t => {
   );
 });
 
-test('maxVector()', t => {
+test('maxVector()', (t) => {
   const m = [
     [0, 1, 2, 3, 4],
-    [5, 6, 7, 8, 9]
+    [5, 6, 7, 8, 9],
   ];
 
   const maxCol = maxVector(m);
@@ -199,7 +201,7 @@ test('maxVector()', t => {
   );
 });
 
-test('mean()', t => {
+test('mean()', (t) => {
   let v = [0, 1, 2, 3, 4];
 
   t.ok(mean(v) === v[2], `The mean value should be ${v[2]}`);
@@ -214,13 +216,13 @@ test('mean()', t => {
     Number.NaN,
     Number.NaN,
     Number.NaN,
-    Number.NaN
+    Number.NaN,
   ];
 
   t.ok(mean(v) === v[2] / 2, `The mean value should be ${Number.NaN}`);
 });
 
-test('meanNan()', t => {
+test('meanNan()', (t) => {
   let v = [];
 
   t.ok(Number.isNaN(meanNan(v)), 'The mean of an empty array should be NaN');
@@ -237,10 +239,10 @@ test('meanNan()', t => {
   );
 });
 
-test('meanVector()', t => {
+test('meanVector()', (t) => {
   const m = [
     [0, 1, 2, 3, 4],
-    [5, 6, 7, 8, 9]
+    [5, 6, 7, 8, 9],
   ];
 
   const meanCol = meanVector(m);
@@ -262,19 +264,19 @@ test('meanVector()', t => {
   );
 });
 
-test('median()', t => {
+test('median()', (t) => {
   t.equal(median([0, 1, 2, 3, 4]), 2, 'The median should be 2');
   t.equal(median([0, 1, 2, 3, 4, 5]), 3, 'The median should be 3');
   t.equal(median([2]), 2, 'The median should be 2');
   t.equal(median([]), undefined, 'The median should be undefined');
 });
 
-test('medianVector()', t => {
+test('medianVector()', (t) => {
   t.equal(
     medianVector([
       [0, 1],
       [2, 1],
-      [3, 1]
+      [3, 1],
     ]),
     [2, 1],
     'The median should be [2]'
@@ -284,7 +286,7 @@ test('medianVector()', t => {
       [0, 1],
       [2, 1],
       [3, 1],
-      [4, 1]
+      [4, 1],
     ]),
     [3, 1],
     'The median should be [2]'
@@ -293,7 +295,7 @@ test('medianVector()', t => {
   t.equal(medianVector([]), undefined, 'The median should be undefined');
 });
 
-test('min()', t => {
+test('min()', (t) => {
   let v = [4, 1, 2, 3, 0];
 
   let maxValue = min(v);
@@ -310,10 +312,10 @@ test('min()', t => {
   );
 });
 
-test('minVector()', t => {
+test('minVector()', (t) => {
   const m = [
     [0, 1, 2, 3, 4],
-    [5, 6, 7, 8, 9]
+    [5, 6, 7, 8, 9],
   ];
 
   const minCol = minVector(m);
@@ -328,7 +330,7 @@ test('minVector()', t => {
   );
 });
 
-test('sum()', t => {
+test('sum()', (t) => {
   t.ok(sum([]) === 0, 'The sum of an empty array should be 0');
 
   t.ok(sum([0, 1, 2, 3, 4]) === 10, 'The sum should be 10');
@@ -339,10 +341,10 @@ test('sum()', t => {
   );
 });
 
-test('sumVector()', t => {
+test('sumVector()', (t) => {
   const m = [
     [0, 1, 2, 3, 4],
-    [5, 6, 7, 8, 9]
+    [5, 6, 7, 8, 9],
   ];
 
   const sumCol = sumVector(m);
@@ -358,7 +360,7 @@ test('sumVector()', t => {
   );
 });
 
-test('unionIntegers()', t => {
+test('unionIntegers()', (t) => {
   const v = [0, 1, 2, 3, 4];
   const w = [1, 1, 10, 9];
 
@@ -366,4 +368,46 @@ test('unionIntegers()', t => {
   const expected = [0, 1, 2, 3, 4, 9, 10];
 
   t.ok(deepEqual(union, expected), `The union should be ${expected}`);
+});
+
+test('range()', (t) => {
+  t.equal(range(0, 4), [0, 1, 2, 3], 'Basic range array');
+
+  t.equal(range(4), [0, 1, 2, 3], 'Support short-hand range array');
+
+  t.equal(range(-2, 2), [-2, -1, 0, 1], 'Support negative ranges');
+
+  t.equal(range(2, -2), [2, 1, 0, -1], 'Support inverse ranges');
+
+  t.equal(
+    range(0, 10, 2),
+    [0, 2, 4, 6, 8],
+    'Supports range with custom step size'
+  );
+
+  t.equal(
+    range(0, 2, 0.5),
+    [0, 0.5, 1.0, 1.5],
+    'Supports range with custom step size'
+  );
+
+  t.equal(
+    range(0, 10, 3),
+    [0, 3, 6, 9],
+    'Supports range with custom step size'
+  );
+});
+
+test('rangeMap()', (t) => {
+  t.equal(
+    rangeMap(4),
+    [0, 1, 2, 3],
+    'Defaults rangeMap() to range() without a mapping function'
+  );
+
+  t.equal(
+    rangeMap(4, (i, l) => i / l),
+    [0 / 4, 1 / 4, 2 / 4, 3 / 4],
+    'Supports initial mapping'
+  );
 });

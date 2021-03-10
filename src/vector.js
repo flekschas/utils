@@ -92,7 +92,7 @@ export const l1Dist = (v, w) =>
  * @param {number} dim - Dimension of the input data
  * @return {function} A function with the same signature as `l1Dist`
  */
-export const l1DistByDim = dim => {
+export const l1DistByDim = (dim) => {
   const body = Array(dim)
     .fill()
     .map((_, i) => `s += Math.abs(v[${i}] - w[${i}]);`)
@@ -125,7 +125,7 @@ export const l2Dist = (v, w) =>
  * @param {number} dim - Dimension of the input data
  * @return {function} A function with the same signature as `l2Dist`
  */
-export const l2DistByDim = dim => {
+export const l2DistByDim = (dim) => {
   const body = Array(dim)
     .fill()
     .map((_, i) => `s += Math.pow(v[${i}] - w[${i}], 2);`)
@@ -143,7 +143,7 @@ export const l2DistByDim = dim => {
  * @param {array} v - Numerical vector
  * @return {number} L2 norm
  */
-export const l2Norm = v => Math.sqrt(v.reduce((sum, x) => sum + x ** 2, 0));
+export const l2Norm = (v) => Math.sqrt(v.reduce((sum, x) => sum + x ** 2, 0));
 
 /**
  * Get the maximum number of a vector while ignoring NaNs
@@ -154,7 +154,8 @@ export const l2Norm = v => Math.sqrt(v.reduce((sum, x) => sum + x ** 2, 0));
  * @param {array} v - Numerical vector
  * @return {number} The largest number
  */
-export const max = v => v.reduce((_max, a) => (a > _max ? a : _max), -Infinity);
+export const max = (v) =>
+  v.reduce((_max, a) => (a > _max ? a : _max), -Infinity);
 
 export const maxNan = max;
 
@@ -163,7 +164,7 @@ export const maxNan = max;
  * @param {array} m - Array of vectors
  * @return {array} Max vector
  */
-export const maxVector = m => {
+export const maxVector = (m) => {
   switch (m.length) {
     case 0:
       return [];
@@ -185,7 +186,7 @@ export const maxVector = m => {
  * @param {array} v - Numerical vector
  * @return {number} The mean
  */
-export const mean = v => sum(v) / v.length;
+export const mean = (v) => sum(v) / v.length;
 
 /**
  * Get the mean of a vector while ignoring NaNs
@@ -196,7 +197,7 @@ export const mean = v => sum(v) / v.length;
  * @param {array} v - Numerical vector
  * @return {number} The mean
  */
-export const meanNan = v => {
+export const meanNan = (v) => {
   let length = 0;
   return (
     v.reduce((s, x) => {
@@ -211,7 +212,7 @@ export const meanNan = v => {
  * @param {array} m - Array of vectors
  * @return {array} Mean vector
  */
-export const meanVector = m => {
+export const meanVector = (m) => {
   switch (m.length) {
     case 0:
       return [];
@@ -233,7 +234,7 @@ export const meanVector = m => {
  * @param {array} v - Numerical vector
  * @return {number} The median
  */
-export const median = v => v[Math.floor(v.length / 2)];
+export const median = (v) => v[Math.floor(v.length / 2)];
 
 /**
  * Get the median vector
@@ -252,7 +253,8 @@ export const medianVector = median;
  * @param {array} v - Numerical vector
  * @return {number} The smallest number
  */
-export const min = v => v.reduce((_min, a) => (a < _min ? a : _min), Infinity);
+export const min = (v) =>
+  v.reduce((_min, a) => (a < _min ? a : _min), Infinity);
 
 export const minNan = min;
 
@@ -261,7 +263,7 @@ export const minNan = min;
  * @param {array} m - Array of vectors
  * @return {array} Min vector
  */
-export const minVector = m => {
+export const minVector = (m) => {
   switch (m.length) {
     case 0:
       return [];
@@ -291,9 +293,27 @@ export const mod = (x, y) => ((x % y) + x) % y;
  * @param {array} v - Numerical vector
  * @return {array} Unit vector
  */
-export const normalize = v => {
+export const normalize = (v) => {
   const norm = l2Norm(v);
-  return v.map(x => x / norm);
+  return v.map((x) => x / norm);
+};
+
+/**
+ * Initialize an array of a certain length using a mapping function
+ *
+ * @description
+ * This is equivalent to `Array(length).fill().map(mapFn)` but about 60% faster
+ *
+ * @param {number} length - Size of the array
+ * @param {function} mapFn - Mapping function
+ * @return {array} Initialized array
+ */
+export const rangeMap = (length, mapFn = (x) => x) => {
+  const out = [];
+  for (let i = 0; i < length; i++) {
+    out.push(mapFn(i, length));
+  }
+  return out;
 };
 
 /**
@@ -303,10 +323,14 @@ export const normalize = v => {
  * @param   {number}  stepSize  Increase per step
  * @return  {array}  Range array
  */
-export const range = (start, end, stepSize = 1) =>
-  Array(Math.ceil((end - start) / stepSize))
-    .fill()
-    .map((x, i) => start + i * stepSize);
+export const range = (start, end, stepSize = 1) => {
+  const realStepSize = stepSize * Math.sign(end - start);
+  if (Number.isNaN(+end)) return rangeMap(start);
+  return rangeMap(
+    Math.ceil(Math.abs(end - start) / Math.abs(stepSize)),
+    (i) => start + i * realStepSize
+  );
+};
 
 /**
  * Get the sum of a vector while ignoring NaNs
@@ -317,7 +341,7 @@ export const range = (start, end, stepSize = 1) =>
  * @param {array} v - Numerical vector
  * @return {number} The sum
  */
-export const sum = values =>
+export const sum = (values) =>
   values.reduce((s, v) => {
     // Any falsey value (e.g., 0, null, NaN) does not influence the sum
     if (v) return s + v;
@@ -331,7 +355,7 @@ export const sumNan = sum;
  * @param {array} m - Array of vectors
  * @return {array} Sum vector
  */
-export const sumVector = m => {
+export const sumVector = (m) => {
   switch (m.length) {
     case 0:
       return [];
@@ -355,10 +379,10 @@ export const sumVector = m => {
  */
 export const unionIntegers = (v, w) => {
   const a = [];
-  v.forEach(x => {
+  v.forEach((x) => {
     a[x] = true;
   });
-  w.forEach(x => {
+  w.forEach((x) => {
     a[x] = true;
   });
   return a.reduce((union, value, i) => {

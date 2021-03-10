@@ -1,3 +1,8 @@
+## v0.28.0
+
+- Add and test `rangeMap(length, (i, length) => i)`
+- Improve and test `range(start, end, stepSize)`
+
 ## v0.27.0
 
 - Add and test `clamp(value, min, max)`
