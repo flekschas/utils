@@ -17,6 +17,7 @@ const configurator = (input, file, format, plugins, extend = true) => ({
       pkg.version
     } Copyright ${new Date().getFullYear()} ${pkg.author.name}`,
   },
+  external: [/@babel\/runtime/],
   plugins,
 });
 
