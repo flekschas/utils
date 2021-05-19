@@ -42,11 +42,13 @@ export const argSort = (
  *   let pos = sortPos(array)
  *   >> [3, 2, 4, 0, 1]
  *
+ *   I.e., the first element of `array` is at position pos[0] == 3
+ *
  *   let object = { 1: 9, 2: 5, 11: 11, 100: -1, 999: 0 };
  *   let pos = sortPos(object)
- *   >> {1: 9, 2: 5, 11: 11, 100: -1, 999: 0}
+ *   >> { 1: 3, 2: 2, 11: 4, 100: 0, 999: 1 }
  *
- *   I.e., the first element of X is at position idxPos[0] == 3
+ *   I.e., element `999` of `object` is at position pos[999] == 1
  *
  * @param {array} array - Array of numerical values
  * @param {function} comparator - Pairwise value comparator function
