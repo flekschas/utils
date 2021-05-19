@@ -21,8 +21,9 @@
   },
   "scripts": {
     "build": "rm -rf dist/*; rollup -c; node scripts/build.js",
+    "docs": "jsdoc2md -f src/*.js --no-cache > DOCS.md",
     "lint": "eslint src rollup.config.js rollup.test.config.js",
-    "precommit": "NODE_ENV=production lint-staged",
+    "precommit": "NODE_ENV=production lint-staged; npm run docs; git add DOCS.md",
     "prepublishOnly": "npm run test; npm run build",
     "prerelease": "npm run build; zip -r dist.zip dist",
     "pretest": "npm run lint",
@@ -53,6 +54,7 @@
     "fast-deep-equal": "~3.1.3",
     "gh-pages": "~3.1.0",
     "husky": "~4.3.8",
+    "jsdoc-to-markdown": "^7.0.1",
     "lint-staged": "~10.5.3",
     "prettier": "~2.2.1",
     "pretty-quick": "~3.1.0",
