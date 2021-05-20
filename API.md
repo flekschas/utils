@@ -23,6 +23,8 @@
 
 # Animation
 
+[⬆️ Back to the top](#api-docs)
+
 ## Constants
 
 <dl>
@@ -304,6 +306,8 @@ Quintic in and out easing function
 
 # Array
 
+[⬆️ Back to the top](#api-docs)
+
 ## Constants
 
 <dl>
@@ -364,6 +368,8 @@ Return unique values of an array
 ---
 
 # Color
+
+[⬆️ Back to the top](#api-docs)
 
 ## Constants
 
@@ -534,6 +540,8 @@ Convert a color to an RGBA color
 
 # Conversion
 
+[⬆️ Back to the top](#api-docs)
+
 <a name="iteratorToArray"></a>
 
 ## iteratorToArray ⇒ <code>array</code>
@@ -552,6 +560,8 @@ This code is about 9x faster than `Array.from()`
 ---
 
 # Dom
+
+[⬆️ Back to the top](#api-docs)
 
 ## Constants
 
@@ -686,6 +696,8 @@ Remove last child of a DOM node
 
 # Event
 
+[⬆️ Back to the top](#api-docs)
+
 ## Constants
 
 <dl>
@@ -730,6 +742,8 @@ Forward an event by cloning and dispatching it.
 ---
 
 # Functional Programming
+
+[⬆️ Back to the top](#api-docs)
 
 ## Constants
 
@@ -931,6 +945,8 @@ Assign a static property to an object
 
 # Geometry
 
+[⬆️ Back to the top](#api-docs)
+
 ## Constants
 
 <dl>
@@ -1079,9 +1095,15 @@ L distance between a pair of rectangles
 
 # Index
 
+[⬆️ Back to the top](#api-docs)
+
 # Map
 
+[⬆️ Back to the top](#api-docs)
+
 # Math
+
+[⬆️ Back to the top](#api-docs)
 
 ## Constants
 
@@ -1149,6 +1171,8 @@ Test if two floats are close given some precision
 
 # Object
 
+[⬆️ Back to the top](#api-docs)
+
 ## Constants
 
 <dl>
@@ -1214,6 +1238,8 @@ object, properties that are not present in the source object.
 
 # Other
 
+[⬆️ Back to the top](#api-docs)
+
 ## Constants
 
 <dl>
@@ -1252,6 +1278,8 @@ An adventure into the void!
 ---
 
 # Sorting
+
+[⬆️ Back to the top](#api-docs)
 
 ## Constants
 
@@ -1321,6 +1349,8 @@ let pos = sortPos(object);
 
 # String
 
+[⬆️ Back to the top](#api-docs)
+
 ## Constants
 
 <dl>
@@ -1366,6 +1396,8 @@ Create a random string from some alphabet
 ---
 
 # Timing
+
+[⬆️ Back to the top](#api-docs)
 
 ## Constants
 
@@ -1509,6 +1541,8 @@ Promise that resolves after some time
 ---
 
 # Type Checking
+
+[⬆️ Back to the top](#api-docs)
 
 ## Constants
 
@@ -1772,6 +1806,8 @@ Tests if an array consist of Uint8 numbers only.
 ---
 
 # Vector
+
+[⬆️ Back to the top](#api-docs)
 
 ## Constants
 

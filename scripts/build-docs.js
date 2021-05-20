@@ -16,6 +16,8 @@ const toc = fs
   })
   .join('');
 
+const linkToToc = `[⬆️ Back to the top](#api-docs)`;
+
 const output = fs
   .readdirSync('src')
   .filter((file) => file.endsWith('.js'))
@@ -37,13 +39,13 @@ const output = fs
       separators: true,
     });
 
-    const name = file
-      .slice(0, -3)
+    const id = file.slice(0, -3);
+    const name = id
       .split('-')
       .map((word) => `${word[0].toUpperCase()}${word.slice(1).toLowerCase()}`)
       .join(' ');
 
-    return `# ${name}\n\n${o}`;
+    return `# ${name}\n\n${linkToToc}\n\n${o}`;
   })
   .join('');
 
