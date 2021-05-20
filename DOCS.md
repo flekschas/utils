@@ -1818,8 +1818,7 @@ vectors than 256^2, which is a limitation of <code>Math.min.apply(null, v)</code
 <dd><p>This is equivalent to <code>Array(length).fill().map(mapFn)</code> but about 60% faster</p>
 </dd>
 <dt><a href="#sum">sum</a> ⇒ <code>number</code></dt>
-<dd><p>sum([0, 10, 12, 22])
-// &gt;&gt; 42</p>
+<dd><p>Get the sum of a vector while ignoring NaNs</p>
 </dd>
 <dt><a href="#sumVector">sumVector</a> ⇒ <code>array</code></dt>
 <dd><p>Get the sum vector</p>
@@ -2159,8 +2158,7 @@ This is equivalent to `Array(length).fill().map(mapFn)` but about 60% faster
 
 ## sum ⇒ <code>number</code>
 
-sum([0, 10, 12, 22])
-// >> 42
+Get the sum of a vector while ignoring NaNs
 
 **Kind**: global constant  
 **Returns**: <code>number</code> - The sum
@@ -2168,6 +2166,13 @@ sum([0, 10, 12, 22])
 | Param | Type               | Description      |
 | ----- | ------------------ | ---------------- |
 | v     | <code>array</code> | Numerical vector |
+
+**Example**
+
+```js
+sum([0, 10, 12, 22]);
+// >> 42
+```
 
 ---
 

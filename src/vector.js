@@ -335,8 +335,9 @@ export const range = (start, end, stepSize = 1) => {
 /**
  * Get the sum of a vector while ignoring NaNs
  *
- * @description
- *
+ * @example
+ * sum([0, 10, 12, 22])
+ * // >> 42
  *
  * @param {array} v - Numerical vector
  * @return {number} The sum
