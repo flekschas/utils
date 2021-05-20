@@ -21,9 +21,9 @@
   },
   "scripts": {
     "build": "rm -rf dist/*; rollup -c; node scripts/build.js",
-    "docs": "jsdoc2md -f src/*.js --no-cache > DOCS.md",
+    "docs": "node scripts/build-docs.js",
     "lint": "eslint src rollup.config.js rollup.test.config.js",
-    "precommit": "NODE_ENV=production lint-staged; npm run docs; git add DOCS.md",
+    "precommit": "npm run docs && git add DOCS.md && NODE_ENV=production lint-staged",
     "prepublishOnly": "npm run test; npm run build",
     "prerelease": "npm run build; zip -r dist.zip dist",
     "pretest": "npm run lint",
