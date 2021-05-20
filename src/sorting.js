@@ -8,10 +8,10 @@ export const sortDesc = (a, b) => b - a;
  * Return a list of indices sorted by the array
  *
  * @example
- *   X = [9, 5, 11, -1, 0]
- *   sortedIdx = argSort(X)
- *   >> [3, 4, 1, 0, 2]
- *   I.e., the smallest element is X[sortedIdx[0]] == -1
+ * const X = [9, 5, 11, -1, 0];
+ * const sortedIdx = argSort(X);
+ * // >> [3, 4, 1, 0, 2]
+ * // I.e., the smallest element is X[sortedIdx[0]] == -1
  *
  * @param {array} array - Array of numerical values
  * @param {function} comparator - Pairwise value comparator function
@@ -38,17 +38,15 @@ export const argSort = (
  * Return the sort position of each element in an array or object
  *
  * @example
- *   let array = [9, 5, 11, -1, 0];
- *   let pos = sortPos(array)
- *   >> [3, 2, 4, 0, 1]
+ * let array = [9, 5, 11, -1, 0];
+ * let pos = sortPos(array)
+ * // >> [3, 2, 4, 0, 1]
+ * // I.e., the first element of `array` is at position pos[0] == 3
  *
- *   I.e., the first element of `array` is at position pos[0] == 3
- *
- *   let object = { 1: 9, 2: 5, 11: 11, 100: -1, 999: 0 };
- *   let pos = sortPos(object)
- *   >> { 1: 3, 2: 2, 11: 4, 100: 0, 999: 1 }
- *
- *   I.e., element `999` of `object` is at position pos[999] == 1
+ * let object = { 1: 9, 2: 5, 11: 11, 100: -1, 999: 0 };
+ * let pos = sortPos(object)
+ * // >> { 1: 3, 2: 2, 11: 4, 100: 0, 999: 1 }
+ * // I.e., element `999` of `object` is at position pos[999] == 1
  *
  * @param {array} array - Array of numerical values
  * @param {function} comparator - Pairwise value comparator function
