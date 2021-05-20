@@ -51,7 +51,7 @@ export const forEach = (f) => (x) => Array.prototype.forEach.call(x, f);
 
 /**
  * Convenience function to compose functions
- * @param {...[function]} fns - Array of functions
+ * @param {...function} fns - Array of functions
  * @return {function} The composed function
  */
 export const pipe = (...fns) =>
