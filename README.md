@@ -4,6 +4,7 @@
 [![Build Status](https://img.shields.io/github/workflow/status/flekschas/utils/build?color=a17fff&style=flat-square)](https://github.com/flekschas/utils/actions?query=workflow%3Abuild)
 [![File Size](http://img.badgesize.io/https://unpkg.com/@flekschas/utils/dist/utils.min.js?compression=gzip&style=flat-square&color=e17fff)](https://bundlephobia.com/result?p=@flekschas/utils)
 [![Code Style Prettier](https://img.shields.io/badge/code%20style-prettier-ff7fe1.svg?style=flat-square)](https://github.com/prettier/prettier#readme)
+[![Docs](https://img.shields.io/badge/api-docs-ff7fa5.svg?style=flat-square)](API.md)
 
 This is a collection of utility functions that I keep using across different
 projects. I primarily created this package for myself so I don't have to
@@ -49,6 +50,10 @@ The utility functions are organized by the following topics:
 - timing
 - type-checking
 - vector
+
+## API
+
+See [API.md](API.md) for the API docs.
 
 ## Why yet another library for utility functions?
 
