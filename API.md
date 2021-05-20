@@ -1,3 +1,26 @@
+# API Docs
+
+- [Animation](#animation)
+- [Array](#array)
+- [Color](#color)
+- [Conversion](#conversion)
+- [Dom](#dom)
+- [Event](#event)
+- [Functional Programming](#functional-programming)
+- [Geometry](#geometry)
+- [Index](#index)
+- [Map](#map)
+- [Math](#math)
+- [Object](#object)
+- [Other](#other)
+- [Sorting](#sorting)
+- [String](#string)
+- [Timing](#timing)
+- [Type Checking](#type-checking)
+- [Vector](#vector)
+
+---
+
 # Animation
 
 ## Constants
@@ -706,7 +729,7 @@ Forward an event by cloning and dispatching it.
 
 ---
 
-# Functional,Programming
+# Functional Programming
 
 ## Constants
 
@@ -1485,7 +1508,7 @@ Promise that resolves after some time
 
 ---
 
-# Type,Checking
+# Type Checking
 
 ## Constants
 

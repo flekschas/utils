@@ -2,24 +2,19 @@ const fs = require('fs');
 const path = require('path');
 const jsdoc2md = require('jsdoc-to-markdown');
 
-// const templateData = jsdoc2md.getTemplateDataSync({
-//   files: 'src/*.js',
-// });
+const toc = fs
+  .readdirSync('src')
+  .filter((file) => file.endsWith('.js'))
+  .map((file) => {
+    const id = file.slice(0, -3);
+    const name = id
+      .split('-')
+      .map((word) => `${word[0].toUpperCase()}${word.slice(1).toLowerCase()}`)
+      .join(' ');
 
-// templateData.sort((a, b) => {
-//   const nameA = a.name.toLowerCase();
-//   const nameB = b.name.toLowerCase();
-//   if (nameA < nameB) return -1;
-//   if (nameA > nameB) return 1;
-//   return 0;
-// });
-
-// const output = jsdoc2md.renderSync({
-//   data: templateData,
-//   separators: true,
-// });
-
-// fs.writeFileSync(path.resolve(__dirname, '../DOCS.md'), output);
+    return `- [${name}](#${id})\n`;
+  })
+  .join('');
 
 const output = fs
   .readdirSync('src')
@@ -45,10 +40,14 @@ const output = fs
     const name = file
       .slice(0, -3)
       .split('-')
-      .map((word) => `${word[0].toUpperCase()}${word.slice(1).toLowerCase()}`);
+      .map((word) => `${word[0].toUpperCase()}${word.slice(1).toLowerCase()}`)
+      .join(' ');
 
     return `# ${name}\n\n${o}`;
   })
   .join('');
 
-fs.writeFileSync(path.resolve(__dirname, '../DOCS.md'), output);
+fs.writeFileSync(
+  path.resolve(__dirname, '../API.md'),
+  `# API Docs\n\n${toc}\n\n* * *\n\n${output}`
+);
