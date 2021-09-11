@@ -16,4 +16,7 @@ export const createWorker = (fn) =>
  */
 export const toVoid = () => {};
 
+/**
+ * Synonym for `toVoid()` because it's a convention
+ */
 export const noop = toVoid;
