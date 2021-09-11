@@ -1,3 +1,10 @@
+## v0.29.0
+
+- Add `noop` as a synonym for `toVoid` because it's kind of a convention
+- Add `timeout` as a synonym for `wait` because `await timeout(250)` reads nicer
+- Declare module as side effect free
+- Use named exports in `index.js` for better tree shakability
+
 ## v0.28.0
 
 - Add and test `rangeMap(length, (i, length) => i)`
