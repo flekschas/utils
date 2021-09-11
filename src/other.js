@@ -15,3 +15,5 @@ export const createWorker = (fn) =>
  * @return {undefined} The explorers find nothing but void.
  */
 export const toVoid = () => {};
+
+export const noop = toVoid;
