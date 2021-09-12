@@ -23,5 +23,5 @@ export default {
     format: 'iife',
     sourcemap: 'inline',
   },
-  plugins: [multi(), resolve(), commonjs()],
+  plugins: [multi(), resolve({ ignoreSideEffectsForRoot: true }), commonjs()],
 };
