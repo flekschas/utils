@@ -65,7 +65,7 @@
     "rollup-plugin-terser": "~7.0.2",
     "rollup-plugin-visualizer": "~3.3.1",
     "tap-spec": "~5.0.0",
-    "tape-run": "~6.0.1",
+    "tape-run": "~10.0.0",
     "zora": "~4.0.2"
   },
   "homepage": "https://github.com/flekschas/utils",
