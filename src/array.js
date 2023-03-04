@@ -30,6 +30,23 @@ export const clearArray = (a) => {
 };
 
 /**
+ * Check if two arrays contain the same elements
+ * @param {array} a - First array
+ * @param {array} b - Second array
+ * @return {boolean} If `true` the two arrays contain the same elements
+ */
+export const hasSameElements = (a, b) => {
+  if (a === b) return true;
+  if (a.length !== b.length) return false;
+  const aSet = new Set(a);
+  const bSet = new Set(b);
+  // Since the arrays could contain duplicates, we have to check the set length
+  // as well
+  if (aSet.size !== bSet.size) return false;
+  return b.every((element) => aSet.has(element));
+};
+
+/**
  * Return unique values of an array
  * @param {array} a - Input array
  * @return {array} Array with unique values

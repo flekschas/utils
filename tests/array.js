@@ -5,7 +5,12 @@ import deepEqual from 'fast-deep-equal/es6';
 import { test } from 'zora';
 
 import { deepClone } from '../src/object';
-import { array2dTranspose, clearArray, unique } from '../src/array';
+import {
+  array2dTranspose,
+  clearArray,
+  hasSameElements,
+  unique,
+} from '../src/array';
 
 test('array2dTranspose()', (t) => {
   const originalMatrix = [
@@ -49,6 +54,40 @@ test('clearArray()', (t) => {
   t.equal(a.length, 0, 'Array should have length 0');
 
   t.equal(a, b, 'Cleared array should have the same reference');
+});
+
+test('hasSameElements()', (t) => {
+  const a = [0, 1, 2, 3, 4];
+
+  t.equal(
+    hasSameElements(a, a),
+    true,
+    'The very same array should be said to have the same elements'
+  );
+
+  t.equal(
+    hasSameElements(a, [...a]),
+    true,
+    'Two identical arrays with different references should be said to have the same elements'
+  );
+
+  t.equal(
+    hasSameElements(a, [...a].reverse()),
+    true,
+    'An array and its reverse counterpart should be said to have the same elements'
+  );
+
+  t.equal(
+    hasSameElements(a, []),
+    false,
+    'Two arrays of different length should **not** be said to have the same elements'
+  );
+
+  t.equal(
+    hasSameElements(a, [1, 1, 2, 3, 4]),
+    false,
+    'Two arrays with the length but different elements should **not** be said to have the same elements'
+  );
 });
 
 test('unique()', (t) => {

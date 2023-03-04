@@ -1,5 +1,6 @@
 ## 0.30.0
 
+- Add and test `hasSameElements(arrayA, arrayB)`
 - Improve implementation of `randomString()`
 
 ## v0.29.0
