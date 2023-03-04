@@ -1,3 +1,7 @@
+## 0.30.1
+
+- Add missing export of `hasSameElements()`
+
 ## 0.30.0
 
 - Add and test `hasSameElements(arrayA, arrayB)`

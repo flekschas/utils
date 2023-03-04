@@ -16,7 +16,7 @@ export {
   quintInOut,
 } from './animation';
 
-export { array2dTranspose, clearArray, unique } from './array';
+export { array2dTranspose, clearArray, hasSameElements, unique } from './array';
 
 export {
   decToRgb,
