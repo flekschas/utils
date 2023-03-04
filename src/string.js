@@ -30,8 +30,6 @@ export const nthIndexOf = (str, query, n = 0) => {
  * @return {string} Random string
  */
 export const randomString = (length, alphabet = 'abcdefghijklmnopqrstuvwxyz') =>
-  Array(length)
-    .join()
-    .split(',')
-    .map(() => alphabet.charAt(Math.floor(Math.random() * alphabet.length)))
-    .join('');
+  Array.from({ length }, () =>
+    alphabet.charAt(Math.floor(Math.random() * alphabet.length))
+  ).join('');

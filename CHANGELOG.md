@@ -1,3 +1,7 @@
+## 0.30.0
+
+- Improve implementation of `randomString()`
+
 ## v0.29.0
 
 - Add `noop` as a synonym for `toVoid` because it's kind of a convention
