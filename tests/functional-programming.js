@@ -1,6 +1,5 @@
 /* eslint no-console: 1 */
 
-import '@babel/polyfill';
 import { test } from 'zora';
 
 import { assign } from '../src/object';

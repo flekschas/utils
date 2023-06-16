@@ -1,6 +1,5 @@
 /* eslint no-console: 1 */
 
-import '@babel/polyfill';
 import deepEqual from 'fast-deep-equal/es6';
 import { test } from 'zora';
 

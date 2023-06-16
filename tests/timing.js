@@ -1,6 +1,5 @@
 /* eslint no-console: 1 */
 
-import '@babel/polyfill';
 import { test } from 'zora';
 
 import { debounce, throttle, throttleAndDebounce, wait } from '../src/timing';
