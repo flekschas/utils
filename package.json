@@ -12,6 +12,7 @@
   "license": "MIT",
   "main": "dist/utils.js",
   "module": "dist/utils.esm.js",
+  "types": "dist/utils.esm.d.ts",
   "unpkg": "dist/utils.min.js",
   "files": [
     "dist"
