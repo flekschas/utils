@@ -1,12 +1,17 @@
 import { babel } from '@rollup/plugin-babel';
-import filesize from 'rollup-plugin-filesize';
 import json from '@rollup/plugin-json';
-import { terser } from 'rollup-plugin-terser';
-import visualizer from 'rollup-plugin-visualizer';
+import terser from '@rollup/plugin-terser';
 
 import pkg from './package.json';
 
-const configurator = (input, file, format, plugins, extend = true) => ({
+const configurator = (
+  input,
+  file,
+  format,
+  plugins,
+  extend = true,
+  external = undefined
+) => ({
   input,
   output: {
     name: 'utils',
@@ -17,7 +22,7 @@ const configurator = (input, file, format, plugins, extend = true) => ({
       pkg.version
     } Copyright ${new Date().getFullYear()} ${pkg.author.name}`,
   },
-  external: [/@babel\/runtime/],
+  external,
   plugins,
 });
 
@@ -59,8 +64,9 @@ const convert = ([
       `src/${inputName}.js`,
       `dist/${subDir ? 'umd/' : ''}${outputName}.js`,
       'umd',
-      [json(), babelPlugin, filesize(), visualizer()],
-      extend
+      [json(), babelPlugin],
+      extend,
+      (id) => id.includes('@babel/runtime')
     ),
 
     // UMD minimized
@@ -69,7 +75,8 @@ const convert = ([
       `dist/${subDir ? 'umd/' : ''}${outputName}.min.js`,
       'umd',
       [json(), babelPlugin, terser()],
-      extend
+      extend,
+      (id) => id.includes('@babel/runtime')
     ),
 
     // ESM
@@ -77,7 +84,7 @@ const convert = ([
       `src/${inputName}.js`,
       `dist/${subDir ? 'esm/' : ''}${outputName}${subDir ? '' : '.esm'}.js`,
       'esm',
-      [json(), filesize()],
+      [json()],
       extend
     ),
   ];
