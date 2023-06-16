@@ -173,7 +173,9 @@ export const throttleAndDebounce = (fn, throttleTime, debounceTime = null) => {
  * @return {Promise} Promise resolving after `msec` milliseconds
  */
 export const wait = (msec) =>
-  new Promise((resolve) => setTimeout(resolve, msec));
+  new Promise((resolve) => {
+    setTimeout(resolve, msec);
+  });
 
 /**
  * Synonym for `wait()` because `await timeout(250)` reads nicer
