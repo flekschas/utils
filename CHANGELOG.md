@@ -1,3 +1,8 @@
+## 0.31.0
+
+- Add TypeScript types
+- Update 3rd-party libraries
+
 ## 0.30.1
 
 - Add missing export of `hasSameElements()`
