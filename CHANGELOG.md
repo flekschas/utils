@@ -3,6 +3,10 @@
 - Add TypeScript types
 - Update 3rd-party libraries
 
+**Note:** Unfortunately, the `jsdoc` library does not play well with type
+annotations. This means that the `jsdoc2md` script does not run anymore and
+`API.md` is outdated for now.
+
 ## 0.30.1
 
 - Add missing export of `hasSameElements()`

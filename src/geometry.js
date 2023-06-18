@@ -6,7 +6,8 @@
  *
  * @param {number} l - Defines the Lp space
  */
-export const lPointDist = (l) =>
+export const lPointDist =
+  (l) =>
   /**
    * L distance function
    * @param {number} fromX - X coordinate of the first point
@@ -49,17 +50,27 @@ export const l2PointDist = (fromX, fromY, toX, toY) =>
   Math.sqrt((fromX - toX) ** 2 + (fromY - toY) ** 2);
 
 /**
+ * @typedef {Object} BBox Bounding box object
+ * @property {number} minX Start x coordinate
+ * @property {number} maxX End x coordinate
+ * @property {number} minY Start y coordinate
+ * @property {number} maxY End y coordinate
+ */
+
+/**
  * L distance between a pair of rectangles
  *
  * @param {number} l - Defines the Lp space
  */
-export const lRectDist = (l) =>
+export const lRectDist =
+  (l) =>
   /**
    * L distance function between a pair of rectangles
    *
    * @param {object} bBox1 - Bounding box of the first rectangle
    * @param {object} bBox2 - Bounding box of the second rectangle
    * @return {number} L distance of the closest boundary points
+   * @type {(bBox1: BBox, bBox2: BBox) => number}
    */
   (bBox1, bBox2) => {
     const xd1 = bBox2.minX - bBox1.minX;
@@ -113,9 +124,10 @@ export const lRectDist = (l) =>
 
 /**
  * From: https://wrf.ecse.rpi.edu//Research/Short_Notes/pnpoly.html
- * @param   {Array}  point  Tuple of the form `[x,y]` to be tested.
- * @param   {Array}  polygon  1D list of vertices defining the polygon.
- * @return  {boolean}  If `true` point lies within the polygon.
+ * @param {[number, number]} point - The point defined as a tuple of [x, y]
+ *   coordinates.
+ * @param {number[]} polygon - 1D list of vertices defining the polygon.
+ * @return {Boolean} If `true` point lies within the polygon.
  */
 export const isPointInPolygon = ([px, py] = [], polygon = []) => {
   let x1;
@@ -137,26 +149,22 @@ export const isPointInPolygon = ([px, py] = [], polygon = []) => {
 
 /**
  * Check if a 2D or 1D point is within a rectangle or range
- * @param   {number}  x  The point's X coordinate.
- * @param   {number}  y  The point's Y coordinate.
- * @param   {number}  minX  The rectangle's start X coordinate.
- * @param   {number}  maxX  The rectangle's start X coordinate.
- * @param   {number}  minY  The rectangle's start X coordinate.
- * @param   {number}  maxY  The rectangle's start X coordinate.
- * @return  {boolean}  If `true` the [x,y] point is in the rectangle.
+ * @param {[number, number]} point - The point defined as a tuple of [x, y]
+ *   coordinates.
+ * @param {[number, number, number, number]} rectangle - The rectangle defined
+ *   as a quadruple of [minX, maxX, minY, maxY] coordinates.
+ * @return {Boolean} If `true` the [x,y] point is in the rectangle.
  */
 export const isPointInRect = ([x, y], [minX, maxX, minY, maxY]) =>
   x >= minX && x <= maxX && y >= minY && y <= maxY;
 
 /**
  * Check if a 2D or 1D point is within a rectangle or range
- * @param   {number}  x  The point's X coordinate.
- * @param   {number}  y  The point's Y coordinate.
- * @param   {number}  minX  The rectangle's start X coordinate.
- * @param   {number}  maxX  The rectangle's start X coordinate.
- * @param   {number}  minY  The rectangle's start X coordinate.
- * @param   {number}  maxY  The rectangle's start X coordinate.
- * @return  {boolean}  If `true` the [x,y] point is in the rectangle.
+ * @param {[number, number]} point - The point defined as a tuple of [x, y]
+ *   coordinates.
+ * @param {[number, number, number, number]} rectangle - The rectangle defined
+ *   as a quadruple of [minX, maxX, minY, maxY] coordinates.
+ * @return {Boolean} If `true` the [x,y] point is in the rectangle.
  */
 export const isPointHalfwayInRect = ([x, y], [minX, maxX, minY, maxY]) =>
   (x >= minX && x <= maxX) || (y >= minY && y <= maxY);

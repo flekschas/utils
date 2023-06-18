@@ -1,17 +1,9 @@
-export const camelToConst = (str) =>
-  str
-    .split(/(?=[A-Z])/)
-    .join('_')
-    .toUpperCase();
-
-export const capitalize = (str) => `${str[0].toUpperCase()}${str.substr(1)}`;
-
 /**
- * FInd the nth instance of the query string
- * @param   {string}  str  String to search across
- * @param   {string}  query  String to search for
- * @param   {number}  n  nth instance
- * @return  {number}  Index of the nth query string or -1
+ * Find the nth instance of the query string
+ * @param {string} str - String to search across
+ * @param {string} query - String to search for
+ * @param {number} n - nth instance
+ * @return {number} Index of the nth query string or -1
  */
 export const nthIndexOf = (str, query, n = 0) => {
   let i = 0;

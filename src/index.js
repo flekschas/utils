@@ -18,6 +18,8 @@ export {
 
 export { array2dTranspose, clearArray, hasSameElements, unique } from './array';
 
+export { camelToConst, capitalize } from './casing';
+
 export {
   decToRgb,
   hexToDec,
@@ -77,7 +79,7 @@ export { createWorker, toVoid, noop } from './other';
 
 export { sortAsc, sortDesc, argSort, sortPos } from './sorting';
 
-export { camelToConst, capitalize, nthIndexOf, randomString } from './string';
+export { nthIndexOf, randomString } from './string';
 
 export {
   debounce,

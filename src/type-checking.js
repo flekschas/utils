@@ -1,14 +1,16 @@
 /**
  * Test if a variable is an array
- * @param {*} f - The variable to test
- * @return {boolean} If `true` the variable is an array.
+ * @param {any} a - The variable to test
+ * @return {Boolean} If `true` the variable is an array.
+ * @type {(a: any) => a is any[]}
  */
-export const isArray = Array.isArray;
+export const isArray = (a) => Array.isArray(a);
 
 /**
  * Test if a variable is a function
  * @param {*} f - The variable to test
  * @return {boolean} If `true` the variable is a function.
+ * @type {(f: any) => f is Function}
  */
 export const isFunction = (f) => !!(f && f.constructor && f.call && f.apply);
 
@@ -29,7 +31,7 @@ export const isNormFloat = (x) => isNumber(x) && x >= 0 && x <= 1;
 
 /**
  * Tests if an array consist of normalized numbers that are in `[0,1]` only.
- * @param {array} a - Array to be tested
+ * @param {*} a - Array to be tested
  * @return {boolean} If `true` the array contains only numbers in `[0,1]`.
  */
 export const isNormFloatArray = (a) => Array.isArray(a) && a.every(isNormFloat);
@@ -38,6 +40,7 @@ export const isNormFloatArray = (a) => Array.isArray(a) && a.every(isNormFloat);
  * Test if a variable is a number
  * @param {*} x - Variable to be tested
  * @return {boolean} If `true`, `x` is a number.
+ * @type {(x: any) => x is number}
  */
 export const isNumber = (x) => typeof x === 'number';
 
@@ -45,12 +48,13 @@ export const isNumber = (x) => typeof x === 'number';
  * Test if a variable is a plain object, e.g., `{}`
  * @param {*} o - The variable to test
  * @return {boolean} If `true` the variable is a plain object.
+ * @type {(o: any) => o is Object}
  */
 export const isObject = (o) => !!o && o.constructor === Object;
 
 /**
  * Tests if an array is encoding an RGB color.
- * @param {array} rgb - Array to be tested
+ * @param {number[]} rgb - Array to be tested
  * @return {boolean} If `true` the array hold a triple of Uint8 numbers or
  *   a triple of normalized floats.
  */
@@ -59,8 +63,8 @@ export const isRgbArray = (rgb) =>
 
 /**
  * Tests if an array is encoding an RGBA color.
- * @param   {array}  rgb  Array to be tested
- * @return  {boolean}  If `true` the array hold a quadruple of normalized floats,
+ * @param {number[]} rgba - Array to be tested
+ * @return {boolean} If `true` the array hold a quadruple of normalized floats,
  *   a quadruple of Uint8s, or a triple of Uint8 and one normalized float.
  */
 export const isRgbaArray = (rgba) =>
@@ -71,7 +75,7 @@ export const isRgbaArray = (rgba) =>
 
 /**
  * Tests if a string is encoding an RGB color.
- * @param {string} rgb - String to be tested
+ * @param {string} str - String to be tested
  * @return {boolean} If `true` the array hold a triple of Uint8 numbers or
  *   a triple of normalized floats.
  */
@@ -80,7 +84,7 @@ export const isRgbStr = (str) =>
 
 /**
  * Tests if a string is encoding an RGBA color.
- * @param {string} rgb - String to be tested
+ * @param {string} str - String to be tested
  * @return {boolean} If `true` the array hold a quadruple of Uint8 numbers or
  *   a quadruple of normalized floats.
  */
@@ -91,6 +95,7 @@ export const isRgbaStr = (str) =>
  * Tests if a variable is a string
  * @param {*} s - Variable to be tested
  * @return {boolean} If `true` variable is a string
+ * @type {(s: any) => s is string}
  */
 export const isString = (s) => typeof s === 'string' || s instanceof String;
 
@@ -103,7 +108,8 @@ export const isUint8 = (x) => Number.isInteger(x) && x >= 0 && x <= 255;
 
 /**
  * Tests if an array consist of Uint8 numbers only.
- * @param {array} a - Array to be tested.
+ * @param {*} a - Array to be tested.
  * @return {boolean} If `true` the array contains only Uint8 numbers.
+ * @type {(a: any): a is number[]}
  */
 export const isUint8Array = (a) => Array.isArray(a) && a.every(isUint8);

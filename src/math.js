@@ -1,10 +1,10 @@
 /**
  * Restrict value to be within [min, max]
  * @description About 18% faster than `Math.max(min, Math.min(max, value))`
- * @param {Number} value - Value to be clamped
- * @param {Number} min - Min value
- * @param {Number} max - Max value
- * @return {Number} Clamped value
+ * @param {number} value - Value to be clamped
+ * @param {number} min - Min value
+ * @param {number} max - Max value
+ * @return {number} Clamped value
  */
 export const clamp = (value, min, max) =>
   // eslint-disable-next-line no-nested-ternary
@@ -12,8 +12,9 @@ export const clamp = (value, min, max) =>
 
 /**
  * Identity function
- * @param   {*}  x  Any kind of value
- * @return  {*}  `x`
+ * @type {<T>(x: T) => T}
+ * @param {*} x - Any kind of value
+ * @return {*} `x`
  */
 export const identity = (x) => x;
 

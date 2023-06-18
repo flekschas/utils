@@ -2,7 +2,7 @@ const XMLNS = 'http://www.w3.org/2000/svg';
 
 /**
  * Method to add a class name to an HTML or SVG element.
- * @param {object} element - HTML or SVG element to add a class to.
+ * @param {HTMLElement | SVGElement} element - HTML or SVG element to add a class to.
  * @param {string} className - The class name to be added.
  */
 export const addClass = (element, className) => {
@@ -21,7 +21,7 @@ export const addClass = (element, className) => {
 /**
  * Create HTML from a template string
  * @param {string} template - HTML template string
- * @return {node} Root DOM element
+ * @return {Node} Root DOM element
  */
 export const createHtmlByTemplate = (template) => {
   const dummyEl = document.createElement('div');
@@ -31,7 +31,7 @@ export const createHtmlByTemplate = (template) => {
 
 /**
  * Check if an HTML or SVG element has a certain class
- * @param {object} element - HTML or SVG element to be checked
+ * @param {HTMLElement | SVGElement} element - HTML or SVG element to be checked
  * @param {string} className - Class name to be checked for
  * @return {boolean} If `true` `element` has the class name
  */
@@ -49,7 +49,7 @@ export const hasClass = (element, className) => {
 /**
  * Test whether a DOM element is the parent of another DOM element.
  *
- * @param {object} element - Potential child element.
+ * @param {HTMLElement} element - Potential child element.
  * @param {object} parent - Target parent element which is tested to have `el`
  *   as a child.
  * @return {boolean} If `true` `parent` is a parent of `element`.
@@ -76,7 +76,7 @@ export const removeAllChildren = (node) => {
 
 /**
  * Remove last child of a DOM node
- * @param {object} node - DOM node whose last child is to be removed
+ * @param {Node} node - DOM node whose last child is to be removed
  */
 export const removeLastChild = (node) => {
   node.removeChild(node.lastChild);
@@ -84,7 +84,7 @@ export const removeLastChild = (node) => {
 
 /**
  * Remove a class from an HTML or SVG element.
- * @param {object} element - HTML or SVG element.
+ * @param {HTMLElement | SVGElement} element - HTML or SVG element.
  * @param {string} className - Class name to be removed.
  */
 export const removeClass = (element, className) => {

@@ -1,3 +1,10 @@
+/**
+ * Assign properties, constructors, etc. to an object
+ *
+ * @param {object} target - The target object that gets `sources` assigned to it
+ * @param {}
+ * @return {object}
+ */
 export const assign = (target, ...sources) => {
   sources.forEach((source) => {
     // eslint-disable-next-line no-shadow

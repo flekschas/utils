@@ -107,10 +107,10 @@ export const throttle = (fn, wait) => {
  * 6. No call           => nothing
  * 7. No call           => f(args5) called due to debouncing
  *
- * @param {functon} func - Function to be throttled and debounced
- * @param {number} interval - Throttle intevals in milliseconds
- * @param {number} wait - Debounce wait time in milliseconds By default this is
- *   the same as `interval`.
+ * @param {functon} fn - Function to be throttled and debounced
+ * @param {number} throttleTime - Throttle intevals in milliseconds
+ * @param {number} debounceTime - Debounce wait time in milliseconds. By default
+ *   this is the same as `throttleTime`.
  * @return {function} - Throttled and debounced function
  */
 export const throttleAndDebounce = (fn, throttleTime, debounceTime = null) => {

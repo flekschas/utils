@@ -1,7 +1,10 @@
 import { identity } from './math';
 
+/** @typedef {<T>(matrix: T[][]) => T[][]} Array2dTranspose */
+
 /**
  * Transpose a nested 2D array
+ * @type {Array2dTranspose}
  * @param {array} matrix - The matrix-liked 2D nested array to be transposed
  * @return {array} The transposed 2D nested matrix-like array
  */
@@ -21,6 +24,7 @@ export const array2dTranspose = (matrix) => {
 
 /**
  * Clear an array without while keeping it's reference
+ * @type {<T>(a: T[]) => T[]}
  * @param {array} a - Array to be cleared
  * @return {array} The array itself
  */
@@ -31,6 +35,7 @@ export const clearArray = (a) => {
 
 /**
  * Check if two arrays contain the same elements
+ * @type {<T>(a: T[], b: T[]) => Boolean}
  * @param {array} a - First array
  * @param {array} b - Second array
  * @return {boolean} If `true` the two arrays contain the same elements
@@ -48,6 +53,7 @@ export const hasSameElements = (a, b) => {
 
 /**
  * Return unique values of an array
+ * @type {<T>(a: T[], getter: (v: T) => any) => T[]}
  * @param {array} a - Input array
  * @return {array} Array with unique values
  */

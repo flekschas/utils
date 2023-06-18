@@ -12,7 +12,7 @@ export const createWorker = (fn) =>
 
 /**
  * An adventure into the void!
- * @return {undefined} The explorers find nothing but void.
+ * @return {void} The explorers find nothing but void.
  */
 export const toVoid = () => {};
 

@@ -1,6 +1,6 @@
 import { identity } from './math';
 import { assign } from './object';
-import { capitalize } from './string';
+import { capitalize } from './casing';
 
 /**
  * Functional version of `Array.map()`
@@ -9,6 +9,7 @@ import { capitalize } from './string';
  * The pure map function is more powerful because it can be used on data types
  * other than Array too.
  *
+ * @type {<I extends Iterable<T>, S>(f: (value: T) => S) => (x: I) => S[]}
  * @param {function} f - Mapping function
  * @return {array} Mapped array
  */
@@ -19,11 +20,12 @@ export const map = (f) => (x) => Array.prototype.map.call(x, f);
  *
  * Combining the loops is about 7-8x faster than
  *
- * @param   {function}  mapFn  Mapping function
- * @param   {function}  filterFn  Filter function
- * @return  {function}  A function that accepts a single array paremeter
+ * @param {function} mapFn - Mapping function
+ * @param {function} filterFn - Filter function
+ * @return {function} A function that accepts a single array paremeter
  */
-export const mapFilter = (mapFn, filterFn) =>
+export const mapFilter =
+  (mapFn, filterFn) =>
   /**
    * @param   {array}  arr  An array to be mapped and filtered
    * @returns {array}  The mapped and filtered array
@@ -42,9 +44,10 @@ export const mapFilter = (mapFn, filterFn) =>
  * Functional version of `Array.forEach`
  *
  * @description
- * More flexible and applicable to other array-like data types.
+ * More flexible and applicable to other array-like data types like `NodeList`.
  *
- * @param {function} f - Modifier function applied on every item of the array.
+ * @type {<I extends Iterable<T>>(f: (value: T) => void) => (x: I) => void}
+ * @param {function} f - Callback function applied on every item of the array.
  * @return {array} Modified array-like variable.
  */
 export const forEach = (f) => (x) => Array.prototype.forEach.call(x, f);
@@ -54,19 +57,23 @@ export const forEach = (f) => (x) => Array.prototype.forEach.call(x, f);
  * @param {...function} fns - Array of functions
  * @return {function} The composed function
  */
-export const pipe = (...fns) =>
+export const pipe =
+  (...fns) =>
   /**
    * @param {*} x - Some value
    * @return {*} Output of the composed function
    */
-  (x) => fns.reduce((y, f) => f(y), x);
+  (x) =>
+    fns.reduce((y, f) => f(y), x);
 
 /**
- * Functional version of `Array.forEach`. More flexible and applicable to
- *   other array-like data types like `NodeList`.
- * @param   {function}  f  Modifier function applied on every item of the
- *   array.
- * @return  {*}  Modified array-like variable.
+ * Functional version of `Array.some`. More flexible and applicable to
+ * other array-like data types like `NodeList`.
+ *
+ * @type {<I extends Iterable<T>>(f: (value: T) => Boolean) => (x: I) => Boolean}
+ * @param {function} f - Function applied on every item of the array.
+ * @return {Boolean} Returns `true` when `f()` evaluates to `true` on at least
+ *   one element of the array-like
  */
 export const some = (f) => (x) => Array.prototype.some.call(x, f);
 
@@ -110,37 +117,39 @@ export const withForwardedMethod = (name, fn) => (self) =>
  * @param {function} options.validator - Validator function decides whether the
  *   new and transformed value is set or not.
  */
-export const withProperty = (
-  name,
-  {
-    initialValue = undefined,
-    getter: customGetter,
-    setter: customSetter,
-    cloner = identity,
-    transformer = identity,
-    validator = () => true,
-  } = {}
-) => (self) => {
-  let value = initialValue;
+export const withProperty =
+  (
+    name,
+    {
+      initialValue = undefined,
+      getter: customGetter,
+      setter: customSetter,
+      cloner = identity,
+      transformer = identity,
+      validator = () => true,
+    } = {}
+  ) =>
+  (self) => {
+    let value = initialValue;
 
-  const getter = customGetter ? () => customGetter() : () => cloner(value);
+    const getter = customGetter ? () => customGetter() : () => cloner(value);
 
-  const setter = customSetter
-    ? (newValue) => customSetter(newValue)
-    : (newValue) => {
-        const transformedNewValue = transformer(newValue);
-        value = validator(transformedNewValue) ? transformedNewValue : value;
-      };
+    const setter = customSetter
+      ? (newValue) => customSetter(newValue)
+      : (newValue) => {
+          const transformedNewValue = transformer(newValue);
+          value = validator(transformedNewValue) ? transformedNewValue : value;
+        };
 
-  return assign(self, {
-    get [name]() {
-      return getter();
-    },
-    [`set${capitalize(name)}`](newValue) {
-      setter(newValue);
-    },
-  });
-};
+    return assign(self, {
+      get [name]() {
+        return getter();
+      },
+      [`set${capitalize(name)}`](newValue) {
+        setter(newValue);
+      },
+    });
+  };
 
 /**
  * Assign a read-only property to an object

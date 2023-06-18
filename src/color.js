@@ -4,12 +4,12 @@ import {
   isRgbArray,
   isRgbaArray,
 } from './type-checking';
-import { normalize as norm } from './vector';
+import { normalize } from './vector';
 
 /**
- * Convert a HEX string to its decimal representation
- * @param {string} hex - HEX string
- * @return {number} Decimal representation
+ * Convert a decimal to its RGB representation
+ * @param {number} dec - Decimal-encoded color.
+ * @return {number[]} RGB array
  */
 export const decToRgb = (dec) => [dec >> 16, (dec >> 8) % 256, dec % 256];
 
@@ -18,16 +18,16 @@ export const decToRgb = (dec) => [dec >> 16, (dec >> 8) % 256, dec % 256];
  * @param {string} hex - HEX string
  * @return {number} Decimal representation
  */
-export const hexToDec = (hex) => parseInt(hex.substr(1), 16);
+export const hexToDec = (hex) => parseInt(hex.substring(1), 16);
 
 /**
  * Convert a HEX-encoded color to an RGB-encoded color
  * @param {string} hex - HEX-encoded color string.
- * @param {boolean} normalize - If `true` the returned RGB values will be
+ * @param {boolean} normalizeColor - If `true` the returned RGB values will be
  *   normalized to `[0,1]`.
  * @return {array} Triple holding the RGB values.
  */
-export const hexToRgbArray = (hex, normalize = false) =>
+export const hexToRgbArray = (hex, normalizeColor = false) =>
   hex
     .replace(
       /^#?([a-f\d])([a-f\d])([a-f\d])$/i,
@@ -35,17 +35,17 @@ export const hexToRgbArray = (hex, normalize = false) =>
     )
     .substring(1)
     .match(/.{2}/g)
-    .map((x) => parseInt(x, 16) / 255 ** normalize);
+    .map((x) => parseInt(x, 16) / 255 ** normalizeColor);
 
 /**
  * Convert a HEX-encoded color to an RGBA-encoded color
  * @param {string} hex - HEX-encoded color string.
- * @param {boolean} normalize - If `true` the returned RGBA values will be
+ * @param {boolean} normalizeColor - If `true` the returned RGBA values will be
  *   normalized to `[0,1]`.
  * @return {array} Triple holding the RGBA values.
  */
-export const hexToRgbaArray = (hex, normalize = false) => [
-  ...hexToRgbArray(hex, normalize),
+export const hexToRgbaArray = (hex, normalizeColor = false) => [
+  ...hexToRgbArray(hex, normalizeColor),
   255 ** !normalize,
 ];
 
@@ -94,24 +94,34 @@ export const rgbToHex = (r, g, b) => {
 
 /**
  * Convert a color to an RGBA color
- * @param {*} color - Color to be converted. Currently supports:
- *   HEX, RGB, or RGBA.
- * @param {boolean} normalize - If `true` the returned RGBA values will be
+ * @param {string | number | number[]} color - Color to be converted. Currently
+ *   supports: HEX-String, HEX-Deximal, RGB, or RGBA.
+ * @param {boolean} normalizeColor - If `true` the returned RGBA values will be
  *   normalized to `[0,1]`.
- * @return{array} Quadruple defining an RGBA color.
+ * @return {number[]} Quadruple defining an RGBA color.
  */
-export const toRgbaArray = (color, normalize) => {
+export const toRgbaArray = (color, normalizeColor) => {
   if (isRgbaArray(color))
-    return normalize && !isNormFloatArray(color) ? normalize(color) : color;
+    return normalizeColor && !isNormFloatArray(color)
+      ? normalize(color)
+      : color;
 
   if (isRgbArray(color))
-    return [...(normalize ? norm(color) : color), 255 ** !normalize];
+    return [
+      ...(normalizeColor ? normalize(color) : color),
+      255 ** !normalizeColor,
+    ];
 
-  if (isHex(color)) return hexToRgbaArray(color, normalize);
+  if (isHex(color)) return hexToRgbaArray(color, normalizeColor);
+
+  if (Number.isInteger(color) && color >= 0) {
+    const rgb = decToRgb(color);
+    return normalizeColor ? [...normalize(rgb), 1] : [...rgb, 255];
+  }
 
   console.warn(
     'Only HEX, RGB, and RGBA are handled by this function. Returning white instead.'
   );
 
-  return normalize ? [1, 1, 1, 1] : [255, 255, 255, 255];
+  return normalizeColor ? [1, 1, 1, 1] : [255, 255, 255, 255];
 };

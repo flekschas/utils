@@ -30,6 +30,7 @@ const bundles = [
   ['index', 'utils', false, false],
   ['animation'],
   ['array'],
+  ['casing'],
   ['color'],
   ['conversion'],
   ['dom'],

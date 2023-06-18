@@ -3,11 +3,12 @@ import { isFunction } from './type-checking';
 
 /**
  * Aggregate a vector using one or more aggregators. Like a multi-purpose reducer.
- * @param {array} v - Numerivcal vector
- * @param {array|function} aggregater - A single or multiple aggregator functions. The aggregator functions work like reducers.
- * @param {array|number} startValue - A single or multiple start values
+ * @param {number[]} v - Numerivcal vector
+ * @param {function | function[]} aggregater - A single or multiple aggregator
+ *   functions. The aggregator functions work like reducers.
+ * @param {number | number[]} startValue - A single or multiple start values
  * @param {function} options.getter - A value getter
- * @return {array|number} A single or multiple aggregagted values
+ * @return {number | number[]} A single or multiple aggregagted values
  */
 export const aggregate = (
   v,
@@ -30,25 +31,28 @@ export const aggregate = (
 
 /**
  * Get the difference of two vectoe
- * @param {array} v - Numerical vectors
- * @param {array} w - Numerical vectors
- * @return {array} Difference vector
+ * @param {number[]} v - Numerical vectors
+ * @param {number[]} w - Numerical vectors
+ * @return {number[]} Difference vector
  */
 export const diff = (v, w) => v.map((x, i) => x - w[i]);
 
 /**
  * L distance between a pair of vectors
  *
- * @param {array} l - Defines the Lp space
+ * @param {number} l - Defines the Lp space
  * @param {number} dim - Dimension of the input data (Optional)
+ * @returns {function} Returns a function to calculate the `l` distance between
+ *   a pair of vectors.
+ * @type {(l: number, dim: number) => (v: number[], w: number[]) => number}
  */
 export const lDist = (l, dim) => {
   if (Number.isNaN(+dim)) {
     /**
      * L distance function
-     * @param {array} v - First vector
-     * @param {array} w - Second vector
-     * @return {array} L distance
+     * @param {number[]} v - First vector
+     * @param {number[]} w - Second vector
+     * @return {number} L distance
      */
     return (v, w) =>
       v.length === w.length
@@ -56,10 +60,11 @@ export const lDist = (l, dim) => {
         : undefined;
   }
 
-  const body = Array(dim)
-    .fill()
-    .map((_, i) => `s += Math.abs(v[${i}] - w[${i}]) ** l;`)
-    .join(' ');
+  const body = Array.from(
+    { length: dim },
+    (_, i) => `s += Math.abs(v[${i}] - w[${i}]) ** l;`
+  ).join(' ');
+
   // eslint-disable-next-line no-new-func
   return new Function(
     'v',
@@ -71,12 +76,10 @@ export const lDist = (l, dim) => {
 /**
  * L1 distance between a pair of vectors
  *
- * @description
- * This is identical but much faster than `lDist(1)(v, w)`
- *
- * @param {array} v - First vector
- * @param {array} w - Second vector
- * @return {array} L2 distance
+ * @description This is identical but much faster than `lDist(1)(v, w)`
+ * @param {number[]} v - First vector
+ * @param {number[]} w - Second vector
+ * @return {number} L2 distance
  */
 export const l1Dist = (v, w) =>
   v.length === w.length
@@ -86,9 +89,7 @@ export const l1Dist = (v, w) =>
 /**
  * Creates a l1 distance function tailored to the dimension of the data
  *
- * @description
- * This is identical but faster than `l1Dist(v, w)`
- *
+ * @description This is identical but faster than `l1Dist(v, w)`.
  * @param {number} dim - Dimension of the input data
  * @return {function} A function with the same signature as `l1Dist`
  */
@@ -104,12 +105,10 @@ export const l1DistByDim = (dim) => {
 /**
  * L2 distance between a pair of vectors
  *
- * @description
- * This is identical but much faster than `lDist(2)(v, w)`
- *
- * @param {array} v - First vector
- * @param {array} w - Second vector
- * @return {array} L2 distance
+ * @description This is identical but much faster than `lDist(2)(v, w)`.
+ * @param {number[]} v - First vector
+ * @param {number[]} w - Second vector
+ * @return {number} L2 distance
  */
 export const l2Dist = (v, w) =>
   v.length === w.length
@@ -140,7 +139,7 @@ export const l2DistByDim = (dim) => {
  * @description
  * This is identical but much faster than `Math.hypot(...v)`
  *
- * @param {array} v - Numerical vector
+ * @param {number[]} v - Numerical vector
  * @return {number} L2 norm
  */
 export const l2Norm = (v) => Math.sqrt(v.reduce((sum, x) => sum + x ** 2, 0));
@@ -149,9 +148,10 @@ export const l2Norm = (v) => Math.sqrt(v.reduce((sum, x) => sum + x ** 2, 0));
  * Get the maximum number of a vector while ignoring NaNs
  *
  * @description
- * This version is muuuch faster than `Math.max(...v)`.
+ * This version is muuuch faster than `Math.max(...v)` and supports vectors
+ * longer than 256^2, which is a limitation of `Math.max.apply(null, v)`.
  *
- * @param {array} v - Numerical vector
+ * @param {number[]} v - Numerical vector
  * @return {number} The largest number
  */
 export const max = (v) =>
@@ -161,8 +161,8 @@ export const maxNan = max;
 
 /**
  * Get the max vector
- * @param {array} m - Array of vectors
- * @return {array} Max vector
+ * @param {number[][]} m - Array of vectors
+ * @return {number[]} Max vector
  */
 export const maxVector = (m) => {
   switch (m.length) {
@@ -183,7 +183,7 @@ export const maxVector = (m) => {
 /**
  * Get the mean of a vector
  *
- * @param {array} v - Numerical vector
+ * @param {number[]} v - Numerical vector
  * @return {number} The mean
  */
 export const mean = (v) => sum(v) / v.length;
@@ -191,10 +191,8 @@ export const mean = (v) => sum(v) / v.length;
 /**
  * Get the mean of a vector while ignoring NaNs
  *
- * @description
- * Roughly 30% slower than `mean()`
- *
- * @param {array} v - Numerical vector
+ * @description Roughly 30% slower than `mean()`
+ * @param {number[]} v - Numerical vector
  * @return {number} The mean
  */
 export const meanNan = (v) => {
@@ -209,8 +207,8 @@ export const meanNan = (v) => {
 
 /**
  * Get the mean vector
- * @param {array} m - Array of vectors
- * @return {array} Mean vector
+ * @param {number[][]} m - Array of vectors
+ * @return {number[]} Mean vector
  */
 export const meanVector = (m) => {
   switch (m.length) {
@@ -231,15 +229,15 @@ export const meanVector = (m) => {
 /**
  * Get the median of a vector
  *
- * @param {array} v - Numerical vector
+ * @param {number[]} v - Numerical vector
  * @return {number} The median
  */
 export const median = (v) => v[Math.floor(v.length / 2)];
 
 /**
  * Get the median vector
- * @param {array} m - Array of vectors
- * @return {array} The median vector
+ * @param {number[][]} m - Array of vectors
+ * @return {number[]} The median vector
  */
 export const medianVector = median;
 
@@ -247,10 +245,10 @@ export const medianVector = median;
  * Get the minimum number of a vector while ignoring NaNs
  *
  * @description
- * This version is muuuch faster than `Math.min(...v)` and support longer
- * vectors than 256^2, which is a limitation of `Math.min.apply(null, v)`.
+ * This version is muuuch faster than `Math.min(...v)` and supports vectors
+ * longer than 256^2, which is a limitation of `Math.min.apply(null, v)`.
  *
- * @param {array} v - Numerical vector
+ * @param {number[]} v - Numerical vector
  * @return {number} The smallest number
  */
 export const min = (v) =>
@@ -260,8 +258,8 @@ export const minNan = min;
 
 /**
  * Get the min vector
- * @param {array} m - Array of vectors
- * @return {array} Min vector
+ * @param {number[][]} m - Array of vectors
+ * @return {number[]} Min vector
  */
 export const minVector = (m) => {
   switch (m.length) {
@@ -302,11 +300,12 @@ export const normalize = (v) => {
  * Initialize an array of a certain length using a mapping function
  *
  * @description
- * This is equivalent to `Array(length).fill().map(mapFn)` but about 60% faster
+ * This is equivalent to `Array.from({ length }, mapFn)` but about 60% faster
  *
  * @param {number} length - Size of the array
  * @param {function} mapFn - Mapping function
  * @return {array} Initialized array
+ * @type {<T = number>(length: number, mapFn: (i: number, length: number) => T) => T[]}
  */
 export const rangeMap = (length, mapFn = (x) => x) => {
   const out = [];
@@ -318,10 +317,10 @@ export const rangeMap = (length, mapFn = (x) => x) => {
 
 /**
  * A function to created a range array
- * @param   {number}  start  Start of the range (included)
- * @param   {number}  end  End of the range (excluded)
- * @param   {number}  stepSize  Increase per step
- * @return  {array}  Range array
+ * @param {number} start - Start of the range (included)
+ * @param {number} end - End of the range (excluded)
+ * @param {number} stepSize - Increase per step
+ * @return {array} Range array
  */
 export const range = (start, end, stepSize = 1) => {
   const realStepSize = stepSize * Math.sign(end - start);
@@ -339,7 +338,7 @@ export const range = (start, end, stepSize = 1) => {
  * sum([0, 10, 12, 22])
  * // >> 42
  *
- * @param {array} v - Numerical vector
+ * @param {number[]} values - Numerical vector
  * @return {number} The sum
  */
 export const sum = (values) =>
@@ -353,8 +352,8 @@ export const sumNan = sum;
 
 /**
  * Get the sum vector
- * @param {array} m - Array of vectors
- * @return {array} Sum vector
+ * @param {number[][]} m - Array of vectors
+ * @return {number[]} Sum vector
  */
 export const sumVector = (m) => {
   switch (m.length) {
@@ -374,9 +373,9 @@ export const sumVector = (m) => {
 
 /**
  * Get the unique union of two vectors of integers
- * @param {array} v - First vector of integers
- * @param {array} w - Second vector of integers
- * @return {array} Unique union of `v` and `w`
+ * @param {number[]} v - First vector of integers
+ * @param {number[]} w - Second vector of integers
+ * @return {number[]} Unique union of `v` and `w`
  */
 export const unionIntegers = (v, w) => {
   const a = [];
