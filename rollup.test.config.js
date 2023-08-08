@@ -10,6 +10,7 @@ export default {
     './tests/color.js',
     './tests/conversion.js',
     './tests/dom.js',
+    './tests/format.js',
     './tests/functional-programming.js',
     './tests/geometry.js',
     './tests/map.js',

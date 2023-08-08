@@ -1,4 +1,4 @@
-> **Warning**: The docs are outdated since `v0.31.0` as the `jsdoc` library cannot parse `@type` definition properly. Until I found a workaround, please trust the types more than this file.
+> **Warning**: The docs are outdated since `v0.31.0` as the `jsdoc` library cannot parse `@type` definition properly. Until I find a workaround, please trust the types more than this file.
 
 # API Docs
 
@@ -8,6 +8,7 @@
 - [Conversion](#conversion)
 - [Dom](#dom)
 - [Event](#event)
+- [Format](#format)
 - [Functional Programming](#functional-programming)
 - [Geometry](#geometry)
 - [Index](#index)
@@ -759,6 +760,33 @@ Forward an event by cloning and dispatching it.
 | ------ | ------------------- | ---------------------------------- |
 | event  | <code>object</code> | Event to be forwarded.             |
 | target | <code>object</code> | Target HTML element for the event. |
+
+---
+
+# Format
+
+[⬆️ Back to the top](#api-docs)
+
+## Constants
+
+<dl>
+<dt><a href="#getD3FormatSpecifier">getD3FormatSpecifier</a> ⇒ <code>string</code></dt>
+<dd><p>Get a D3 Format specifier given the data domain.</p>
+</dd>
+</dl>
+
+<a name="getD3FormatSpecifier"></a>
+
+## getD3FormatSpecifier ⇒ <code>string</code>
+
+Get a D3 Format specifier given the data domain
+
+**Kind**: global constant  
+**Returns**: <code>string</code> - A D3 Format specifier that fits the data extent
+
+| Param  | Type                          | Description                             |
+| ------ | ----------------------------- | --------------------------------------- |
+| domain | <code>[number, number]</code> | The domain of the data to be formatted. |
 
 ---
 

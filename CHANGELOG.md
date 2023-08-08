@@ -1,3 +1,8 @@
+## 0.32.0
+
+- Add and test `getD3FormatSpecifier()`
+- Add missing tests for `iteratorToArray()` and `mergeMaps()`
+
 ## 0.31.0
 
 - Add TypeScript types

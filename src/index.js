@@ -46,6 +46,8 @@ export {
 
 export { cloneEvent, forwardEvent } from './event';
 
+export { getD3FormatSpecifier } from './format';
+
 export {
   map,
   mapFilter,
