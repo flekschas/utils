@@ -11,7 +11,7 @@ export const getD3FormatSpecifier = (domain) => {
   const sign = Math.sign(log);
   const numDigits = Math.round(Math.abs(log) + Number.isInteger(log));
 
-  if (sign < 0) return `.${numDigits + 1}~f`;
+  if (sign <= 0) return `.${Math.max(3, numDigits + 1)}~f`;
 
   const logMax = Math.log10(domain[1]);
   const numDigitsMax = Math.round(Math.abs(logMax) + Number.isInteger(logMax));

@@ -39,12 +39,22 @@ test('getD3FormatSpecifier([0.495, 0.505])', (t) => {
   t.equal(format(0.505), '0.505', 'Should convert 0.505 to "0.505"');
 });
 
+test('getD3FormatSpecifier([0, 1])', (t) => {
+  const format = createFormat(getD3FormatSpecifier([0, 1]));
+
+  t.equal(format(0), '0', 'Should convert 0 to "0"');
+  t.equal(format(0.1), '0.1', 'Should convert 0.1 to "0.1"');
+  t.equal(format(0.1333), '0.133', 'Should convert 0.1333 to "0.133"');
+  t.equal(format(0.9999), '1', 'Should convert 0.9999 to "1"');
+  t.equal(format(1), '1', 'Should convert 1 to "1"');
+});
+
 test('getD3FormatSpecifier([4.95, 5.05])', (t) => {
   const format = createFormat(getD3FormatSpecifier([4.95, 5.05]));
 
   t.equal(format(4.95), '4.95', 'Should convert 4.95 to "4.95"');
   t.equal(format(5.01), '5.01', 'Should convert 5.01 to "5.01"');
-  t.equal(format(5.01337), '5.01', 'Should convert 5.01337 to "5.01"');
+  t.equal(format(5.01337), '5.013', 'Should convert 5.01337 to "5.013"');
   t.equal(format(5), '5', 'Should convert 5 to "5"');
   t.equal(format(5.05), '5.05', 'Should convert 5.05 to "5.05"');
 });
