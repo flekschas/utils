@@ -1,6 +1,6 @@
 ## 0.32.1
 
-- Improve `getD3FormatSpecifier()` to ensure that at least 3 signficant digits are shown (if present)
+- Fix `getD3FormatSpecifier()` to ensure that at least 3 significant digits are shown (if present)
 
 ## 0.32.0
 
