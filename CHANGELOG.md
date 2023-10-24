@@ -1,3 +1,7 @@
+## 0.32.2
+
+- Fis `getD3FormatSpecifier()` for negative domains
+
 ## 0.32.1
 
 - Fix `getD3FormatSpecifier()` to ensure that at least 3 significant digits are shown (if present)

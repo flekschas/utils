@@ -169,3 +169,62 @@ test('getD3FormatSpecifier([0, 500000000.05])', (t) => {
     'Should convert 500000000.05 to "500M"'
   );
 });
+
+test('getD3FormatSpecifier([1, 1])', (t) => {
+  const format = createFormat(getD3FormatSpecifier([1, 1]));
+
+  t.equal(
+    format(-1234.5678),
+    '−1,230',
+    'Should convert -1234.5678 to "−1,230"'
+  );
+  t.equal(format(-10), '−10', 'Should convert -10 to "−10"');
+  t.equal(format(-0.123456), '−0.123', 'Should convert -0.123456 to "−0.123"');
+  t.equal(format(0), '0', 'Should convert 0 to "0"');
+  t.equal(format(0.123456), '0.123', 'Should convert 0.123456 to "0.123"');
+  t.equal(format(10), '10', 'Should convert 10 to "10"');
+  t.equal(format(1234.5678), '1,230', 'Should convert 1234.5678 to "1,230"');
+});
+
+test('getD3FormatSpecifier([-2.58194, -0.00044])', (t) => {
+  const format = createFormat(getD3FormatSpecifier([-2.58194, -0.00044]));
+
+  t.equal(format(-2.58194), '−2.58', 'Should convert -2.58194 to "−2.58"');
+  t.equal(
+    format(-0.512345678),
+    '−0.512',
+    'Should convert -0.512345678 to "−0.512"'
+  );
+  t.equal(
+    format(-0.00044),
+    '−0.00044',
+    'Should convert -0.00044 to "−0.00044"'
+  );
+});
+
+test('getD3FormatSpecifier([-20, 20])', (t) => {
+  const format = createFormat(getD3FormatSpecifier([-20, 20]));
+
+  t.equal(format(-20), '−20', 'Should convert -20 to "−20"');
+  t.equal(format(-12.34567), '−12.3', 'Should convert -12.34567 to "−12.3"');
+  t.equal(format(-5), '−5', 'Should convert -5 to "−5"');
+  t.equal(
+    format(-0.0001337),
+    '−0.000134',
+    'Should convert -0.0001337 to "−0.000134"'
+  );
+  t.equal(format(0), '0', 'Should convert 0 to "0"');
+  t.equal(
+    format(-0.0001337),
+    '−0.000134',
+    'Should convert -0.0001337 to "−0.000134"'
+  );
+  t.equal(format(5), '5', 'Should convert 5 to "5"');
+  t.equal(
+    format(0.0001337),
+    '0.000134',
+    'Should convert 0.0001337 to "0.000134"'
+  );
+  t.equal(format(12.34567), '12.3', 'Should convert 12.34567 to "12.3"');
+  t.equal(format(20), '20', 'Should convert 20 to "20"');
+});
