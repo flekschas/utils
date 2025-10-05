@@ -9,5 +9,11 @@
 *.html
 *.zip
 
+*.tsbuildinfo
+
 dist/*
+dist-old/*
 node_modules/*
+
+CLAUDE.md
+.claude

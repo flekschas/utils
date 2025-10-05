@@ -1,6 +1,10 @@
+## 0.33.0
+
+- Refactor: replaced Rollup+Zora+ESLint+Prettier with TypeScript+Vitest+Biome
+
 ## 0.32.2
 
-- Fis `getD3FormatSpecifier()` for negative domains
+- Fix `getD3FormatSpecifier()` for negative domains
 
 ## 0.32.1
 
