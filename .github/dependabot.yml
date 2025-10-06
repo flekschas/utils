@@ -1,0 +1,9 @@
+version: 2
+  updates:
+    # Enable updates for GitHub Actions
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule:
+        interval: "weekly"
+      # Optional: Auto-merge minor/patch updates
+      open-pull-requests-limit: 10
