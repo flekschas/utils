@@ -2,7 +2,7 @@ import { describe, test, expect } from "vitest";
 
 import { debounce, throttle, throttleAndDebounce, wait } from '../src/timing';
 
-const fn = (calls) => (value) => {
+const fn = (calls: unknown[]) => (value: unknown) => {
   calls.push(value);
 };
 
@@ -63,7 +63,7 @@ describe('Timing utilities', () => {
       const debounceTime = 100;
       const debouncedFn = debounce(fn(calls), debounceTime);
 
-      debouncedFn.now();
+      debouncedFn.now([]);
 
       expect(calls.length).toBe(1);
     });
